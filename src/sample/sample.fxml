@@ -15,42 +15,35 @@
     <RowConstraints maxHeight="79.4" minHeight="9.0" prefHeight="25.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+      <Pane fx:id="ships" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <children>
-            <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="242.0" prefWidth="216.0" spacing="5.0">
-               <children>
-                  <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" onDragDetected="#boatCarrierDragDetected" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Rectangle>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </VBox>
+            <Rectangle fx:id="boatCarrier" accessibleRole="PARENT" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="4.800000190734863" onDragDetected="#boatCarrierDragDetected" onMouseDragged="#boatCarrierMouseDragged" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="49.599998474121094" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="94.4000015258789" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="139.1999969482422" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="184.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
          </children></Pane>
-      <GridPane fx:id="playerBoard" gridLinesVisible="true" maxHeight="461.0" maxWidth="516.0" minHeight="329.0" minWidth="377.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#boatCarrierMouseClicked" prefHeight="329.0" prefWidth="516.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+      <GridPane fx:id="playerBoard" gridLinesVisible="true" maxHeight="461.0" maxWidth="516.0" minHeight="329.0" minWidth="377.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="329.0" prefWidth="516.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

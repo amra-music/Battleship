@@ -41,6 +41,11 @@ public class Controller {
     public Pane ships;
     public Rectangle field;
     public TextField text;
+    public Rectangle field1;
+    public Rectangle field2;
+    public Rectangle field3;
+    public Rectangle field4;
+    public Rectangle field5;
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
     private Image boatThree1Image = new Image("sample/boatThree1.png");
@@ -64,18 +69,25 @@ public class Controller {
     private Bounds boundsInScene;
     private Bounds ploca;
     private Bounds brodic;
-    private Paint boja ;
+    private Paint boja;
     private Bounds polje;
 
     @FXML
     public void initialize() {
 
 
-        for (Node currentNode : playerBoard.getChildren()){
-            if (currentNode instanceof Rectangle){
+        for (Node currentNode : playerBoard.getChildren()) {
+            if (currentNode instanceof Rectangle) {
                 nodes.add((Shape) currentNode);
             }
         }
+        /*nodes.add(field);
+        nodes.add(field1);
+        nodes.add(field2);
+        nodes.add(field3);
+        nodes.add(field5);
+        nodes.add(field4);*/
+
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));
         boatCruiser.setFill(new ImagePattern(boatThree2Image));
@@ -86,7 +98,6 @@ public class Controller {
         boundsInScene = scene2.localToScene(scene2.getBoundsInLocal());
 
         ploca = playerBoard.localToScene(playerBoard.getBoundsInLocal());
-
 
 
         boja = field.getFill();
@@ -104,21 +115,23 @@ public class Controller {
     public void boatCarrierMousePressed(MouseEvent mouseEvent) {
         boatCarrier.toBack();
         playerBoard.toFront();
-     //   boatCarrier.setMouseTransparent(true);
+        //   boatCarrier.setMouseTransparent(true);
         boatCarrier.setCursor(Cursor.CLOSED_HAND);
 
 
         orgSceneX = mouseEvent.getSceneX();
         orgSceneY = mouseEvent.getSceneY();
-        orgTranslateX = ((Rectangle)(mouseEvent.getSource())).getTranslateX();
-        orgTranslateY = ((Rectangle)(mouseEvent.getSource())).getTranslateY();
+        orgTranslateX = ((Rectangle) (mouseEvent.getSource())).getTranslateX();
+        orgTranslateY = ((Rectangle) (mouseEvent.getSource())).getTranslateY();
 
         //na desni klik, rotacija
         if (mouseEvent.isSecondaryButtonDown()) {
             setRotation(boatCarrier);
         }
         System.out.println(boatCarrierX.get());
+
     }
+
     public void playerBoardDragDetected(MouseEvent mouseEvent) {
         playerBoard.startFullDrag();
     }
@@ -126,25 +139,21 @@ public class Controller {
     public void boatCarrierMouseReleased(MouseEvent mouseEvent) {
         boatCarrier.setCursor(Cursor.OPEN_HAND);
 
-        //ako nije na pravom mjestu vrati se na pocetno mjesto -- ako nije pozicioniran vrati se na pocetno
-        //TODO ako nije na ploči vrati ga na početno mjesto
 
-       // Bounds boundsInScreen = scene2.localToScreen(scene2.getBoundsInLocal());
+        // Bounds boundsInScreen = scene2.localToScreen(scene2.getBoundsInLocal());
 
-
-        if(mouseEvent.getSceneX()>ploca.getMaxX()) {
+        if (mouseEvent.getSceneX() > ploca.getMaxX()) {
             ((Rectangle) (mouseEvent.getSource())).setTranslateX(orgTranslateX);
             ((Rectangle) (mouseEvent.getSource())).setTranslateY(orgTranslateY);
         }
 
         //boatCarrier.setMouseTransparent(false);
         playerBoard.toBack();
+
     }
 
     public void boatCarrierMouseDragged(MouseEvent mouseEvent) {
-        Bounds brodic = boatCarrier.localToScene(boatCarrier.getBoundsInLocal());
 
-        Bounds polje = field.localToScene(field.getBoundsInLocal());
         double offsetX = mouseEvent.getSceneX() - orgSceneX;
         double offsetY = mouseEvent.getSceneY() - orgSceneY;
         double newTranslateX = orgTranslateX + offsetX;
@@ -152,12 +161,16 @@ public class Controller {
 
         boatCarrier.setTranslateX(newTranslateX);
         boatCarrier.setTranslateY(newTranslateY);
-        //if(brodic.intersects(polje))field.setFill(Color.RED);
-        checkShapeIntersection(brodic);
+
+        Bounds brodic = boatCarrier.localToScene(boatCarrier.getBoundsInParent());
+
+        Bounds polje = field.localToScene(field.getBoundsInLocal());
+        //if(boatCarrier.intersects(polje))field.setFill(Color.RED);
+        checkShapeIntersection(boatCarrier);
 
     }
 
-    private void setRotation (Rectangle ship){
+    private void setRotation(Rectangle ship) {
         if (ship.getRotate() == 0)
             ship.setRotate(270);
         else
@@ -166,29 +179,22 @@ public class Controller {
 
     public void playerBoardMouseDragEntered(MouseDragEvent mouseDragEvent) {
         System.out.println("NO");
-        };
+    }
+
 
     public void playerBoardMousePressed(MouseEvent mouseEvent) {
         System.out.println("AMRAA");
     }
-    private void checkShapeIntersection(Bounds block) {
-        boolean collisionDetected = false;
+
+    private void checkShapeIntersection(Shape block) {
         for (Shape static_bloc : nodes) {
-
-                Bounds polje = static_bloc.localToScene(static_bloc.getBoundsInLocal());
-                if (block.intersects(polje)){
-                    collisionDetected = true;
-                }
-
-
-            if (collisionDetected) {
+            Shape intersect = Shape.intersect(block, static_bloc);
+            if (intersect.getBoundsInLocal().getWidth() != -1)
                 static_bloc.setFill(Color.GREEN);
-            } else {
+            else
                 static_bloc.setFill(Color.BLUE);
-            }
         }
     }
-
 }
 
 

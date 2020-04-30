@@ -1,49 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane fx:id="scene2" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="1.9999969005584717" prefWidth="371.99999999999994" />
-    <ColumnConstraints maxWidth="511.19999999999993" minWidth="10.0" prefWidth="431.19999999999993" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="451.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="79.4" minHeight="9.0" prefHeight="25.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Pane fx:id="ships" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-         <children>
-            <Rectangle fx:id="boatCarrier" accessibleRole="PARENT" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="4.800000190734863" onDragDetected="#boatCarrierDragDetected" onMouseDragged="#boatCarrierMouseDragged" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="49.599998474121094" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="94.4000015258789" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="139.1999969482422" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="184.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-         </children></Pane>
-      <GridPane fx:id="playerBoard" gridLinesVisible="true" maxHeight="461.0" maxWidth="516.0" minHeight="329.0" minWidth="377.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="329.0" prefWidth="516.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+<Pane fx:id="scene2" accessibleRole="NODE" prefHeight="576.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <stylesheets>
+        <URL value="@CSS.css" />
+    </stylesheets>
+    <children>
+      <GridPane id="playerBoard" fx:id="playerBoard" gridLinesVisible="true" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" onDragDetected="#playerBoardDragDetected" onMouseDragEntered="#playerBoardMouseDragEntered" onMousePressed="#playerBoardMousePressed" prefHeight="500.0" prefWidth="500.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -71,12 +40,79 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
+         <children>
+            <Rectangle id="filed" fx:id="field" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" onMouseDragEntered="#playerBoardMouseDragEntered" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="100.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="162.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="113.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="64.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="8" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="358.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="9" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="309.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="260.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="211.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="162.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="113.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="162.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="211.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="260.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="309.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="358.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="407.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="456.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="64.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="113.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="162.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="211.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="260.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="113.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="64.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="260.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="309.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="358.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="407.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="456.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="15.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="64.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="211.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+         </children>
       </GridPane>
+      <Pane fx:id="ships" layoutX="514.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="304.0">
+         <children>
+            <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="4.800000190734863" onDragDetected="#boatCarrierDragDetected" onMouseDragged="#boatCarrierMouseDragged" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="49.599998474121094" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="94.4000015258789" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="139.1999969482422" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+            <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.800000190734863" layoutY="184.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Rectangle>
+         </children>
+      </Pane>
+      <TextField fx:id="text" layoutX="655.0" layoutY="436.0" />
+      <Label layoutX="574.0" layoutY="440.0" text="Kordinate" />
    </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-</GridPane>
+</Pane>

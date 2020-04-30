@@ -71,11 +71,11 @@ public class Controller {
     public void initialize() {
 
 
-       /* for (Node currentNode : playerBoard.getChildren()){
+        for (Node currentNode : playerBoard.getChildren()){
             if (currentNode instanceof Rectangle){
                 nodes.add((Shape) currentNode);
             }
-        }*/
+        }
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));
         boatCruiser.setFill(new ImagePattern(boatThree2Image));
@@ -87,9 +87,7 @@ public class Controller {
 
         ploca = playerBoard.localToScene(playerBoard.getBoundsInLocal());
 
-        brodic = boatCarrier.localToScene(boatCarrier.getBoundsInLocal());
 
-        polje = field.localToScene(field.getBoundsInLocal());
 
         boja = field.getFill();
 
@@ -120,7 +118,6 @@ public class Controller {
             setRotation(boatCarrier);
         }
         System.out.println(boatCarrierX.get());
-
     }
     public void playerBoardDragDetected(MouseEvent mouseEvent) {
         playerBoard.startFullDrag();
@@ -145,7 +142,9 @@ public class Controller {
     }
 
     public void boatCarrierMouseDragged(MouseEvent mouseEvent) {
+        Bounds brodic = boatCarrier.localToScene(boatCarrier.getBoundsInLocal());
 
+        Bounds polje = field.localToScene(field.getBoundsInLocal());
         double offsetX = mouseEvent.getSceneX() - orgSceneX;
         double offsetY = mouseEvent.getSceneY() - orgSceneY;
         double newTranslateX = orgTranslateX + offsetX;
@@ -153,8 +152,8 @@ public class Controller {
 
         boatCarrier.setTranslateX(newTranslateX);
         boatCarrier.setTranslateY(newTranslateY);
-        if(boatCarrier.intersects(polje))field.setFill(Color.RED);
-     //   checkShapeIntersection(boatCarrier);
+        //if(brodic.intersects(polje))field.setFill(Color.RED);
+        checkShapeIntersection(brodic);
 
     }
 
@@ -172,22 +171,21 @@ public class Controller {
     public void playerBoardMousePressed(MouseEvent mouseEvent) {
         System.out.println("AMRAA");
     }
-    private void checkShapeIntersection(Shape block) {
+    private void checkShapeIntersection(Bounds block) {
         boolean collisionDetected = false;
         for (Shape static_bloc : nodes) {
-            if (static_bloc != block) {
-                Shape intersect = Shape.intersect(block, static_bloc);
-                if (intersect.getBoundsInLocal().getWidth() != -1) {
+
+                Bounds polje = static_bloc.localToScene(static_bloc.getBoundsInLocal());
+                if (block.intersects(polje)){
                     collisionDetected = true;
                 }
 
-            }
-        }
 
-        if (collisionDetected) {
-            block.setFill(Color.GREEN);
-        } else {
-            block.setFill(Color.BLUE);
+            if (collisionDetected) {
+                static_bloc.setFill(Color.GREEN);
+            } else {
+                static_bloc.setFill(Color.BLUE);
+            }
         }
     }
 

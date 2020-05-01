@@ -17,6 +17,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Rotate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +48,10 @@ public class Controller {
     private double orgSceneY;
     private double orgTranslateX;
     private double orgTranslateY;
-    private SimpleDoubleProperty boatCarrierX = new SimpleDoubleProperty();
     private List<Shape> nodes = new ArrayList();
 
-    private Bounds boundsInScene;
     private Bounds ploca;
-    private Bounds brodic;
-    private Paint boja;
-    private Bounds polje;
+
 
     @FXML
     public void initialize() {
@@ -81,15 +78,21 @@ public class Controller {
     }
 
     public void setDragListeners(final Rectangle ship) {
+        final Delta dragDelta = new Delta();
         ship.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ship.toFront();
                 ship.setCursor(Cursor.CLOSED_HAND);
-                orgSceneX = mouseEvent.getSceneX();
-                orgSceneY = mouseEvent.getSceneY();
-                orgTranslateX = ((Rectangle) (mouseEvent.getSource())).getTranslateX();
-                orgTranslateY = ((Rectangle) (mouseEvent.getSource())).getTranslateY();
+
+                //zapamti pocetnu poziciju
+                if(dragDelta.getLayoutX() == 0) {
+                    dragDelta.layoutX = ship.getLayoutX();
+                    dragDelta.layoutY = ship.getLayoutY();
+                }
+
+                dragDelta.x = ship.getLayoutX() - mouseEvent.getSceneX();
+                dragDelta.y = ship.getLayoutY() - mouseEvent.getSceneY();
 
                 //na desni klik, rotacija
                 if (mouseEvent.isSecondaryButtonDown()) {
@@ -101,27 +104,26 @@ public class Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ship.setCursor(Cursor.OPEN_HAND);
-                ploca = playerBoard.localToScene(playerBoard.getBoundsInLocal());
-                if (mouseEvent.getSceneX() > ploca.getMaxX()) {
-                    ((Rectangle) (mouseEvent.getSource())).setTranslateX(orgTranslateX);
-                    ((Rectangle) (mouseEvent.getSource())).setTranslateY(orgTranslateY);
-                }
+                ploca = playerBoard.localToScene(playerBoard.getBoundsInParent());
+
                 for (Shape static_bloc : nodes) {
                     if (static_bloc.getFill() == Color.GREEN)
                         static_bloc.setFill(Color.BLUE);
+                }
+                if (!isBoatOnBoard(ship, ploca)) {
+                    ship.setLayoutX(dragDelta.layoutX);
+                    ship.setLayoutY(dragDelta.layoutY);
                 }
             }
         });
         ship.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                double offsetX = mouseEvent.getSceneX() - orgSceneX;
-                double offsetY = mouseEvent.getSceneY() - orgSceneY;
-                double newTranslateX = orgTranslateX + offsetX;
-                double newTranslateY = orgTranslateY + offsetY;
 
-                ship.setTranslateX(newTranslateX);
-                ship.setTranslateY(newTranslateY);
+                ship.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
+                ship.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
+                System.out.println(ship.getLayoutX());
+                System.out.println(ship.getLayoutY());
 
                 checkShapeIntersection(ship);
             }
@@ -135,6 +137,31 @@ public class Controller {
             ship.setRotate(0);
     }
 
+    private boolean isBoatOnBoard(Rectangle ship, Bounds board) {
+        if (ship.getRotate() == 0) {
+            return ship.getLayoutX() >= 0 && ship.getLayoutX() < (board.getMaxX() - ship.getWidth()) &&
+                    ship.getLayoutY() >= 0 && ship.getLayoutY() < board.getMaxY() - ship.getHeight();
+        }
+        else {
+            int outBoard = outBoard(ship);
+                return ship.getLayoutX() >= -outBoard && ship.getLayoutX() < (board.getMaxX() - ship.getWidth() + outBoard) &&
+                        ship.getLayoutY() >= outBoard && ship.getLayoutY() < board.getMaxY() - ship.getWidth() + outBoard;
+        }
+    }
+    private int outBoard (Rectangle ship){
+        switch ((int) ship.getWidth()){
+            case 240:
+                return 100;
+            case 190:
+                return 75;
+            case 140:
+                return 50;
+            case 80:
+                return 20;
+        }
+        return 0;
+    }
+
     private void checkShapeIntersection(Shape block) {
         for (Shape static_bloc : nodes) {
             Shape intersect = Shape.intersect(block, static_bloc);
@@ -144,6 +171,17 @@ public class Controller {
                 static_bloc.setFill(Color.BLUE);
         }
     }
+   /*private void checkShapeIntersection(Shape block) {
+       for (Shape static_bloc : nodes) {
+           Shape intersect = Shape.intersect(block, static_bloc);
+           if (intersect.getBoundsInLocal().getWidth() != -1) {
+           staviti u neku listu, provjeriti minship.layout-block.layout
+               static_bloc.setFill(Color.GREEN);
+           }
+           else
+               static_bloc.setFill(Color.BLUE);
+       }
+   }*/
 }
 
 

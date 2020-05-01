@@ -83,36 +83,31 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="450.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Pane fx:id="ships" layoutX="514.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="304.0">
-         <children>
-            <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.0" layoutY="4.0" onDragDetected="#boatCarrierDragDetected" onMouseDragged="#boatCarrierMouseDragged" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.0" layoutY="50.0" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.0" layoutY="100.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.0" layoutY="150.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-            <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="4.0" layoutY="200.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Rectangle>
-         </children>
-      </Pane>
-      <TextField fx:id="text" layoutX="655.0" layoutY="436.0" />
-      <Label layoutX="574.0" layoutY="440.0" text="Kordinate" />
+      <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="18.0" onDragDetected="#boatCarrierDragDetected" onMouseDragged="#boatCarrierMouseDragged" onMousePressed="#boatCarrierMousePressed" onMouseReleased="#boatCarrierMouseReleased" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="240.0">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="64.0" mouseTransparent="true" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="114.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="164.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="214.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Rectangle>
+      <TextField fx:id="text" layoutX="525.0" layoutY="436.0" minWidth="300.0" />
    </children>
 </Pane>

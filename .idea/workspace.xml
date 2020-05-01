@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Napravljena kolizija sa poljima">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Prije promjena listenera">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
@@ -234,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588290011802</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Prije promjena listenera">
+      <created>1588339512012</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588339512012</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +266,8 @@
     <MESSAGE value="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni" />
     <MESSAGE value="Hover preko polja" />
     <MESSAGE value="Napravljena kolizija sa poljima" />
-    <option name="LAST_COMMIT_MESSAGE" value="Napravljena kolizija sa poljima" />
+    <MESSAGE value="Prije promjena listenera" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prije promjena listenera" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1588263041897">
@@ -274,10 +282,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588289111068" />
-    <state x="376" y="7" key="CommitChangelistDialog2" timestamp="1588290011177">
+    <state x="376" y="7" key="CommitChangelistDialog2" timestamp="1588339511548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="376" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588290011177" />
+    <state x="376" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588339511548" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -286,22 +294,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588280244168" />
-    <state width="1493" height="155" key="GridCell.Tab.0.bottom" timestamp="1588339287289">
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1588341461851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588339287289" />
-    <state width="1493" height="155" key="GridCell.Tab.0.center" timestamp="1588339287289">
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588341461851" />
+    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1588341461851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588339287289" />
-    <state width="1493" height="155" key="GridCell.Tab.0.left" timestamp="1588339287289">
+    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588341461851" />
+    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1588341461850">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588339287289" />
-    <state width="1493" height="155" key="GridCell.Tab.0.right" timestamp="1588339287289">
+    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588341461850" />
+    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1588341461851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588339287289" />
+    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588341461851" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1588286895481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

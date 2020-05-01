@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
@@ -11,7 +12,6 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
@@ -72,60 +72,60 @@ public class Controller {
         boatSubmarine.setFill(new ImagePattern(boatThree1Image));
         boatDestroyer.setFill(new ImagePattern(boatTwoImage));
 
+        setDragListeners(boatCarrier);
+        setDragListeners(boatBattleship);
+        setDragListeners(boatCruiser);
+        setDragListeners(boatDestroyer);
+        setDragListeners(boatSubmarine);
+
     }
 
-    public void boatCarrierDragDetected(MouseEvent mouseEvent) {
-        boatCarrier.startFullDrag();
-    }
+    public void setDragListeners(final Rectangle ship) {
+        ship.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ship.toFront();
+                ship.setCursor(Cursor.CLOSED_HAND);
+                orgSceneX = mouseEvent.getSceneX();
+                orgSceneY = mouseEvent.getSceneY();
+                orgTranslateX = ((Rectangle) (mouseEvent.getSource())).getTranslateX();
+                orgTranslateY = ((Rectangle) (mouseEvent.getSource())).getTranslateY();
 
+                //na desni klik, rotacija
+                if (mouseEvent.isSecondaryButtonDown()) {
+                    setRotation(ship);
+                }
+            }
+        });
+        ship.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ship.setCursor(Cursor.OPEN_HAND);
+                ploca = playerBoard.localToScene(playerBoard.getBoundsInLocal());
+                if (mouseEvent.getSceneX() > ploca.getMaxX()) {
+                    ((Rectangle) (mouseEvent.getSource())).setTranslateX(orgTranslateX);
+                    ((Rectangle) (mouseEvent.getSource())).setTranslateY(orgTranslateY);
+                }
+                for (Shape static_bloc : nodes) {
+                    if (static_bloc.getFill() == Color.GREEN)
+                        static_bloc.setFill(Color.BLUE);
+                }
+            }
+        });
+        ship.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                double offsetX = mouseEvent.getSceneX() - orgSceneX;
+                double offsetY = mouseEvent.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
 
-    public void boatCarrierMousePressed(MouseEvent mouseEvent) {
-        boatCarrier.toBack();
-        playerBoard.toFront();
-        //   boatCarrier.setMouseTransparent(true);
-        boatCarrier.setCursor(Cursor.CLOSED_HAND);
+                ship.setTranslateX(newTranslateX);
+                ship.setTranslateY(newTranslateY);
 
-
-        orgSceneX = mouseEvent.getSceneX();
-        orgSceneY = mouseEvent.getSceneY();
-        orgTranslateX = ((Rectangle) (mouseEvent.getSource())).getTranslateX();
-        orgTranslateY = ((Rectangle) (mouseEvent.getSource())).getTranslateY();
-
-        //na desni klik, rotacija
-        if (mouseEvent.isSecondaryButtonDown()) {
-            setRotation(boatCarrier);
-        }
-    }
-
-    public void playerBoardDragDetected(MouseEvent mouseEvent) {
-        playerBoard.startFullDrag();
-    }
-
-    public void boatCarrierMouseReleased(MouseEvent mouseEvent) {
-        boatCarrier.setCursor(Cursor.OPEN_HAND);
-
-
-        // Bounds boundsInScreen = scene2.localToScreen(scene2.getBoundsInLocal());
-
-        if (mouseEvent.getSceneX() > ploca.getMaxX()) {
-            ((Rectangle) (mouseEvent.getSource())).setTranslateX(orgTranslateX);
-            ((Rectangle) (mouseEvent.getSource())).setTranslateY(orgTranslateY);
-        }
-        //boatCarrier.setMouseTransparent(false);
-        playerBoard.toBack();
-    }
-
-    public void boatCarrierMouseDragged(MouseEvent mouseEvent) {
-
-        double offsetX = mouseEvent.getSceneX() - orgSceneX;
-        double offsetY = mouseEvent.getSceneY() - orgSceneY;
-        double newTranslateX = orgTranslateX + offsetX;
-        double newTranslateY = orgTranslateY + offsetY;
-
-        boatCarrier.setTranslateX(newTranslateX);
-        boatCarrier.setTranslateY(newTranslateY);
-
-        checkShapeIntersection(boatCarrier);
+                checkShapeIntersection(ship);
+            }
+        });
     }
 
     private void setRotation(Rectangle ship) {
@@ -133,15 +133,6 @@ public class Controller {
             ship.setRotate(270);
         else
             ship.setRotate(0);
-    }
-
-    public void playerBoardMouseDragEntered(MouseDragEvent mouseDragEvent) {
-        System.out.println("NO");
-    }
-
-
-    public void playerBoardMousePressed(MouseEvent mouseEvent) {
-        System.out.println("AMRAA");
     }
 
     private void checkShapeIntersection(Shape block) {

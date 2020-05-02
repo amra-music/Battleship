@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
@@ -138,37 +137,31 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="400.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="playerField" width="50.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="450.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
          </children>
-         <padding>
-            <Insets left="15.0" top="15.0" />
-         </padding>
       </GridPane>
-      <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="18.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="240.0">
+      <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="18.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="250.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="190.0">
+      <Rectangle fx:id="boatBattleship" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="114.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0">
+      <Rectangle fx:id="boatSubmarine" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="114.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="150.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="164.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0">
+      <Rectangle fx:id="boatCruiser" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="164.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="150.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="214.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
+      <Rectangle fx:id="boatDestroyer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="214.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Rectangle>
    </children>
-   <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" />
-   </padding>
 </Pane>

@@ -147,14 +147,14 @@ public class Controller {
 
     private int outBoard(Rectangle ship) {
         switch ((int) ship.getWidth()) {
-            case 240:
-                return 100;
-            case 190:
-                return 75;
-            case 140:
-                return 50;
-            case 80:
-                return 20;
+            case 250:
+                return 105;
+            case 200:
+                return 85;
+            case 150:
+                return 55;
+            case 100:
+                return 30;
         }
         return 0;
     }
@@ -163,9 +163,20 @@ public class Controller {
         return ship.getLayoutY() <= field.getLayoutY() + 30 && ship.getLayoutY() > field.getLayoutY() - field.getHeight() + 30;
     }
 
-   /* private boolean occupiesRightWidth(Rectangle ship, Rectangle field) {
-    //return true;
-            return ( ship.getLayoutX() <= field.getLayoutX() + 25 && ship.getLayoutX() + ship.getWidth() > ship.getWidth() + 24);
+    private boolean occupiesRightWidth(Rectangle ship, Rectangle field) {
+        return (ship.getLayoutX() <= field.getLayoutX() + field.getWidth() / 2);
+    }
+
+    private boolean occupiesRightWidth2(Rectangle ship, Rectangle field) {
+        return ship.getLayoutX() + ship.getWidth() > field.getLayoutX() + field.getWidth() / 2;
+    }
+
+   /* private boolean occupiesRightHight(Rectangle ship, Rectangle field) {
+        return (ship.getLayoutY() <= field.getLayoutY() + field.getHeight() / 2);
+    }
+
+    private boolean occupiesRightHight2(Rectangle ship, Rectangle field) {
+        return ship.getLayoutY() + ship.getWidth() > field.getLayoutY() + field.getHeight() / 2;
     }*/
 
     private boolean occupiesOneColumn(Rectangle ship, Rectangle field) {
@@ -179,15 +190,16 @@ public class Controller {
             if (intersect.getBoundsInLocal().getWidth() != -1) {
 
                 if (block.getRotate() == 0) {
-                    if (occupiesOneRow(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds)) {
+                    if (occupiesOneRow(block, static_bloc) && occupiesRightWidth(block, static_bloc) &&
+                            occupiesRightWidth2(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds)) {
                         static_bloc.setFill(Color.GREEN);
-                    }
-                    else if (occupiesOneRow(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
+                    } else if (occupiesOneRow(block, static_bloc) && occupiesRightWidth(block, static_bloc) &&
+                            occupiesRightWidth2(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
                         static_bloc.setFill(Color.CORAL);
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {
-                    if (occupiesOneColumn(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds))
+                    if (occupiesOneColumn(block, static_bloc)  && isBoatOnBoard(block, playerBoardBounds))
                         static_bloc.setFill(Color.GREEN);
                     else if
                     (occupiesOneColumn(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))

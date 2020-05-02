@@ -44,10 +44,6 @@ public class Controller {
     private Image boatTwoImage = new Image("sample/boatTwo.png");
     private Image ocean = new Image("sample/ocean.jpg");
     public Pane scene2;
-    private double orgSceneX;
-    private double orgSceneY;
-    private double orgTranslateX;
-    private double orgTranslateY;
     private List<Shape> nodes = new ArrayList();
 
     private Bounds ploca;
@@ -105,15 +101,26 @@ public class Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ship.setCursor(Cursor.OPEN_HAND);
-                ploca = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
-                for (Shape static_bloc : nodes) {
-                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.RED)
-                        static_bloc.setFill(Color.BLUE);
-                }
                 if (!isBoatOnBoard(ship, ploca)) {
                     ship.setLayoutX(dragDelta.layoutX);
                     ship.setLayoutY(dragDelta.layoutY);
+                } else {
+                    for (Shape static_bloc : nodes) {
+                        if (static_bloc.getFill() == Color.GREEN) {
+                            if (ship.getRotate() == 0) {
+                                ship.setLayoutY(static_bloc.getLayoutY() + 5);
+                                break;
+                            } else {
+                                int deviation = outBoard(ship);
+                                ship.setLayoutX(static_bloc.getLayoutX() - deviation + 5);
+                            }
+                        }
+                    }
+                }
+                for (Shape static_bloc : nodes) {
+                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.RED)
+                        static_bloc.setFill(Color.BLUE);
                 }
             }
         });
@@ -163,6 +170,15 @@ public class Controller {
         return 0;
     }
 
+    private boolean occupiesOneRow(Shape ship, Shape field) {
+        return ship.getLayoutY() <= field.getLayoutY() + 30 && ship.getLayoutY() > field.getLayoutY() - 50 + 30;
+    }
+
+    private boolean occupiesOneColumn(Shape ship, Shape field) {
+        int deviation = outBoard((Rectangle) ship);
+        return ship.getLayoutX() <= field.getLayoutX() - deviation + 30 && ship.getLayoutX() > field.getLayoutX() - deviation - 50 + 30;
+    }
+
     private void checkShapeIntersection(Shape block) {
         for (Shape static_bloc : nodes) {
             Shape intersect = Shape.intersect(block, static_bloc);
@@ -170,16 +186,18 @@ public class Controller {
 
                 //50 je visina i sirina bloka
                 if (block.getRotate() == 0) {
-                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0 && isBoatOnBoard((Rectangle) block,ploca))
+                    if (occupiesOneRow(block, static_bloc) && isBoatOnBoard((Rectangle) block, ploca))
                         static_bloc.setFill(Color.GREEN);
-                    else if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0 && !isBoatOnBoard((Rectangle) block,ploca))
+                    else if (occupiesOneRow(block, static_bloc) && !isBoatOnBoard((Rectangle) block, ploca))
                         static_bloc.setFill(Color.RED);
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {
-                    int odstupanje = outBoard((Rectangle) block);
-                    if (block.getLayoutX() <= static_bloc.getLayoutX() - odstupanje + 30 && block.getLayoutX() > static_bloc.getLayoutX() - odstupanje - 50 + 30 && block.getLayoutX() > -odstupanje)
+                    if (occupiesOneColumn(block, static_bloc) && isBoatOnBoard((Rectangle) block, ploca))
                         static_bloc.setFill(Color.GREEN);
+                    else if
+                    (occupiesOneColumn(block, static_bloc) && !isBoatOnBoard((Rectangle) block, ploca))
+                        static_bloc.setFill(Color.RED);
                     else
                         static_bloc.setFill(Color.BLUE);
                 }

@@ -86,7 +86,7 @@ public class Controller {
                 ship.setCursor(Cursor.CLOSED_HAND);
 
                 //zapamti pocetnu poziciju
-                if(dragDelta.getLayoutX() == 0) {
+                if (dragDelta.getLayoutX() == 0) {
                     dragDelta.layoutX = ship.getLayoutX();
                     dragDelta.layoutY = ship.getLayoutY();
                 }
@@ -141,15 +141,15 @@ public class Controller {
         if (ship.getRotate() == 0) {
             return ship.getLayoutX() >= 0 && ship.getLayoutX() < (board.getMaxX() - ship.getWidth()) &&
                     ship.getLayoutY() >= 0 && ship.getLayoutY() < board.getMaxY() - ship.getHeight();
-        }
-        else {
+        } else {
             int outBoard = outBoard(ship);
-                return ship.getLayoutX() >= -outBoard && ship.getLayoutX() < (board.getMaxX() - ship.getWidth() + outBoard) &&
-                        ship.getLayoutY() >= outBoard && ship.getLayoutY() < board.getMaxY() - ship.getWidth() + outBoard;
+            return ship.getLayoutX() >= -outBoard && ship.getLayoutX() < (board.getMaxX() - ship.getWidth() + outBoard) &&
+                    ship.getLayoutY() >= outBoard && ship.getLayoutY() < board.getMaxY() - ship.getWidth() + outBoard;
         }
     }
-    private int outBoard (Rectangle ship){
-        switch ((int) ship.getWidth()){
+
+    private int outBoard(Rectangle ship) {
+        switch ((int) ship.getWidth()) {
             case 240:
                 return 100;
             case 190:
@@ -165,9 +165,21 @@ public class Controller {
     private void checkShapeIntersection(Shape block) {
         for (Shape static_bloc : nodes) {
             Shape intersect = Shape.intersect(block, static_bloc);
-            if (intersect.getBoundsInLocal().getWidth() != -1)
-                static_bloc.setFill(Color.GREEN);
-            else
+            if (intersect.getBoundsInLocal().getWidth() != -1) {
+                //50 je visina i sirina bloka
+                if (block.getRotate() == 0) {
+                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30)
+                        static_bloc.setFill(Color.GREEN);
+                    else
+                        static_bloc.setFill(Color.BLUE);
+                } else {
+                    int odstupanje = outBoard((Rectangle) block);
+                    if (block.getLayoutX() <= static_bloc.getLayoutX() - odstupanje + 30 && block.getLayoutX() > static_bloc.getLayoutX() - odstupanje - 50 + 30)
+                        static_bloc.setFill(Color.GREEN);
+                    else
+                        static_bloc.setFill(Color.BLUE);
+                }
+            } else
                 static_bloc.setFill(Color.BLUE);
         }
     }

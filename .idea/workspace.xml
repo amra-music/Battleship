@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="DragListener za sve brodice">
-      <change afterPath="$PROJECT_DIR$/src/sample/Delta.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Napravljano da ako nije na ploci se vrati na svoje mjesto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DragDrop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -216,6 +214,7 @@
       <workItem from="1588169679967" duration="2004000" />
       <workItem from="1588258531035" duration="1380000" />
       <workItem from="1588259928623" duration="10840000" />
+      <workItem from="1588368947385" duration="4778000" />
     </task>
     <task id="LOCAL-00001" summary="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni">
       <created>1587057587482</created>
@@ -252,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588341525710</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Napravljano da ako nije na ploci se vrati na svoje mjesto">
+      <created>1588351408156</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588351408156</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +285,8 @@
     <MESSAGE value="Napravljena kolizija sa poljima" />
     <MESSAGE value="Prije promjena listenera" />
     <MESSAGE value="DragListener za sve brodice" />
-    <option name="LAST_COMMIT_MESSAGE" value="DragListener za sve brodice" />
+    <MESSAGE value="Napravljano da ako nije na ploci se vrati na svoje mjesto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Napravljano da ako nije na ploci se vrati na svoje mjesto" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1588350762191">
@@ -298,10 +305,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588289111068" />
-    <state x="376" y="7" key="CommitChangelistDialog2" timestamp="1588341525185">
+    <state x="376" y="7" key="CommitChangelistDialog2" timestamp="1588351407672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="376" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588341525185" />
+    <state x="376" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588351407672" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -310,38 +317,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588280244168" />
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1588351298286">
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1588378785563">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588351298286" />
-    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1588351298286">
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588378785563" />
+    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1588378785562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588351298286" />
-    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1588351298286">
+    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588378785562" />
+    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1588378785562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588351298286" />
-    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1588351298286">
+    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588378785562" />
+    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1588378785562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588351298286" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1588286895481">
+    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588378785562" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1588351457481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588286895481" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1588286895481">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588351457481" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1588351457481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588286895481" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1588286895481">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588351457481" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1588351457481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588286895481" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1588286895481">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588351457481" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1588351457481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588286895481" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588351457481" />
     <state x="498" y="0" key="SettingsEditor" timestamp="1587237940371">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

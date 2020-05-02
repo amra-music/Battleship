@@ -168,13 +168,13 @@ public class Controller {
             if (intersect.getBoundsInLocal().getWidth() != -1) {
                 //50 je visina i sirina bloka
                 if (block.getRotate() == 0) {
-                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30)
+                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0)
                         static_bloc.setFill(Color.GREEN);
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {
                     int odstupanje = outBoard((Rectangle) block);
-                    if (block.getLayoutX() <= static_bloc.getLayoutX() - odstupanje + 30 && block.getLayoutX() > static_bloc.getLayoutX() - odstupanje - 50 + 30)
+                    if (block.getLayoutX() <= static_bloc.getLayoutX() - odstupanje + 30 && block.getLayoutX() > static_bloc.getLayoutX() - odstupanje - 50 + 30 && block.getLayoutX() > -odstupanje)
                         static_bloc.setFill(Color.GREEN);
                     else
                         static_bloc.setFill(Color.BLUE);

@@ -1,23 +1,18 @@
 package sample;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Rotate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +25,7 @@ public class Controller {
     public Rectangle boatDestroyer;
     public Rectangle boatBattleship;
     public GridPane playerBoard;
-    public Rectangle field;
-    public TextField text;
-    public Rectangle field1;
-    public Rectangle field2;
-    public Rectangle field3;
-    public Rectangle field4;
-    public Rectangle field5;
+
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
     private Image boatThree1Image = new Image("sample/boatThree1.png");
@@ -44,9 +33,9 @@ public class Controller {
     private Image boatTwoImage = new Image("sample/boatTwo.png");
     private Image ocean = new Image("sample/ocean.jpg");
     public Pane scene2;
-    private List<Shape> nodes = new ArrayList();
+    private List<Rectangle> nodes = new ArrayList();
 
-    private Bounds ploca;
+    private Bounds playerBoardBounds;
 
 
     @FXML
@@ -55,7 +44,7 @@ public class Controller {
 
         for (Node currentNode : playerBoard.getChildren()) {
             if (currentNode instanceof Rectangle) {
-                nodes.add((Shape) currentNode);
+                nodes.add((Rectangle) currentNode);
             }
         }
 
@@ -71,7 +60,7 @@ public class Controller {
         setDragListeners(boatDestroyer);
         setDragListeners(boatSubmarine);
 
-        ploca = playerBoard.localToScene(playerBoard.getBoundsInParent());
+        playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
     }
 
     public void setDragListeners(final Rectangle ship) {
@@ -102,7 +91,7 @@ public class Controller {
             public void handle(MouseEvent mouseEvent) {
                 ship.setCursor(Cursor.OPEN_HAND);
 
-                if (!isBoatOnBoard(ship, ploca)) {
+                if (!isBoatOnBoard(ship, playerBoardBounds)) {
                     ship.setLayoutX(dragDelta.layoutX);
                     ship.setLayoutY(dragDelta.layoutY);
                 } else {
@@ -119,7 +108,7 @@ public class Controller {
                     }
                 }
                 for (Shape static_bloc : nodes) {
-                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.RED)
+                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.CORAL)
                         static_bloc.setFill(Color.BLUE);
                 }
             }
@@ -170,34 +159,39 @@ public class Controller {
         return 0;
     }
 
-    private boolean occupiesOneRow(Shape ship, Shape field) {
-        return ship.getLayoutY() <= field.getLayoutY() + 30 && ship.getLayoutY() > field.getLayoutY() - 50 + 30;
+    private boolean occupiesOneRow(Rectangle ship, Rectangle field) {
+        return ship.getLayoutY() <= field.getLayoutY() + 30 && ship.getLayoutY() > field.getLayoutY() - field.getHeight() + 30;
     }
 
-    private boolean occupiesOneColumn(Shape ship, Shape field) {
-        int deviation = outBoard((Rectangle) ship);
-        return ship.getLayoutX() <= field.getLayoutX() - deviation + 30 && ship.getLayoutX() > field.getLayoutX() - deviation - 50 + 30;
+   /* private boolean occupiesRightWidth(Rectangle ship, Rectangle field) {
+    //return true;
+            return ( ship.getLayoutX() <= field.getLayoutX() + 25 && ship.getLayoutX() + ship.getWidth() > ship.getWidth() + 24);
+    }*/
+
+    private boolean occupiesOneColumn(Rectangle ship, Rectangle field) {
+        int deviation = outBoard(ship);
+        return ship.getLayoutX() <= field.getLayoutX() - deviation + 30 && ship.getLayoutX() > field.getLayoutX() - deviation - field.getWidth() + 30;
     }
 
-    private void checkShapeIntersection(Shape block) {
-        for (Shape static_bloc : nodes) {
+    private void checkShapeIntersection(Rectangle block) {
+        for (Rectangle static_bloc : nodes) {
             Shape intersect = Shape.intersect(block, static_bloc);
             if (intersect.getBoundsInLocal().getWidth() != -1) {
 
-                //50 je visina i sirina bloka
                 if (block.getRotate() == 0) {
-                    if (occupiesOneRow(block, static_bloc) && isBoatOnBoard((Rectangle) block, ploca))
+                    if (occupiesOneRow(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds)) {
                         static_bloc.setFill(Color.GREEN);
-                    else if (occupiesOneRow(block, static_bloc) && !isBoatOnBoard((Rectangle) block, ploca))
-                        static_bloc.setFill(Color.RED);
+                    }
+                    else if (occupiesOneRow(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
+                        static_bloc.setFill(Color.CORAL);
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {
-                    if (occupiesOneColumn(block, static_bloc) && isBoatOnBoard((Rectangle) block, ploca))
+                    if (occupiesOneColumn(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds))
                         static_bloc.setFill(Color.GREEN);
                     else if
-                    (occupiesOneColumn(block, static_bloc) && !isBoatOnBoard((Rectangle) block, ploca))
-                        static_bloc.setFill(Color.RED);
+                    (occupiesOneColumn(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
+                        static_bloc.setFill(Color.CORAL);
                     else
                         static_bloc.setFill(Color.BLUE);
                 }

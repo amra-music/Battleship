@@ -75,6 +75,7 @@ public class Controller {
         setDragListeners(boatDestroyer);
         setDragListeners(boatSubmarine);
 
+        ploca = playerBoard.localToScene(playerBoard.getBoundsInParent());
     }
 
     public void setDragListeners(final Rectangle ship) {
@@ -107,7 +108,7 @@ public class Controller {
                 ploca = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
                 for (Shape static_bloc : nodes) {
-                    if (static_bloc.getFill() == Color.GREEN)
+                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.RED)
                         static_bloc.setFill(Color.BLUE);
                 }
                 if (!isBoatOnBoard(ship, ploca)) {
@@ -166,10 +167,13 @@ public class Controller {
         for (Shape static_bloc : nodes) {
             Shape intersect = Shape.intersect(block, static_bloc);
             if (intersect.getBoundsInLocal().getWidth() != -1) {
+
                 //50 je visina i sirina bloka
                 if (block.getRotate() == 0) {
-                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0)
+                    if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0 && isBoatOnBoard((Rectangle) block,ploca))
                         static_bloc.setFill(Color.GREEN);
+                    else if (block.getLayoutY() <= static_bloc.getLayoutY() + 30 && block.getLayoutY() > static_bloc.getLayoutY() - 50 + 30 && block.getLayoutY() > 0 && !isBoatOnBoard((Rectangle) block,ploca))
+                        static_bloc.setFill(Color.RED);
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {

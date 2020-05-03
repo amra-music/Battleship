@@ -99,10 +99,13 @@ public class Controller {
                         if (static_bloc.getFill() == Color.GREEN) {
                             if (ship.getRotate() == 0) {
                                 ship.setLayoutY(static_bloc.getLayoutY() + 5);
+                                ship.setLayoutX(static_bloc.getLayoutX());
                                 break;
                             } else {
                                 int deviation = outBoard(ship);
                                 ship.setLayoutX(static_bloc.getLayoutX() - deviation + 5);
+                                ship.setLayoutY(static_bloc.getLayoutY() + deviation);
+                                break;
                             }
                         }
                     }
@@ -136,12 +139,13 @@ public class Controller {
 
     private boolean isBoatOnBoard(Rectangle ship, Bounds board) {
         if (ship.getRotate() == 0) {
-            return ship.getLayoutX() >= 0 && ship.getLayoutX() < (board.getMaxX() - ship.getWidth()) &&
-                    ship.getLayoutY() >= 0 && ship.getLayoutY() < board.getMaxY() - ship.getHeight();
+            return ship.getLayoutX() >= 0 && ship.getLayoutX() <= (board.getMaxX() + 5 - ship.getWidth()) &&
+                    ship.getLayoutY() >= 0 && ship.getLayoutY() <= board.getMaxY() + 5 - ship.getHeight();
         } else {
             int outBoard = outBoard(ship);
-            return ship.getLayoutX() >= -outBoard && ship.getLayoutX() < (board.getMaxX() - ship.getWidth() + outBoard) &&
-                    ship.getLayoutY() >= outBoard && ship.getLayoutY() < board.getMaxY() - ship.getWidth() + outBoard;
+            //+10 da se ne iskljuci cim se dotakne okvir ploce
+            return ship.getLayoutX() >= -outBoard && ship.getLayoutX() <= (board.getMaxX() + 5 - ship.getHeight() + outBoard) &&
+                    ship.getLayoutY() >= outBoard && ship.getLayoutY() <= board.getMaxY() + 5 - ship.getWidth() + outBoard;
         }
     }
 
@@ -150,7 +154,7 @@ public class Controller {
             case 250:
                 return 105;
             case 200:
-                return 85;
+                return 80;
             case 150:
                 return 55;
             case 100:
@@ -171,13 +175,15 @@ public class Controller {
         return ship.getLayoutX() + ship.getWidth() > field.getLayoutX() + field.getWidth() / 2;
     }
 
-   /* private boolean occupiesRightHight(Rectangle ship, Rectangle field) {
-        return (ship.getLayoutY() <= field.getLayoutY() + field.getHeight() / 2);
+    private boolean occupiesRightHight(Rectangle ship, Rectangle field) {
+        int deviation = outBoard(ship);
+        return (ship.getLayoutY() - deviation <= field.getLayoutY() + field.getWidth() / 2);
     }
 
     private boolean occupiesRightHight2(Rectangle ship, Rectangle field) {
-        return ship.getLayoutY() + ship.getWidth() > field.getLayoutY() + field.getHeight() / 2;
-    }*/
+        int deviation = outBoard(ship);
+        return ship.getLayoutY() - deviation + ship.getWidth() > field.getLayoutY() + field.getWidth() / 2;
+    }
 
     private boolean occupiesOneColumn(Rectangle ship, Rectangle field) {
         int deviation = outBoard(ship);
@@ -199,10 +205,12 @@ public class Controller {
                     else
                         static_bloc.setFill(Color.BLUE);
                 } else {
-                    if (occupiesOneColumn(block, static_bloc)  && isBoatOnBoard(block, playerBoardBounds))
+                    if (occupiesOneColumn(block, static_bloc) && occupiesRightHight(block, static_bloc)
+                            && occupiesRightHight2(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds))
                         static_bloc.setFill(Color.GREEN);
                     else if
-                    (occupiesOneColumn(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
+                    (occupiesOneColumn(block, static_bloc) && occupiesRightHight(block, static_bloc)
+                                    && occupiesRightHight2(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
                         static_bloc.setFill(Color.CORAL);
                     else
                         static_bloc.setFill(Color.BLUE);

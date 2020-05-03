@@ -143,7 +143,7 @@ public class Controller {
                     ship.getLayoutY() >= 0 && ship.getLayoutY() <= board.getMaxY() + 5 - ship.getHeight();
         } else {
             int outBoard = outBoard(ship);
-            //+10 da se ne iskljuci cim se dotakne okvir ploce
+            //+5 na velicinu ploce da se ne detekltuje odmah cim se dotakne okvir da je izvan ploce brodic
             return ship.getLayoutX() >= -outBoard && ship.getLayoutX() <= (board.getMaxX() + 5 - ship.getHeight() + outBoard) &&
                     ship.getLayoutY() >= outBoard && ship.getLayoutY() <= board.getMaxY() + 5 - ship.getWidth() + outBoard;
         }
@@ -163,6 +163,7 @@ public class Controller {
         return 0;
     }
 
+    // da se ne boje dva reda/kolone ako se presijecaju polja vec samo ako je presjeceno vise od pola polja
     private boolean occupiesOneRow(Rectangle ship, Rectangle field) {
         return ship.getLayoutY() <= field.getLayoutY() + 30 && ship.getLayoutY() > field.getLayoutY() - field.getHeight() + 30;
     }

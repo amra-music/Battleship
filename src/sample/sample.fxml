@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
@@ -137,6 +138,9 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="400.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="playerField" width="50.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="450.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="playerField" width="50.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
          </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
       </GridPane>
       <Rectangle fx:id="boatCarrier" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="518.0" layoutY="18.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="250.0">
          <cursor>
@@ -164,4 +168,7 @@
          </cursor>
       </Rectangle>
    </children>
+   <padding>
+      <Insets left="20.0" />
+   </padding>
 </Pane>

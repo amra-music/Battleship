@@ -3,8 +3,12 @@ package sample;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -16,6 +20,7 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class Controller {
@@ -25,6 +30,8 @@ public class Controller {
     public Rectangle boatDestroyer;
     public Rectangle boatBattleship;
     public GridPane playerBoard;
+    public TextArea textArea;
+    public Button startButton;
 
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
@@ -36,6 +43,9 @@ public class Controller {
     private List<Rectangle> nodes = new ArrayList();
 
     private Bounds playerBoardBounds;
+    private Board player = new Board();
+    private List<Rectangle> ships = new ArrayList();
+    private boolean firstTime = true;
 
 
     @FXML
@@ -54,17 +64,20 @@ public class Controller {
         boatSubmarine.setFill(new ImagePattern(boatThree1Image));
         boatDestroyer.setFill(new ImagePattern(boatTwoImage));
 
-        setDragListeners(boatCarrier);
-        setDragListeners(boatBattleship);
-        setDragListeners(boatCruiser);
-        setDragListeners(boatDestroyer);
-        setDragListeners(boatSubmarine);
+        ships.add(boatCarrier);
+        ships.add(boatBattleship);
+        ships.add(boatDestroyer);
+        ships.add(boatSubmarine);
+        ships.add(boatCruiser);
+
+        ships.forEach(this::setDragListeners);
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
     }
 
     public void setDragListeners(final Rectangle ship) {
         final Delta dragDelta = new Delta();
+        Ship brod = new Ship(ship.getWidth());
         ship.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -76,7 +89,9 @@ public class Controller {
                     dragDelta.layoutX = ship.getLayoutX();
                     dragDelta.layoutY = ship.getLayoutY();
                 }
-
+                if (isBoatOnBoard(ship, playerBoardBounds)) {
+                    player.removeShip(brod);
+                }
                 dragDelta.x = ship.getLayoutX() - mouseEvent.getSceneX();
                 dragDelta.y = ship.getLayoutY() - mouseEvent.getSceneY();
 
@@ -94,9 +109,15 @@ public class Controller {
                 if (!isBoatOnBoard(ship, playerBoardBounds)) {
                     ship.setLayoutX(dragDelta.layoutX);
                     ship.setLayoutY(dragDelta.layoutY);
+                    player.removeShip(brod);
                 } else {
                     for (Shape static_bloc : nodes) {
                         if (static_bloc.getFill() == Color.GREEN) {
+                            brod.setOrientation(static_bloc.getRotate());
+                            brod.setStartY(static_bloc.getLayoutY());
+                            brod.setStartX(static_bloc.getLayoutX());
+                            player.addShip(brod);
+                            //ovaj if-else je za pravilno snapovanje
                             if (ship.getRotate() == 0) {
                                 ship.setLayoutY(static_bloc.getLayoutY() + 5);
                                 ship.setLayoutX(static_bloc.getLayoutX());
@@ -220,17 +241,46 @@ public class Controller {
                 static_bloc.setFill(Color.BLUE);
         }
     }
-   /*private void checkShapeIntersection(Shape block) {
-       for (Shape static_bloc : nodes) {
-           Shape intersect = Shape.intersect(block, static_bloc);
-           if (intersect.getBoundsInLocal().getWidth() != -1) {
-           staviti u neku listu, provjeriti minship.layout-block.layout
-               static_bloc.setFill(Color.GREEN);
-           }
-           else
-               static_bloc.setFill(Color.BLUE);
-       }
-   }*/
+
+    public void start(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Nisu postavljeni svi brodici na polje!");
+        if (player.getShips().size() != 5)
+            alert.showAndWait();
+        else {
+            textArea.setText(player.toString() + "\n " + player.getShips().size());
+            ships.forEach(ship -> ship.setDisable(true));
+            startButton.setDisable(true);
+        }
+    }
+    private double layoutYByWidth(double width) {
+        switch ((int) width) {
+            case 250:
+                return 18;
+            case 200:
+                return 64;
+            case 150:
+                if (firstTime) {
+                    firstTime = false;
+                    return 114;
+                } else
+                return 164;
+            case 100:
+                return 214;
+        }
+        return 0;
+    }
+    public void playAgain(MouseEvent mouseEvent) {
+        startButton.setDisable(false);
+        textArea.setText("");
+        ships.forEach(ship -> {
+            ship.setDisable(false);
+            ship.setLayoutX(550);
+            ship.setRotate(0);
+            ship.setLayoutY(layoutYByWidth(ship.getWidth()));
+        });
+        player.getShips().clear();
+    }
 }
 
 

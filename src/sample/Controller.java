@@ -3,7 +3,6 @@ package sample;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
-import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -20,7 +19,6 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 
 public class Controller {
@@ -66,66 +64,66 @@ public class Controller {
 
         ships.add(boatCarrier);
         ships.add(boatBattleship);
-        ships.add(boatDestroyer);
-        ships.add(boatSubmarine);
         ships.add(boatCruiser);
+        ships.add(boatSubmarine);
+        ships.add(boatDestroyer);
 
         ships.forEach(this::setDragListeners);
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
     }
 
-    public void setDragListeners(final Rectangle ship) {
+    public void setDragListeners(final Rectangle shipRectangle) {
         final Delta dragDelta = new Delta();
-        Ship brod = new Ship(ship.getWidth());
-        ship.setOnMousePressed(new EventHandler<MouseEvent>() {
+        Ship ship = new Ship(shipRectangle.getWidth(), shipRectangle.getLayoutX(), shipRectangle.getLayoutY());
+        shipRectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                ship.toFront();
-                ship.setCursor(Cursor.CLOSED_HAND);
+                shipRectangle.toFront();
+                shipRectangle.setCursor(Cursor.CLOSED_HAND);
 
                 //zapamti pocetnu poziciju
-                if (dragDelta.getLayoutX() == 0) {
-                    dragDelta.layoutX = ship.getLayoutX();
-                    dragDelta.layoutY = ship.getLayoutY();
+                if (dragDelta.getFirstLayoutX() == 0) {
+                    dragDelta.firstLayoutX = shipRectangle.getLayoutX();
+                    dragDelta.firstLayoutY = shipRectangle.getLayoutY();
                 }
-                if (isBoatOnBoard(ship, playerBoardBounds)) {
-                    player.removeShip(brod);
+                if (isBoatOnBoard(shipRectangle, playerBoardBounds)) {
+                    player.removeShip(ship);
                 }
-                dragDelta.x = ship.getLayoutX() - mouseEvent.getSceneX();
-                dragDelta.y = ship.getLayoutY() - mouseEvent.getSceneY();
+                dragDelta.x = shipRectangle.getLayoutX() - mouseEvent.getSceneX();
+                dragDelta.y = shipRectangle.getLayoutY() - mouseEvent.getSceneY();
 
                 //na desni klik, rotacija
                 if (mouseEvent.isSecondaryButtonDown()) {
-                    setRotation(ship);
+                    setRotation(shipRectangle);
                 }
             }
         });
-        ship.setOnMouseReleased(new EventHandler<MouseEvent>() {
+        shipRectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                ship.setCursor(Cursor.OPEN_HAND);
+                shipRectangle.setCursor(Cursor.OPEN_HAND);
 
-                if (!isBoatOnBoard(ship, playerBoardBounds)) {
-                    ship.setLayoutX(dragDelta.layoutX);
-                    ship.setLayoutY(dragDelta.layoutY);
-                    player.removeShip(brod);
+                if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
+                    shipRectangle.setLayoutX(dragDelta.firstLayoutX);
+                    shipRectangle.setLayoutY(dragDelta.firstLayoutY);
+                    player.removeShip(ship);
                 } else {
                     for (Shape static_bloc : nodes) {
                         if (static_bloc.getFill() == Color.GREEN) {
-                            brod.setOrientation(static_bloc.getRotate());
-                            brod.setStartY(static_bloc.getLayoutY());
-                            brod.setStartX(static_bloc.getLayoutX());
-                            player.addShip(brod);
+                            ship.setOrientation(static_bloc.getRotate());
+                            ship.setStartY(static_bloc.getLayoutY());
+                            ship.setStartX(static_bloc.getLayoutX());
+                            player.addShip(ship);
                             //ovaj if-else je za pravilno snapovanje
-                            if (ship.getRotate() == 0) {
-                                ship.setLayoutY(static_bloc.getLayoutY() + 5);
-                                ship.setLayoutX(static_bloc.getLayoutX());
+                            if (shipRectangle.getRotate() == 0) {
+                                shipRectangle.setLayoutY(static_bloc.getLayoutY() + 5);
+                                shipRectangle.setLayoutX(static_bloc.getLayoutX());
                                 break;
                             } else {
-                                int deviation = outBoard(ship);
-                                ship.setLayoutX(static_bloc.getLayoutX() - deviation + 5);
-                                ship.setLayoutY(static_bloc.getLayoutY() + deviation);
+                                int deviation = outBoard(shipRectangle);
+                                shipRectangle.setLayoutX(static_bloc.getLayoutX() - deviation + 5);
+                                shipRectangle.setLayoutY(static_bloc.getLayoutY() + deviation);
                                 break;
                             }
                         }
@@ -137,16 +135,16 @@ public class Controller {
                 }
             }
         });
-        ship.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        shipRectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                ship.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
-                ship.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
-                System.out.println(ship.getLayoutX());
-                System.out.println(ship.getLayoutY());
+                shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
+                shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
+                System.out.println(shipRectangle.getLayoutX());
+                System.out.println(shipRectangle.getLayoutY());
 
-                checkShapeIntersection(ship);
+                checkShapeIntersection(shipRectangle);
             }
         });
     }
@@ -263,8 +261,10 @@ public class Controller {
                 if (firstTime) {
                     firstTime = false;
                     return 114;
-                } else
-                return 164;
+                } else {
+                    firstTime = true;
+                    return 164;
+                }
             case 100:
                 return 214;
         }
@@ -275,12 +275,13 @@ public class Controller {
         textArea.setText("");
         ships.forEach(ship -> {
             ship.setDisable(false);
-            ship.setLayoutX(550);
             ship.setRotate(0);
+
+            //playerShips.get(0) -> getFirst()
+
+            ship.setLayoutX(550);
             ship.setLayoutY(layoutYByWidth(ship.getWidth()));
         });
         player.getShips().clear();
     }
 }
-
-

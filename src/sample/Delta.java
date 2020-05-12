@@ -3,8 +3,8 @@ package sample;
 public class Delta {
     double x;
     double y;
-    double layoutX;
-    double layoutY;
+    double firstLayoutX;
+    double firstLayoutY;
 
     public Delta() {
     }
@@ -17,11 +17,11 @@ public class Delta {
         return y;
     }
 
-    public double getLayoutX() {
-        return layoutX;
+    public double getFirstLayoutX() {
+        return firstLayoutX;
     }
 
-    public double getLayoutY() {
-        return layoutY;
+    public double getFirstLayoutY() {
+        return firstLayoutY;
     }
 }

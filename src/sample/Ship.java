@@ -7,13 +7,17 @@ public class Ship {
     private double startY;
     private double endX;
     private double endY;
+    private double firstPositionX;
+    private double firstPositionY;
     private int size;
     Orientation orientation;
 
 
-    public Ship(double width) {
+    public Ship(double width, double firstPositionX, double firstPositionY) {
         //50  is width of board field
         this.size = (int) (width / 50);
+        this.firstPositionX = firstPositionX;
+        this.firstPositionY = firstPositionY;
     }
 
     public double getStartX() {
@@ -74,6 +78,14 @@ public class Ship {
 
     public void setEndY(double endY) {
         this.endY = endY;
+    }
+
+    public double getFirstPositionX() {
+        return firstPositionX;
+    }
+
+    public double getFirstPositionY() {
+        return firstPositionY;
     }
 
     @Override

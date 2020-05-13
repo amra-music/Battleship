@@ -1,5 +1,9 @@
 package sample;
 
+import com.sun.deploy.net.MessageHeader;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -16,9 +20,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import sun.nio.cs.ext.PCK;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class Controller {
@@ -30,15 +36,18 @@ public class Controller {
     public GridPane playerBoard;
     public TextArea textArea;
     public Button startButton;
+    public GridPane PCBoard;
 
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
     private Image boatThree1Image = new Image("sample/boatThree1.png");
     private Image boatThree2Image = new Image("sample/boatThree2.png");
     private Image boatTwoImage = new Image("sample/boatTwo.png");
-    private Image ocean = new Image("sample/ocean.jpg");
+
     public Pane scene2;
-    private List<Rectangle> nodes = new ArrayList();
+    //polja jedne i druge ploce
+    private List<Rectangle> playerBoardFields = new ArrayList();
+    private List<Rectangle> PCBoardFields = new ArrayList();
 
     private Bounds playerBoardBounds;
     private Board player = new Board();
@@ -49,12 +58,20 @@ public class Controller {
     @FXML
     public void initialize() {
 
-
+        //radi prevlacenja brodica na player plocu
         for (Node currentNode : playerBoard.getChildren()) {
             if (currentNode instanceof Rectangle) {
-                nodes.add((Rectangle) currentNode);
+                playerBoardFields.add((Rectangle) currentNode);
             }
         }
+
+        //dodavanje u listu PC polja
+        for (Node currentNode : PCBoard.getChildren()) {
+            if (currentNode instanceof Rectangle) {
+                PCBoardFields.add((Rectangle) currentNode);
+            }
+        }
+
 
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));
@@ -71,6 +88,29 @@ public class Controller {
         ships.forEach(this::setDragListeners);
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
+
+        //pracenje da li je start dugme iskljuceno, ako jeste moze se hover preko PC polja
+        startButton.disabledProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (newValue) {
+                    PCBoard.setDisable(false);
+                    PCBoardFields.forEach(boardField -> {
+                        EventHandler<MouseEvent> mouseEntered = event -> boardField.setFill(Color.GREEN);
+                        EventHandler<MouseEvent> mouseExited = event -> boardField.setFill(Color.DODGERBLUE);
+                        EventHandler<MouseEvent> mouseClicked = event -> textArea.setText(boardField.getLayoutX()+"  "+boardField.getLayoutY());
+
+                        boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
+                        // Removing the Green when exit
+                        boardField.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
+                        //kada kliknemo da se sacuva pozicija kliknutog polja
+                        boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked) ;
+                    });
+                } else if (oldValue) {
+                    PCBoard.setDisable(true);
+                }
+            }
+        });
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {
@@ -109,7 +149,7 @@ public class Controller {
                     shipRectangle.setLayoutY(dragDelta.firstLayoutY);
                     player.removeShip(ship);
                 } else {
-                    for (Shape static_bloc : nodes) {
+                    for (Shape static_bloc : playerBoardFields) {
                         if (static_bloc.getFill() == Color.GREEN) {
                             ship.setOrientation(static_bloc.getRotate());
                             ship.setStartY(static_bloc.getLayoutY());
@@ -129,7 +169,7 @@ public class Controller {
                         }
                     }
                 }
-                for (Shape static_bloc : nodes) {
+                for (Shape static_bloc : playerBoardFields) {
                     if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.CORAL)
                         static_bloc.setFill(Color.BLUE);
                 }
@@ -211,7 +251,7 @@ public class Controller {
     }
 
     private void checkShapeIntersection(Rectangle block) {
-        for (Rectangle static_bloc : nodes) {
+        for (Rectangle static_bloc : playerBoardFields) {
             Shape intersect = Shape.intersect(block, static_bloc);
             if (intersect.getBoundsInLocal().getWidth() != -1) {
 
@@ -251,6 +291,7 @@ public class Controller {
             startButton.setDisable(true);
         }
     }
+
     private double layoutYByWidth(double width) {
         switch ((int) width) {
             case 250:
@@ -270,7 +311,10 @@ public class Controller {
         }
         return 0;
     }
+
     public void playAgain(MouseEvent mouseEvent) {
+
+
         startButton.setDisable(false);
         textArea.setText("");
         ships.forEach(ship -> {
@@ -282,6 +326,9 @@ public class Controller {
             ship.setLayoutX(550);
             ship.setLayoutY(layoutYByWidth(ship.getWidth()));
         });
+
         player.getShips().clear();
     }
+
+
 }

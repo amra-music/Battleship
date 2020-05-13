@@ -96,21 +96,35 @@ public class Controller {
                 if (newValue) {
                     PCBoard.setDisable(false);
                     PCBoardFields.forEach(boardField -> {
-                        EventHandler<MouseEvent> mouseEntered = event -> boardField.setFill(Color.GREEN);
-                        EventHandler<MouseEvent> mouseExited = event -> boardField.setFill(Color.DODGERBLUE);
-                        EventHandler<MouseEvent> mouseClicked = event -> textArea.setText(boardField.getLayoutX()+"  "+boardField.getLayoutY());
+                        EventHandler<MouseEvent> mouseEntered = event -> {
+                            if (boardField.getFill() == Color.DODGERBLUE)
+                                boardField.setFill(Color.GREEN);
+                        };
+                        EventHandler<MouseEvent> mouseExited = event -> {
+                            if (boardField.getFill() == Color.GREEN)
+                                boardField.setFill(Color.DODGERBLUE);
+                        };
+                        EventHandler<MouseEvent> mouseClicked = event -> {
+                            textArea.setText(boardField.getLayoutX() + "  " + boardField.getLayoutY());
+                            boardField.setFill(Color.CORAL);
+                        };
 
                         boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
                         // Removing the Green when exit
                         boardField.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
                         //kada kliknemo da se sacuva pozicija kliknutog polja
-                        boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked) ;
+                        boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
                     });
                 } else if (oldValue) {
+                    PCBoardFields.forEach(boardField -> {
+                        if (boardField.getFill() == Color.CORAL)
+                            boardField.setFill(Color.DODGERBLUE);
+                    });
                     PCBoard.setDisable(true);
                 }
             }
         });
+        //TODO : naapraviti klasu Field ili Space i spasiti poziciju te da li je polje kliknuto ili ne
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {

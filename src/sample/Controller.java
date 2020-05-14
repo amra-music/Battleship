@@ -51,6 +51,7 @@ public class Controller {
 
     private Bounds playerBoardBounds;
     private Board player = new Board();
+    private Board PC = new Board();
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
 
@@ -64,6 +65,7 @@ public class Controller {
                 playerBoardFields.add((Rectangle) currentNode);
             }
         }
+        player.setFields(playerBoardFields);
 
         //dodavanje u listu PC polja
         for (Node currentNode : PCBoard.getChildren()) {
@@ -71,7 +73,7 @@ public class Controller {
                 PCBoardFields.add((Rectangle) currentNode);
             }
         }
-
+        PC.setFields(PCBoardFields);
 
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));

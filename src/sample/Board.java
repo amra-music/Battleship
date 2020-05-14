@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.shape.Rectangle;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,8 +15,8 @@ public class Board {
     public Board() {
     }
 
-    public Board(List<List<Field>> fields) {
-        this.fields = fields;
+    public Board(List<Rectangle> fields) {
+        setFields(fields);
     }
 
     void addShip(Ship ship) {
@@ -33,8 +35,15 @@ public class Board {
         return fields;
     }
 
-    public void setFields(List<List<Field>> fields) {
-        this.fields = fields;
+    public void setFields(List<Rectangle> fields) {
+        List<Field> row = new ArrayList<>();
+        for (int column = 0; column < 10; column++) {
+            for (int i = 0; i < 10; i++) {
+                row.add(new Field(fields.get(i).getLayoutX(), fields.remove(i).getLayoutY()));
+            }
+            this.fields.add(row);
+            row.clear();
+        }
     }
 
     @Override

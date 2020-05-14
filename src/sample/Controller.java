@@ -86,45 +86,48 @@ public class Controller {
         ships.add(boatDestroyer);
 
         ships.forEach(this::setDragListeners);
+        setPCBoardFieldsListeners();
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
         //pracenje da li je start dugme iskljuceno, ako jeste moze se hover preko PC polja
-        startButton.disabledProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue) {
-                    PCBoard.setDisable(false);
-                    PCBoardFields.forEach(boardField -> {
-                        EventHandler<MouseEvent> mouseEntered = event -> {
-                            if (boardField.getFill() == Color.DODGERBLUE)
-                                boardField.setFill(Color.GREEN);
-                        };
-                        EventHandler<MouseEvent> mouseExited = event -> {
-                            if (boardField.getFill() == Color.GREEN)
-                                boardField.setFill(Color.DODGERBLUE);
-                        };
-                        EventHandler<MouseEvent> mouseClicked = event -> {
-                            textArea.setText(boardField.getLayoutX() + "  " + boardField.getLayoutY());
-                            boardField.setFill(Color.CORAL);
-                        };
-
-                        boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
-                        // Removing the Green when exit
-                        boardField.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
-                        //kada kliknemo da se sacuva pozicija kliknutog polja
-                        boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
-                    });
-                } else if (oldValue) {
-                    PCBoardFields.forEach(boardField -> {
-                        if (boardField.getFill() == Color.CORAL)
-                            boardField.setFill(Color.DODGERBLUE);
-                    });
-                    PCBoard.setDisable(true);
-                }
+        startButton.disabledProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                PCBoard.setDisable(false);
+            } else if (oldValue) {
+                PCBoardFields.forEach(boardField -> {
+                    if (boardField.getFill() == Color.CORAL)
+                        boardField.setFill(Color.DODGERBLUE);
+                });
+                PCBoard.setDisable(true);
             }
         });
-        //TODO : naapraviti klasu Field ili Space i spasiti poziciju te da li je polje kliknuto ili ne
+
+        // TODO : naapraviti klasu Field ili Space i spasiti poziciju te da li je polje kliknuto ili ne
+        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again te blokiranje PC ploce
+    }
+
+    public void setPCBoardFieldsListeners() {
+        PCBoardFields.forEach(boardField -> {
+            EventHandler<MouseEvent> mouseEntered = event -> {
+                if (boardField.getFill() == Color.DODGERBLUE)
+                    boardField.setFill(Color.GREEN);
+            };
+            EventHandler<MouseEvent> mouseExited = event -> {
+                if (boardField.getFill() == Color.GREEN)
+                    boardField.setFill(Color.DODGERBLUE);
+            };
+            EventHandler<MouseEvent> mouseClicked = event -> {
+                textArea.setText(boardField.getLayoutX() + "  " + boardField.getLayoutY());
+                boardField.setFill(Color.CORAL);
+            };
+
+            boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
+            // Removing the Green when exit
+            boardField.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
+            //kada kliknemo da se sacuva pozicija kliknutog polja
+            boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
+        });
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {

@@ -57,10 +57,13 @@ public class Board {
                 return 1;
             }
         });
-        String string = "Board = ";
+        String string = "Ships = ";
         for (Ship ship : ships) {
             string += ship + "\n";
         }
+        string += "***Fields*** \n";
+        for (List<Field> row : fields)
+            string += row.toString() + "\n";
         return string;
     }
 }

@@ -25,4 +25,13 @@ public class Field {
     public void setHit(boolean hit) {
         this.hit = hit;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "positionX= " + positionX +
+                ", positionY= " + positionY +
+                ", hit= " + hit +
+                '}';
+    }
 }

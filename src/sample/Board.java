@@ -7,9 +7,34 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Board {
-    List<Ship> ships = new ArrayList<>();
+    private List<List<Field>> fields = new ArrayList<>();
+    private List<Ship> ships = new ArrayList<>();
 
     public Board() {
+    }
+
+    public Board(List<List<Field>> fields) {
+        this.fields = fields;
+    }
+
+    void addShip(Ship ship) {
+        ships.add(ship);
+    }
+
+    void removeShip(Ship ship) {
+        ships.remove(ship);
+    }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
+
+    public List<List<Field>> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<List<Field>> fields) {
+        this.fields = fields;
     }
 
     @Override
@@ -28,17 +53,5 @@ public class Board {
             string += ship + "\n";
         }
         return string;
-    }
-
-    void addShip(Ship ship) {
-        ships.add(ship);
-    }
-
-    void removeShip(Ship ship) {
-        ships.remove(ship);
-    }
-
-    public List<Ship> getShips() {
-        return ships;
     }
 }

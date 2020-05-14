@@ -10,7 +10,7 @@ public class Ship {
     private double firstPositionX;
     private double firstPositionY;
     private int size;
-    Orientation orientation;
+    private Orientation orientation;
 
 
     public Ship(double width, double firstPositionX, double firstPositionY) {

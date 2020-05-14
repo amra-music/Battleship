@@ -128,6 +128,7 @@ public class Controller {
             //kada kliknemo da se sacuva pozicija kliknutog polja
             boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
         });
+        PCBoard.setDisable(true);
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {
@@ -141,14 +142,14 @@ public class Controller {
 
                 //zapamti pocetnu poziciju
                 if (dragDelta.getFirstLayoutX() == 0) {
-                    dragDelta.firstLayoutX = shipRectangle.getLayoutX();
-                    dragDelta.firstLayoutY = shipRectangle.getLayoutY();
+                    dragDelta.setFirstLayoutX(shipRectangle.getLayoutX());
+                    dragDelta.setFirstLayoutY(shipRectangle.getLayoutY());
                 }
                 if (isBoatOnBoard(shipRectangle, playerBoardBounds)) {
                     player.removeShip(ship);
                 }
-                dragDelta.x = shipRectangle.getLayoutX() - mouseEvent.getSceneX();
-                dragDelta.y = shipRectangle.getLayoutY() - mouseEvent.getSceneY();
+                dragDelta.setX(shipRectangle.getLayoutX() - mouseEvent.getSceneX());
+                dragDelta.setY(shipRectangle.getLayoutY() - mouseEvent.getSceneY());
 
                 //na desni klik, rotacija
                 if (mouseEvent.isSecondaryButtonDown()) {
@@ -162,8 +163,8 @@ public class Controller {
                 shipRectangle.setCursor(Cursor.OPEN_HAND);
 
                 if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
-                    shipRectangle.setLayoutX(dragDelta.firstLayoutX);
-                    shipRectangle.setLayoutY(dragDelta.firstLayoutY);
+                    shipRectangle.setLayoutX(dragDelta.getFirstLayoutX());
+                    shipRectangle.setLayoutY(dragDelta.getFirstLayoutY());
                     player.removeShip(ship);
                 } else {
                     for (Shape static_bloc : playerBoardFields) {
@@ -196,8 +197,8 @@ public class Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
-                shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
+                shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
+                shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
                 System.out.println(shipRectangle.getLayoutX());
                 System.out.println(shipRectangle.getLayoutY());
 

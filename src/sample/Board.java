@@ -1,12 +1,9 @@
 package sample;
 
 import javafx.scene.shape.Rectangle;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
@@ -35,10 +32,21 @@ public class Board {
         return fields;
     }
 
+    public void setUpShips(){
+        ships.forEach(ship->{
+            //System.out.println(ship.getStartY()/50 +" "+ ship.getEndY()/50);
+            for(int row = (int) ship.getStartY()/50; row <= ship.getEndY()/50; row++){
+                for(int column = (int) ship.getStartX()/50; column <= ship.getEndX()/50; column++){
+                    fields.get(row).get(column).setOccupied(true);
+                }
+            }
+        });
+    }
+
     public void setFields(List<Rectangle> fields) {
         List<Field> row = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
-            row.add(new Field(fields.get(i - 1).getLayoutX(), fields.get(i - 1).getLayoutY()));
+            row.add(new Field(fields.get(i - 1)));//.getLayoutX(), fields.get(i - 1).getLayoutY()));
             if (i % 10 == 0) {
                 this.fields.add(row);
                 row = new ArrayList<>();
@@ -46,7 +54,7 @@ public class Board {
         }
     }
     //daj polje za rectangle
-    public Field getField(Rectangle rectangle) {
+    /*public Field getField(Rectangle rectangle) {
         for (int row = 0; row < 10; row++) {
             for (int element = 0; element < 10; element++) {
                 Field field = fields.get(row).get(element);
@@ -55,6 +63,9 @@ public class Board {
             }
         }
         return null;
+    }*/
+    public Field getField(double columnPosition, double rowPosition){
+        return fields.get((int) (rowPosition/50)).get((int) (columnPosition/50));
     }
 
     @Override

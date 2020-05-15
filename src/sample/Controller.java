@@ -65,9 +65,7 @@ public class Controller {
                 PCBoardFields.add((Rectangle) currentNode);
             }
         }
-        for(Rectangle rectangle:PCBoardFields){
-            System.out.println(rectangle.getLayoutX()+" "+rectangle.getLayoutY()+"\n");
-        }
+        PC.setFields(PCBoardFields);
 
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));
@@ -99,7 +97,7 @@ public class Controller {
             }
         });
 
-
+        // TODO: da se cuva Rectange kod Field
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
     }
 
@@ -114,16 +112,11 @@ public class Controller {
                     boardField.setFill(Color.DODGERBLUE);
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
-                System.out.println(boardField.getLayoutX()+" "+boardField.getLayoutY());
-                //Field field = PC.getField(boardField);
-               // System.out.println(field);
-               // field.setHit(true);
-                //textArea.setText(field.toString());
+                Field field = PC.getField(boardField.getLayoutX(), boardField.getLayoutY());
+                field.setHit(true);
+                textArea.setText(field.toString());
                 boardField.setFill(Color.CORAL);
             };
-            System.out.println("*************************************************");
-
-                System.out.println(boardField.getLayoutX()+" "+boardField.getLayoutY()+"\n");
 
             boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
             // Removing the Green when exit
@@ -297,14 +290,25 @@ public class Controller {
         if (player.getShips().size() != 5)
             alert.showAndWait();
         else {
+            ships.forEach(ship -> {
+                ship.setDisable(true);
+                ship.setVisible(false);
+            });
+            player.setUpShips();
+            for(int i=0;i<10;i++){
+                for(int j=0;j<10;j++){
+                    Field field = player.getFields().get(i).get(j);
+                   if(field.isOccupied())field.setColor(Color.RED);
+                }
+            }
             textArea.setText(player.toString() + "\n " + player.getShips().size());
-            ships.forEach(ship -> ship.setDisable(true));
             startButton.setDisable(true);
         }
     }
 
     public void playAgain(MouseEvent mouseEvent) {
         startButton.setDisable(false);
+        ships.forEach(ship -> ship.setVisible(true));
         textArea.setText("");
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);

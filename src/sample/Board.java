@@ -41,7 +41,7 @@ public class Board {
             row.add(new Field(fields.get(i - 1).getLayoutX(), fields.get(i - 1).getLayoutY()));
             if (i % 10 == 0) {
                 this.fields.add(row);
-                row.clear();
+                row = new ArrayList<>();
             }
         }
     }

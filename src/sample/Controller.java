@@ -114,8 +114,8 @@ public class Controller {
             }
         });
 
-        // TODO : naapraviti klasu Field ili Space i spasiti poziciju te da li je polje kliknuto ili ne
-        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again te blokiranje PC ploce
+
+        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
     }
 
     public void setPCBoardFieldsListeners() {
@@ -238,6 +238,8 @@ public class Controller {
     }
 
     private int outBoard(Rectangle ship) {
+        // return ((int) ship.getWidth() / 2) - 20;
+
         switch ((int) ship.getWidth()) {
             case 250:
                 return 105;
@@ -322,6 +324,19 @@ public class Controller {
     }
 
     private double layoutYByWidth(double width) {
+        /*
+        int wid = (int) width;
+        if (wid == 150) {
+            if (firstTime) {
+                firstTime = false;
+                return 114;
+            } else {
+                firstTime = true;
+                return 164;
+            }
+        }
+        return 264 - wid;
+        */
         switch ((int) width) {
             case 250:
                 return 18;

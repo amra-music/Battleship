@@ -37,12 +37,12 @@ public class Board {
 
     public void setFields(List<Rectangle> fields) {
         List<Field> row = new ArrayList<>();
-        for (int column = 0; column < 10; column++) {
-            for (int i = 0; i < 10; i++) {
-                row.add(new Field(fields.get(i).getLayoutX(), fields.remove(i).getLayoutY()));
+        for (int i = 1; i <= 100; i++) {
+            row.add(new Field(fields.get(i - 1).getLayoutX(), fields.get(i - 1).getLayoutY()));
+            if (i % 10 == 0) {
+                this.fields.add(row);
+                row.clear();
             }
-            this.fields.add(row);
-            row.clear();
         }
     }
 

@@ -54,6 +54,7 @@ public class Controller {
     private Board PC = new Board();
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
+    private int brojac = 1;
 
 
     @FXML
@@ -67,13 +68,21 @@ public class Controller {
         }
         player.setFields(playerBoardFields);
 
+       /* for(Rectangle rectangle : playerBoardFields){
+            System.out.println(brojac+" "+rectangle + " \n");
+            brojac++;
+        }*/
+
+
+
+
         //dodavanje u listu PC polja
         for (Node currentNode : PCBoard.getChildren()) {
             if (currentNode instanceof Rectangle) {
                 PCBoardFields.add((Rectangle) currentNode);
             }
         }
-        PC.setFields(PCBoardFields);
+        //PC.setFields(PCBoardFields);
 
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));

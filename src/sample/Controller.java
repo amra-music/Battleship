@@ -238,19 +238,7 @@ public class Controller {
     }
 
     private int outBoard(Rectangle ship) {
-        // return ((int) ship.getWidth() / 2) - 20;
-
-        switch ((int) ship.getWidth()) {
-            case 250:
-                return 105;
-            case 200:
-                return 80;
-            case 150:
-                return 55;
-            case 100:
-                return 30;
-        }
-        return 0;
+        return ((int) ship.getWidth() / 2) - 20;
     }
 
     // da se ne boje dva reda/kolone ako se presijecaju polja vec samo ako je presjeceno vise od pola polja
@@ -324,19 +312,6 @@ public class Controller {
     }
 
     private double layoutYByWidth(double width) {
-        /*
-        int wid = (int) width;
-        if (wid == 150) {
-            if (firstTime) {
-                firstTime = false;
-                return 114;
-            } else {
-                firstTime = true;
-                return 164;
-            }
-        }
-        return 264 - wid;
-        */
         switch ((int) width) {
             case 250:
                 return 18;

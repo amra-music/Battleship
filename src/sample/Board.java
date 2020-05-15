@@ -45,6 +45,17 @@ public class Board {
             }
         }
     }
+    //daj polje za rectangle
+    public Field getField(Rectangle rectangle) {
+        for (int row = 0; row < 10; row++) {
+            for (int element = 0; element < 10; element++) {
+                Field field = fields.get(row).get(element);
+                if (field.getPositionX() == rectangle.getLayoutX() && field.getPositionY() == rectangle.getLayoutY())
+                    return field;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {

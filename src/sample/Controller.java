@@ -1,9 +1,5 @@
 package sample;
 
-import com.sun.deploy.net.MessageHeader;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -20,12 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import sun.nio.cs.ext.PCK;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-
 
 public class Controller {
     public Rectangle boatSubmarine;
@@ -54,8 +47,6 @@ public class Controller {
     private Board PC = new Board();
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
-    private int brojac = 1;
-
 
     @FXML
     public void initialize() {
@@ -68,21 +59,15 @@ public class Controller {
         }
         player.setFields(playerBoardFields);
 
-       /* for(Rectangle rectangle : playerBoardFields){
-            System.out.println(brojac+" "+rectangle + " \n");
-            brojac++;
-        }*/
-
-
-
-
         //dodavanje u listu PC polja
         for (Node currentNode : PCBoard.getChildren()) {
             if (currentNode instanceof Rectangle) {
                 PCBoardFields.add((Rectangle) currentNode);
             }
         }
-        //PC.setFields(PCBoardFields);
+        for(Rectangle rectangle:PCBoardFields){
+            System.out.println(rectangle.getLayoutX()+" "+rectangle.getLayoutY()+"\n");
+        }
 
         boatCarrier.setFill(new ImagePattern(boatFiveImage));
         boatBattleship.setFill(new ImagePattern(boatFourImage));
@@ -129,9 +114,16 @@ public class Controller {
                     boardField.setFill(Color.DODGERBLUE);
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
-                textArea.setText(boardField.getLayoutX() + "  " + boardField.getLayoutY());
+                System.out.println(boardField.getLayoutX()+" "+boardField.getLayoutY());
+                //Field field = PC.getField(boardField);
+               // System.out.println(field);
+               // field.setHit(true);
+                //textArea.setText(field.toString());
                 boardField.setFill(Color.CORAL);
             };
+            System.out.println("*************************************************");
+
+                System.out.println(boardField.getLayoutX()+" "+boardField.getLayoutY()+"\n");
 
             boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
             // Removing the Green when exit
@@ -311,40 +303,16 @@ public class Controller {
         }
     }
 
-    private double layoutYByWidth(double width) {
-        switch ((int) width) {
-            case 250:
-                return 18;
-            case 200:
-                return 64;
-            case 150:
-                if (firstTime) {
-                    firstTime = false;
-                    return 114;
-                } else {
-                    firstTime = true;
-                    return 164;
-                }
-            case 100:
-                return 214;
-        }
-        return 0;
-    }
-
     public void playAgain(MouseEvent mouseEvent) {
-
-
         startButton.setDisable(false);
         textArea.setText("");
-        ships.forEach(ship -> {
+        for (int i = 0; i < ships.size(); i++) {
+            Rectangle ship = ships.get(i);
             ship.setDisable(false);
             ship.setRotate(0);
-
-            //playerShips.get(0) -> getFirst()
-
-            ship.setLayoutX(550);
-            ship.setLayoutY(layoutYByWidth(ship.getWidth()));
-        });
+            ship.setLayoutX(10);
+            ship.setLayoutY(50 * i + 600);
+        }
 
         player.getShips().clear();
     }

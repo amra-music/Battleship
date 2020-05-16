@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.geometry.Orientation;
 import javafx.scene.shape.Rectangle;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -32,12 +34,21 @@ public class Board {
         return fields;
     }
 
-    public void setUpShips(){
-        ships.forEach(ship->{
-            //System.out.println(ship.getStartY()/50 +" "+ ship.getEndY()/50);
-            for(int row = (int) ship.getStartY()/50; row <= ship.getEndY()/50; row++){
-                for(int column = (int) ship.getStartX()/50; column <= ship.getEndX()/50; column++){
-                    fields.get(row).get(column).setOccupied(true);
+    public void setUpShips() {
+        ships.forEach(ship -> {
+            if (ship.getOrientation() == Orientation.HORIZONTAL) {
+                int rowNumber = (int) ship.getStartY() / 50;
+                for (int row = rowNumber; row <= rowNumber; row++) {
+                    for (int column = (int) ship.getStartX() / 50; column <= ship.getEndX() / 50; column++) {
+                        fields.get(row).get(column).setOccupied(true);
+                    }
+                }
+            } else {
+                int columnNumber =(int) ship.getStartX() / 50;
+                for (int column = columnNumber; column <= columnNumber; column++) {
+                    for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
+                        fields.get(row).get(column).setOccupied(true);
+                    }
                 }
             }
         });
@@ -53,6 +64,7 @@ public class Board {
             }
         }
     }
+
     //daj polje za rectangle
     /*public Field getField(Rectangle rectangle) {
         for (int row = 0; row < 10; row++) {
@@ -64,8 +76,8 @@ public class Board {
         }
         return null;
     }*/
-    public Field getField(double columnPosition, double rowPosition){
-        return fields.get((int) (rowPosition/50)).get((int) (columnPosition/50));
+    public Field getField(double columnPosition, double rowPosition) {
+        return fields.get((int) (rowPosition / 50)).get((int) (columnPosition / 50));
     }
 
     @Override

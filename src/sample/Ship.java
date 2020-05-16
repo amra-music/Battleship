@@ -42,7 +42,7 @@ public class Ship {
         if (orientation == Orientation.HORIZONTAL)
             this.endY = startY;
         else
-            this.endY = startY - (this.size - 1) * 50;
+            this.endY = startY + (this.size - 1) * 50;
     }
 
     public int getSize() {

@@ -97,7 +97,6 @@ public class Controller {
             }
         });
 
-        // TODO: da se cuva Rectange kod Field
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
     }
 
@@ -163,21 +162,21 @@ public class Controller {
                     shipRectangle.setLayoutY(dragDelta.getFirstLayoutY());
                     player.removeShip(ship);
                 } else {
-                    for (Shape static_bloc : playerBoardFields) {
-                        if (static_bloc.getFill() == Color.GREEN) {
-                            ship.setOrientation(static_bloc.getRotate());
-                            ship.setStartY(static_bloc.getLayoutY());
-                            ship.setStartX(static_bloc.getLayoutX());
+                    for (Shape field : playerBoardFields) {
+                        if (field.getFill() == Color.GREEN) {
+                            ship.setOrientation(shipRectangle.getRotate());
+                            ship.setStartY(field.getLayoutY());
+                            ship.setStartX(field.getLayoutX());
                             player.addShip(ship);
                             //ovaj if-else je za pravilno snapovanje
                             if (shipRectangle.getRotate() == 0) {
-                                shipRectangle.setLayoutY(static_bloc.getLayoutY() + 5);
-                                shipRectangle.setLayoutX(static_bloc.getLayoutX());
+                                shipRectangle.setLayoutY(field.getLayoutY() + 5);
+                                shipRectangle.setLayoutX(field.getLayoutX());
                                 break;
                             } else {
                                 int deviation = outBoard(shipRectangle);
-                                shipRectangle.setLayoutX(static_bloc.getLayoutX() - deviation + 5);
-                                shipRectangle.setLayoutY(static_bloc.getLayoutY() + deviation);
+                                shipRectangle.setLayoutX(field.getLayoutX() - deviation + 5);
+                                shipRectangle.setLayoutY(field.getLayoutY() + deviation);
                                 break;
                             }
                         }
@@ -292,7 +291,6 @@ public class Controller {
         else {
             ships.forEach(ship -> {
                 ship.setDisable(true);
-                ship.setVisible(false);
             });
             player.setUpShips();
             for(int i=0;i<10;i++){

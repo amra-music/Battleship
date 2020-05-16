@@ -80,7 +80,6 @@ public class Controller {
         ships.add(boatDestroyer);
 
         ships.forEach(this::setDragListeners);
-        setPCBoardFieldsListeners();
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
@@ -88,20 +87,25 @@ public class Controller {
         startButton.disabledProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 PCBoard.setDisable(false);
+                playerBoard.setDisable(true);
             } else if (oldValue) {
                 PCBoardFields.forEach(boardField -> {
                     if (boardField.getFill() == Color.CORAL)
                         boardField.setFill(Color.DODGERBLUE);
                 });
                 PCBoard.setDisable(true);
+                playerBoard.setDisable(false);
             }
         });
 
+        // TODO : razmisliti o enumu koji ce cuvati tipove brodova i koji bi se nalazio u klasi Ship
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
+        // TODO : ne trebaju mi liseneri na player ploci jer ce racunar samo pogoditini neku poziciju, ono sto mi
+        //  treba jeste da se ova ploca PC blokira kada je red na igraca
     }
 
-    public void setPCBoardFieldsListeners() {
-        PCBoardFields.forEach(boardField -> {
+    public void setBoardFieldsListeners(List<Rectangle> boardFields) {
+        boardFields.forEach(boardField -> {
             EventHandler<MouseEvent> mouseEntered = event -> {
                 if (boardField.getFill() == Color.DODGERBLUE)
                     boardField.setFill(Color.GREEN);
@@ -115,6 +119,17 @@ public class Controller {
                 field.setHit(true);
                 textArea.setText(field.toString());
                 boardField.setFill(Color.CORAL);
+                if (playerBoard.isDisable()) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igrača");
+                    playerBoard.setDisable(false);
+                    PCBoard.setDisable(true);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
+                    playerBoard.setDisable(true);
+                    PCBoard.setDisable(false);
+                    alert.showAndWait();
+                }
             };
 
             boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
@@ -184,7 +199,7 @@ public class Controller {
                 }
                 for (Shape static_bloc : playerBoardFields) {
                     if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.CORAL)
-                        static_bloc.setFill(Color.BLUE);
+                        static_bloc.setFill(Color.DODGERBLUE);
                 }
             }
         });
@@ -254,32 +269,32 @@ public class Controller {
     }
 
     private void checkShapeIntersection(Rectangle block) {
-        for (Rectangle static_bloc : playerBoardFields) {
-            Shape intersect = Shape.intersect(block, static_bloc);
+        for (Rectangle field : playerBoardFields) {
+            Shape intersect = Shape.intersect(block, field);
             if (intersect.getBoundsInLocal().getWidth() != -1) {
 
                 if (block.getRotate() == 0) {
-                    if (occupiesOneRow(block, static_bloc) && occupiesRightWidth(block, static_bloc) &&
-                            occupiesRightWidth2(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds)) {
-                        static_bloc.setFill(Color.GREEN);
-                    } else if (occupiesOneRow(block, static_bloc) && occupiesRightWidth(block, static_bloc) &&
-                            occupiesRightWidth2(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
-                        static_bloc.setFill(Color.CORAL);
+                    if (occupiesOneRow(block, field) && occupiesRightWidth(block, field) &&
+                            occupiesRightWidth2(block, field) && isBoatOnBoard(block, playerBoardBounds)) {
+                        field.setFill(Color.GREEN);
+                    } else if (occupiesOneRow(block, field) && occupiesRightWidth(block, field) &&
+                            occupiesRightWidth2(block, field) && !isBoatOnBoard(block, playerBoardBounds))
+                        field.setFill(Color.CORAL);
                     else
-                        static_bloc.setFill(Color.BLUE);
+                        field.setFill(Color.DODGERBLUE);
                 } else {
-                    if (occupiesOneColumn(block, static_bloc) && occupiesRightHight(block, static_bloc)
-                            && occupiesRightHight2(block, static_bloc) && isBoatOnBoard(block, playerBoardBounds))
-                        static_bloc.setFill(Color.GREEN);
+                    if (occupiesOneColumn(block, field) && occupiesRightHight(block, field)
+                            && occupiesRightHight2(block, field) && isBoatOnBoard(block, playerBoardBounds))
+                        field.setFill(Color.GREEN);
                     else if
-                    (occupiesOneColumn(block, static_bloc) && occupiesRightHight(block, static_bloc)
-                                    && occupiesRightHight2(block, static_bloc) && !isBoatOnBoard(block, playerBoardBounds))
-                        static_bloc.setFill(Color.CORAL);
+                    (occupiesOneColumn(block, field) && occupiesRightHight(block, field)
+                                    && occupiesRightHight2(block, field) && !isBoatOnBoard(block, playerBoardBounds))
+                        field.setFill(Color.CORAL);
                     else
-                        static_bloc.setFill(Color.BLUE);
+                        field.setFill(Color.DODGERBLUE);
                 }
             } else
-                static_bloc.setFill(Color.BLUE);
+                field.setFill(Color.DODGERBLUE);
         }
     }
 
@@ -289,18 +304,16 @@ public class Controller {
         if (player.getShips().size() != 5)
             alert.showAndWait();
         else {
-            ships.forEach(ship -> {
-                ship.setDisable(true);
-            });
+            ships.forEach(ship -> ship.setDisable(true));
             player.setUpShips();
-            for(int i=0;i<10;i++){
-                for(int j=0;j<10;j++){
-                    Field field = player.getFields().get(i).get(j);
-                   if(field.isOccupied())field.setColor(Color.RED);
-                }
-            }
             textArea.setText(player.toString() + "\n " + player.getShips().size());
             startButton.setDisable(true);
+
+            //Liseneri na polja ploca
+            setBoardFieldsListeners(PCBoardFields);
+            setBoardFieldsListeners(playerBoardFields);
+            playerBoard.setDisable(true);
+            PCBoard.setDisable(false);
         }
     }
 
@@ -317,6 +330,7 @@ public class Controller {
         }
 
         player.getShips().clear();
+
     }
 
 

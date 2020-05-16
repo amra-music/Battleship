@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -83,20 +85,11 @@ public class Controller {
 
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
-        //pracenje da li je start dugme iskljuceno, ako jeste moze se hover preko PC polja
-        startButton.disabledProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                PCBoard.setDisable(false);
-                playerBoard.setDisable(true);
-            } else if (oldValue) {
-                PCBoardFields.forEach(boardField -> {
-                    if (boardField.getFill() == Color.CORAL)
-                        boardField.setFill(Color.DODGERBLUE);
-                });
-                PCBoard.setDisable(true);
-                playerBoard.setDisable(false);
-            }
-        });
+        //Liseneri na polja ploca
+        setBoardFieldsListeners(PCBoardFields);
+        setBoardFieldsListeners(playerBoardFields);
+        playerBoard.setDisable(true);
+        PCBoard.setDisable(true);
 
         // TODO : razmisliti o enumu koji ce cuvati tipove brodova i koji bi se nalazio u klasi Ship
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
@@ -115,19 +108,26 @@ public class Controller {
                     boardField.setFill(Color.DODGERBLUE);
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
-                Field field = PC.getField(boardField.getLayoutX(), boardField.getLayoutY());
-                field.setHit(true);
-                textArea.setText(field.toString());
-                boardField.setFill(Color.CORAL);
+                //igrac je na potezu
                 if (playerBoard.isDisable()) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igrača");
+                    Field field = PC.getField(boardField.getLayoutX(), boardField.getLayoutY());
+                    field.setHit(true);
+                    textArea.setText(field.toString());
+                    boardField.setFill(Color.CORAL);
                     playerBoard.setDisable(false);
                     PCBoard.setDisable(true);
-                    alert.showAndWait();
-                } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
+                    alert.showAndWait();
+                }
+                //PC je na potezu
+                else if(PCBoard.isDisable()) {
+                    Field field = player.getField(boardField.getLayoutX(), boardField.getLayoutY());
+                    field.setHit(true);
+                    textArea.setText(field.toString());
+                    boardField.setFill(Color.CORAL);
                     playerBoard.setDisable(true);
                     PCBoard.setDisable(false);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
                     alert.showAndWait();
                 }
             };
@@ -138,7 +138,6 @@ public class Controller {
             //kada kliknemo da se sacuva pozicija kliknutog polja
             boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
         });
-        PCBoard.setDisable(true);
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {
@@ -197,9 +196,9 @@ public class Controller {
                         }
                     }
                 }
-                for (Shape static_bloc : playerBoardFields) {
-                    if (static_bloc.getFill() == Color.GREEN || static_bloc.getFill() == Color.CORAL)
-                        static_bloc.setFill(Color.DODGERBLUE);
+                for (Shape field : playerBoardFields) {
+                    if (field.getFill() == Color.GREEN || field.getFill() == Color.CORAL)
+                        field.setFill(Color.DODGERBLUE);
                 }
             }
         });
@@ -215,6 +214,13 @@ public class Controller {
                 checkShapeIntersection(shipRectangle);
             }
         });
+    }
+
+    private void setDodgerblueColor(List<Rectangle> board){
+        for (Rectangle field : board) {
+            if (field.getFill() == Color.CORAL)
+                field.setFill(Color.DODGERBLUE);
+        }
     }
 
     private void setRotation(Rectangle ship) {
@@ -299,8 +305,9 @@ public class Controller {
     }
 
     public void start(MouseEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("Nisu postavljeni svi brodici na polje!");
+        playerBoard.setDisable(true);
+        PCBoard.setDisable(false);
+        Alert alert = new Alert(Alert.AlertType.ERROR,"Nisu postavljeni svi brodici na polje!" );
         if (player.getShips().size() != 5)
             alert.showAndWait();
         else {
@@ -308,18 +315,11 @@ public class Controller {
             player.setUpShips();
             textArea.setText(player.toString() + "\n " + player.getShips().size());
             startButton.setDisable(true);
-
-            //Liseneri na polja ploca
-            setBoardFieldsListeners(PCBoardFields);
-            setBoardFieldsListeners(playerBoardFields);
-            playerBoard.setDisable(true);
-            PCBoard.setDisable(false);
         }
     }
 
     public void playAgain(MouseEvent mouseEvent) {
         startButton.setDisable(false);
-        ships.forEach(ship -> ship.setVisible(true));
         textArea.setText("");
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);
@@ -328,7 +328,10 @@ public class Controller {
             ship.setLayoutX(10);
             ship.setLayoutY(50 * i + 600);
         }
-
+        PCBoard.setDisable(true);
+        playerBoard.setDisable(true);
+        setDodgerblueColor(PCBoardFields);
+        setDodgerblueColor(playerBoardFields);
         player.getShips().clear();
 
     }

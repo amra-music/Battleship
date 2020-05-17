@@ -6,6 +6,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
@@ -34,7 +35,7 @@ public class Board {
         return fields;
     }
 
-    public void setUpShips() {
+    public void setOccupiedFields() {
         ships.forEach(ship -> {
             if (ship.getOrientation() == Orientation.HORIZONTAL) {
                 int rowNumber = (int) ship.getStartY() / 50;
@@ -44,7 +45,7 @@ public class Board {
                     }
                 }
             } else {
-                int columnNumber =(int) ship.getStartX() / 50;
+                int columnNumber = (int) ship.getStartX() / 50;
                 for (int column = columnNumber; column <= columnNumber; column++) {
                     for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
                         fields.get(row).get(column).setOccupied(true);
@@ -53,6 +54,39 @@ public class Board {
             }
         });
     }
+
+    public boolean setOccupiedFields(Ship ship) {
+        if (ship.getOrientation() == Orientation.HORIZONTAL) {
+            int rowNumber = (int) ship.getStartY() / 50;
+            for (int row = rowNumber; row <= rowNumber; row++) {
+                for (int column = (int) ship.getStartX() / 50; column <= ship.getEndX() / 50; column++) {
+                    if (fields.get(row).get(column).isOccupied()) return false;
+                }
+            }
+
+            for (int row = rowNumber; row <= rowNumber; row++) {
+                for (int column = (int) ship.getStartX() / 50; column <= ship.getEndX() / 50; column++) {
+                    fields.get(row).get(column).setOccupied(true);
+                }
+            }
+        } else {
+            int columnNumber = (int) ship.getStartX() / 50;
+            for (int column = columnNumber; column <= columnNumber; column++) {
+                for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
+                    if (fields.get(row).get(column).isOccupied()) return false;
+                }
+            }
+
+            for (int column = columnNumber; column <= columnNumber; column++) {
+                for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
+                    fields.get(row).get(column).setOccupied(true);
+                }
+            }
+        }
+        return  true;
+    }
+
+
 
     public void setFields(List<Rectangle> fields) {
         List<Field> row = new ArrayList<>();
@@ -78,6 +112,30 @@ public class Board {
     }*/
     public Field getField(double columnPosition, double rowPosition) {
         return fields.get((int) (rowPosition / 50)).get((int) (columnPosition / 50));
+    }
+
+    public void setRandomShips() {
+        int[] sizes = {5, 4, 3, 3, 2};
+        for (int i = 0; i < 5; i++) {
+            Ship ship = new Ship(sizes[i]);
+            Orientation randomOrientation = ThreadLocalRandom.current().nextInt(0, 2) == 0 ? Orientation.HORIZONTAL : Orientation.VERTICAL;
+            ship.setOrientation(randomOrientation);
+            int randomPositionOne = ThreadLocalRandom.current().nextInt(0, 10);
+            int randomPositionTwo = ThreadLocalRandom.current().nextInt(0, 10 - sizes[i] + 1);
+            if (randomOrientation == Orientation.HORIZONTAL) {
+                ship.setStartX(randomPositionTwo * 50);
+                ship.setStartY(randomPositionOne * 50);
+            } else {
+                ship.setStartX(randomPositionOne * 50);
+                ship.setStartY(randomPositionTwo * 50);
+            }
+            if (setOccupiedFields((ship))) {
+                this.ships.add(ship);
+                continue;
+            }
+            i--;
+        }
+
     }
 
     @Override

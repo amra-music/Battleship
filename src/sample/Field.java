@@ -50,6 +50,14 @@ public class Field {
         rectangle.setFill(color);
     }
 
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
     @Override
     public String toString() {
         return "{" +

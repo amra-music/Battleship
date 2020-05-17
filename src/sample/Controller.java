@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -90,6 +88,7 @@ public class Controller {
         setBoardFieldsListeners(playerBoardFields);
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
+        player.setRandomShips();
 
         // TODO : razmisliti o enumu koji ce cuvati tipove brodova i koji bi se nalazio u klasi Ship
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
@@ -312,9 +311,10 @@ public class Controller {
             alert.showAndWait();
         else {
             ships.forEach(ship -> ship.setDisable(true));
-            player.setUpShips();
+            player.setOccupiedFields();
             textArea.setText(player.toString() + "\n " + player.getShips().size());
             startButton.setDisable(true);
+            PC.setRandomShips();
         }
     }
 
@@ -332,6 +332,7 @@ public class Controller {
         playerBoard.setDisable(true);
         setDodgerblueColor(PCBoardFields);
         setDodgerblueColor(playerBoardFields);
+
         player.getShips().clear();
 
     }

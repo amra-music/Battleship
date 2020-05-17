@@ -20,6 +20,10 @@ public class Ship {
         this.firstPositionY = firstPositionY;
     }
 
+    public Ship(int size) {
+        this.size = size;
+    }
+
     public double getStartX() {
         return startX;
     }
@@ -86,6 +90,11 @@ public class Ship {
 
     public double getFirstPositionY() {
         return firstPositionY;
+    }
+
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     @Override

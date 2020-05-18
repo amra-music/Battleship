@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.geometry.Orientation;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
     private List<Ship> ships = new ArrayList<>();
+    private int health;
 
     public Board() {
     }
@@ -19,12 +21,16 @@ public class Board {
         setFields(fields);
     }
 
-    void addShip(Ship ship) {
+    public void addShip(Ship ship) {
         ships.add(ship);
     }
 
-    void removeShip(Ship ship) {
+    public void removeShip(Ship ship) {
         ships.remove(ship);
+    }
+
+    public void removeShips() {
+        ships.clear();
     }
 
     public List<Ship> getShips() {
@@ -35,8 +41,29 @@ public class Board {
         return fields;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void resetBoard() {
+        //postavi na plavo, da nije occupied, nije hit
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Field field = fields.get(i).get(j);
+                field.reset();
+            }
+        }
+        removeShips();
+        health = 0;
+    }
+
     public void setOccupiedFields() {
         ships.forEach(ship -> {
+            health += ship.getSize();
             if (ship.getOrientation() == Orientation.HORIZONTAL) {
                 int rowNumber = (int) ship.getStartY() / 50;
                 for (int row = rowNumber; row <= rowNumber; row++) {
@@ -83,9 +110,9 @@ public class Board {
                 }
             }
         }
-        return  true;
+        health += ship.getSize();
+        return true;
     }
-
 
 
     public void setFields(List<Rectangle> fields) {
@@ -116,6 +143,7 @@ public class Board {
 
     public void setRandomShips() {
         int[] sizes = {5, 4, 3, 3, 2};
+        removeShips();
         for (int i = 0; i < 5; i++) {
             Ship ship = new Ship(sizes[i]);
             Orientation randomOrientation = ThreadLocalRandom.current().nextInt(0, 2) == 0 ? Orientation.HORIZONTAL : Orientation.VERTICAL;
@@ -130,7 +158,7 @@ public class Board {
                 ship.setStartY(randomPositionTwo * 50);
             }
             if (setOccupiedFields((ship))) {
-                this.ships.add(ship);
+                addShip(ship);
                 continue;
             }
             i--;

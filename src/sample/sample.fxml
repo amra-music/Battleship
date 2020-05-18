@@ -299,6 +299,7 @@
       <Button fx:id="playAgainButton" layoutX="700.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="114.0" text="Play again" />
       <Label layoutX="600.0" layoutY="519.0" prefHeight="17.0" prefWidth="481.0" text=" 0          50         100         150       200      250      300     350      400       450" />
       <Label layoutX="512.0" layoutY="10.0" lineSpacing="35.0" prefHeight="500.0" prefWidth="33.0" text="0   50 100 150 200 250 300 350 400 450 " textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="randomButton" layoutX="34.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#placeShipsRandom" prefHeight="50.0" prefWidth="114.0" text="Random" />
    </children>
    <padding>
       <Insets left="20.0" />

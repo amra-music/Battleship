@@ -30,6 +30,7 @@ public class Controller {
     public TextArea textArea;
     public Button startButton;
     public GridPane PCBoard;
+    public Button randomButton;
 
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
@@ -88,12 +89,10 @@ public class Controller {
         setBoardFieldsListeners(playerBoardFields);
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
-        player.setRandomShips();
+
 
         // TODO : razmisliti o enumu koji ce cuvati tipove brodova i koji bi se nalazio u klasi Ship
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
-        // TODO : ne trebaju mi liseneri na player ploci jer ce racunar samo pogoditini neku poziciju, ono sto mi
-        //  treba jeste da se ova ploca PC blokira kada je red na igraca
     }
 
     public void setBoardFieldsListeners(List<Rectangle> boardFields) {
@@ -112,7 +111,7 @@ public class Controller {
                     Field field = PC.getField(boardField.getLayoutX(), boardField.getLayoutY());
                     field.setHit(true);
                     textArea.setText(field.toString());
-                    boardField.setFill(Color.CORAL);
+                    boardField.setFill(Color.WHITE);
                     playerBoard.setDisable(false);
                     PCBoard.setDisable(true);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
@@ -123,7 +122,7 @@ public class Controller {
                     Field field = player.getField(boardField.getLayoutX(), boardField.getLayoutY());
                     field.setHit(true);
                     textArea.setText(field.toString());
-                    boardField.setFill(Color.CORAL);
+                    boardField.setFill(Color.WHITE);
                     playerBoard.setDisable(true);
                     PCBoard.setDisable(false);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
@@ -312,9 +311,15 @@ public class Controller {
         else {
             ships.forEach(ship -> ship.setDisable(true));
             player.setOccupiedFields();
-            textArea.setText(player.toString() + "\n " + player.getShips().size());
             startButton.setDisable(true);
             PC.setRandomShips();
+            for(int i=0;i<10;i++){
+                for(int j=0;j<10;j++){
+                    if(PC.getFields().get(i).get(j).isOccupied()) PC.getFields().get(i).get(j).setColor(Color.CORAL);
+                    if(player.getFields().get(i).get(j).isOccupied()) player.getFields().get(i).get(j).setColor(Color.CORAL);
+                }
+            }
+            textArea.setText(PC.getHealth()+" player------>"+player.getHealth());
         }
     }
 
@@ -330,12 +335,17 @@ public class Controller {
         }
         PCBoard.setDisable(true);
         playerBoard.setDisable(true);
-        setDodgerblueColor(PCBoardFields);
-        setDodgerblueColor(playerBoardFields);
 
-        player.getShips().clear();
-
+        player.resetBoard();
+        PC.resetBoard();
     }
 
-
+    public void placeShipsRandom(MouseEvent mouseEvent) {
+       /* player.getShips().clear();
+        player.setRandomShips();
+        for(int i=0; i<5; i++){
+            ships.get(i).setLayoutX(player.getShips().get(i).getStartX());
+            ships.get(i).setLayoutY(player.getShips().get(i).getStartY() + 5);
+        }*/
+    }
 }

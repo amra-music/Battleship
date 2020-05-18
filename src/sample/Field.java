@@ -58,6 +58,12 @@ public class Field {
         this.rectangle = rectangle;
     }
 
+    public void reset(){
+        hit = false;
+        occupied = false;
+        setColor(Color.DODGERBLUE);
+    }
+
     @Override
     public String toString() {
         return "{" +

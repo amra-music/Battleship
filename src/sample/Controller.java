@@ -85,57 +85,60 @@ public class Controller {
         playerBoardBounds = playerBoard.localToScene(playerBoard.getBoundsInParent());
 
         //Liseneri na polja ploca
-        setBoardFieldsListeners(PCBoardFields);
-        setBoardFieldsListeners(playerBoardFields);
+        setBoardFieldsListeners(PC.getFields());
+        setBoardFieldsListeners(player.getFields());
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
 
 
-        // TODO : razmisliti o enumu koji ce cuvati tipove brodova i koji bi se nalazio u klasi Ship
         // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
+        // TODO : zabraniti klik na polje kad je vec kliknuto, desable polje
+        // TODO : napraviti jednu igru cijelu do pobjede/poraza
+        // TODO : kada se pogodi da se na tom mjestu napravi X
+        // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
+        // TODO : staviti zvuk
+        // TODO : napraviti random dugme
     }
 
-    public void setBoardFieldsListeners(List<Rectangle> boardFields) {
-        boardFields.forEach(boardField -> {
-            EventHandler<MouseEvent> mouseEntered = event -> {
-                if (boardField.getFill() == Color.DODGERBLUE)
-                    boardField.setFill(Color.GREEN);
-            };
-            EventHandler<MouseEvent> mouseExited = event -> {
-                if (boardField.getFill() == Color.GREEN)
-                    boardField.setFill(Color.DODGERBLUE);
-            };
-            EventHandler<MouseEvent> mouseClicked = event -> {
-                //igrac je na potezu
-                if (playerBoard.isDisable()) {
-                    Field field = PC.getField(boardField.getLayoutX(), boardField.getLayoutY());
-                    field.setHit(true);
-                    textArea.setText(field.toString());
-                    boardField.setFill(Color.WHITE);
-                    playerBoard.setDisable(false);
-                    PCBoard.setDisable(true);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
-                    alert.showAndWait();
-                }
-                //PC je na potezu
-                else if(PCBoard.isDisable()) {
-                    Field field = player.getField(boardField.getLayoutX(), boardField.getLayoutY());
-                    field.setHit(true);
-                    textArea.setText(field.toString());
-                    boardField.setFill(Color.WHITE);
-                    playerBoard.setDisable(true);
-                    PCBoard.setDisable(false);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
-                    alert.showAndWait();
-                }
-            };
+    public void setBoardFieldsListeners(List<List<Field>> boardFields) {
+        boardFields.forEach(rows -> rows.forEach(field -> {
+        EventHandler<MouseEvent> mouseEntered = event -> {
+            if (field.getColor() == Color.DODGERBLUE)
+                field.setColor(Color.GREEN);
+        };
+        EventHandler<MouseEvent> mouseExited = event -> {
+            if (field.getColor() == Color.GREEN)
+                field.setColor(Color.DODGERBLUE);
+        };
+        EventHandler<MouseEvent> mouseClicked = event -> {
+            //igrac je na potezu
+            if (playerBoard.isDisable()) {
+                field.setHit(true);
+                textArea.setText(field.toString());
+                field.setColor(Color.WHITE);
+                playerBoard.setDisable(false);
+                PCBoard.setDisable(true);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
+                alert.showAndWait();
+            }
+            //PC je na potezu
+            else if(PCBoard.isDisable()) {
+                field.setHit(true);
+                textArea.setText(field.toString());
+                field.setColor(Color.WHITE);
+                playerBoard.setDisable(true);
+                PCBoard.setDisable(false);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
+                alert.showAndWait();
+            }
+        };
 
-            boardField.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
-            // Removing the Green when exit
-            boardField.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
-            //kada kliknemo da se sacuva pozicija kliknutog polja
-            boardField.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
-        });
+            field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
+        // Removing the Green when exit
+            field.getRectangle().addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
+        //kada kliknemo da se sacuva pozicija kliknutog polja
+            field.getRectangle().addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
+    }));
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {

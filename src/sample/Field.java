@@ -2,6 +2,7 @@ package sample;
 
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Field {
@@ -49,6 +50,8 @@ public class Field {
     public void setColor(Color color) {
         rectangle.setFill(color);
     }
+
+    public Paint getColor() { return rectangle.getFill(); }
 
     public Rectangle getRectangle() {
         return rectangle;

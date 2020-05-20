@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -7,6 +8,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +21,7 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Controller {
     public Rectangle boatSubmarine;
@@ -98,47 +101,74 @@ public class Controller {
         // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
         // TODO : staviti zvuk
         // TODO : napraviti random dugme
+        // TODO : Bug koji se pojavljuje nekada prilikom postavljanja brodica, error da nisu pozicionirani svi iako jesu
     }
 
     public void setBoardFieldsListeners(List<List<Field>> boardFields) {
         boardFields.forEach(rows -> rows.forEach(field -> {
-        EventHandler<MouseEvent> mouseEntered = event -> {
-            if (field.getColor() == Color.DODGERBLUE)
-                field.setColor(Color.GREEN);
-        };
-        EventHandler<MouseEvent> mouseExited = event -> {
-            if (field.getColor() == Color.GREEN)
-                field.setColor(Color.DODGERBLUE);
-        };
-        EventHandler<MouseEvent> mouseClicked = event -> {
-            //igrac je na potezu
-            if (playerBoard.isDisable()) {
-                field.setHit(true);
-                textArea.setText(field.toString());
-                field.setColor(Color.WHITE);
-                playerBoard.setDisable(false);
-                PCBoard.setDisable(true);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
-                alert.showAndWait();
-            }
-            //PC je na potezu
-            else if(PCBoard.isDisable()) {
-                field.setHit(true);
-                textArea.setText(field.toString());
-                field.setColor(Color.WHITE);
-                playerBoard.setDisable(true);
-                PCBoard.setDisable(false);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
-                alert.showAndWait();
-            }
-        };
+            EventHandler<MouseEvent> mouseEntered = event -> {
+                if (field.getColor() == Color.DODGERBLUE)
+                    field.setColor(Color.GREEN);
+            };
+            EventHandler<MouseEvent> mouseExited = event -> {
+                if (field.getColor() == Color.GREEN)
+                    field.setColor(Color.DODGERBLUE);
+            };
+            EventHandler<MouseEvent> mouseClicked = event -> {
+                //igrac je na potezu
+                if (playerBoard.isDisable()) {
+                    field.setHit(true);
+                    if (field.isOccupied()) {
+                        field.setColor(Color.RED);
+                        PC.setHealth(PC.getHealth() - 1);
+                        if (PC.getHealth() == 0) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.isPresent()) {
+                                Platform.exit();
+                                System.exit(0);
+                            }
+                        }
+                    } else
+                        field.setColor(Color.WHITE);
+                    field.getRectangle().setDisable(true);
+                    playerBoard.setDisable(false);
+                    PCBoard.setDisable(true);
+                    textArea.setText("PC health " + PC.getHealth());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
+                    alert.showAndWait();
+                }
+                //PC je na potezu
+                else if (PCBoard.isDisable()) {
+                    field.setHit(true);
+                    if (field.isOccupied()) {
+                        field.setColor(Color.RED);
+                        player.setHealth(player.getHealth() - 1);
+                        if (player.getHealth() == 0) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.isPresent()) {
+                                Platform.exit();
+                                System.exit(0);
+                            }
+                        }
+                    } else
+                        field.setColor(Color.WHITE);
+                    field.getRectangle().setDisable(true);
+                    playerBoard.setDisable(true);
+                    PCBoard.setDisable(false);
+                    textArea.setText("Player health " + player.getHealth());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
+                    alert.showAndWait();
+                }
+            };
 
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
-        // Removing the Green when exit
+            // Removing the Green when exit
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
-        //kada kliknemo da se sacuva pozicija kliknutog polja
+            //kada kliknemo da se sacuva pozicija kliknutog polja
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_CLICKED, mouseClicked);
-    }));
+        }));
     }
 
     public void setDragListeners(final Rectangle shipRectangle) {
@@ -217,7 +247,7 @@ public class Controller {
         });
     }
 
-    private void setDodgerblueColor(List<Rectangle> board){
+    private void setDodgerblueColor(List<Rectangle> board) {
         for (Rectangle field : board) {
             if (field.getFill() == Color.CORAL)
                 field.setFill(Color.DODGERBLUE);
@@ -308,7 +338,7 @@ public class Controller {
     public void start(MouseEvent mouseEvent) {
         playerBoard.setDisable(true);
         PCBoard.setDisable(false);
-        Alert alert = new Alert(Alert.AlertType.ERROR,"Nisu postavljeni svi brodici na polje!" );
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
         if (player.getShips().size() != 5)
             alert.showAndWait();
         else {
@@ -316,13 +346,14 @@ public class Controller {
             player.setOccupiedFields();
             startButton.setDisable(true);
             PC.setRandomShips();
-            for(int i=0;i<10;i++){
-                for(int j=0;j<10;j++){
-                    if(PC.getFields().get(i).get(j).isOccupied()) PC.getFields().get(i).get(j).setColor(Color.CORAL);
-                    if(player.getFields().get(i).get(j).isOccupied()) player.getFields().get(i).get(j).setColor(Color.CORAL);
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (PC.getFields().get(i).get(j).isOccupied()) PC.getFields().get(i).get(j).setColor(Color.CORAL);
+                    if (player.getFields().get(i).get(j).isOccupied())
+                        player.getFields().get(i).get(j).setColor(Color.CORAL);
                 }
             }
-            textArea.setText(PC.getHealth()+" player------>"+player.getHealth());
+            textArea.setText(PC.getHealth() + " player------>" + player.getHealth());
         }
     }
 

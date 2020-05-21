@@ -204,7 +204,7 @@ public class Board {
         return string;
     }
 
-    public void enemyTurn(RandomAI ai) {
+    public void enemyTurn(MojaAI ai) {
         Pair<Integer, Integer> nextMove = ai.nextMove();
         Field field = fields.get(nextMove.getKey()).get(nextMove.getValue());
         while (field.isHit()) {

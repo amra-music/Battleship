@@ -53,7 +53,8 @@ public class Controller {
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
 
-    private RandomAI ai = new RandomAI();
+    private RandomAI randomAI = new RandomAI();
+    private SequenceAI sequenceAI = new SequenceAI();
 
     @FXML
     public void initialize() {
@@ -97,13 +98,10 @@ public class Controller {
         PCBoard.setDisable(true);
 
 
-        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again
-        // TODO : zabraniti klik na polje kad je vec kliknuto, desable polje
-        // TODO : napraviti jednu igru cijelu do pobjede/poraza
+        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again/ da nekako vratim brodice na firstPosition
         // TODO : kada se pogodi da se na tom mjestu napravi X
         // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
         // TODO : staviti zvuk
-        // TODO : napraviti random dugme
         // TODO : Bug koji se pojavljuje nekada prilikom postavljanja brodica, error da nisu pozicionirani svi iako jesu
     }
 
@@ -136,7 +134,7 @@ public class Controller {
                 field.getRectangle().setDisable(true);
                 PCBoard.setDisable(true);
 
-                player.enemyTurn(ai);
+                player.enemyTurn(sequenceAI);
                 PCBoard.setDisable(false);
             };
 

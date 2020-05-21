@@ -1,13 +1,19 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
@@ -141,6 +147,15 @@ public class Board {
         return fields.get((int) (rowPosition / 50)).get((int) (columnPosition / 50));
     }
 
+    public void removeOccupied(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (fields.get(i).get(j).isOccupied())
+                    fields.get(i).get(j).setOccupied(false);
+            }
+        }
+    }
+
     public void setRandomShips() {
         int[] sizes = {5, 4, 3, 3, 2};
         removeShips();
@@ -185,5 +200,35 @@ public class Board {
         for (List<Field> row : fields)
             string += row.toString() + "\n";
         return string;
+    }
+
+    public void enemyTurn(randomAI ai) {
+        Pair<Integer, Integer> nextMove = ai.nextMove();
+        Field field = fields.get(nextMove.getKey()).get(nextMove.getValue());
+        while (field.isHit()) {
+            nextMove = ai.nextMove();
+            field = fields.get(nextMove.getKey()).get(nextMove.getValue());
+        }
+        try {
+            TimeUnit.MILLISECONDS.sleep(300);
+        } catch (InterruptedException ex) {
+            //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        field.setHit(true);
+        if (field.isOccupied()) {
+            field.setColor(Color.RED);
+            this.setHealth(this.getHealth() - 1);
+            if (this.getHealth() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent()) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }
+        } else{
+            field.setColor(Color.WHITE);
+            field.getRectangle().setDisable(true);
+        }
     }
 }

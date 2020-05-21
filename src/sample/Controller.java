@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -51,6 +52,8 @@ public class Controller {
     private Board PC = new Board();
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
+
+    private randomAI ai = new randomAI();
 
     @FXML
     public void initialize() {
@@ -116,51 +119,29 @@ public class Controller {
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
                 //igrac je na potezu
-                if (playerBoard.isDisable()) {
-                    field.setHit(true);
-                    if (field.isOccupied()) {
-                        field.setColor(Color.RED);
-                        PC.setHealth(PC.getHealth() - 1);
-                        if (PC.getHealth() == 0) {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.isPresent()) {
-                                Platform.exit();
-                                System.exit(0);
-                            }
+                field.setHit(true);
+                if (field.isOccupied()) {
+                    field.setColor(Color.RED);
+                    PC.setHealth(PC.getHealth() - 1);
+                    if (PC.getHealth() == 0) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.isPresent()) {
+                            Platform.exit();
+                            System.exit(0);
                         }
-                    } else
-                        field.setColor(Color.WHITE);
-                    field.getRectangle().setDisable(true);
-                    playerBoard.setDisable(false);
-                    PCBoard.setDisable(true);
-                    textArea.setText("PC health " + PC.getHealth());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na PC");
-                    alert.showAndWait();
-                }
-                //PC je na potezu
-                else if (PCBoard.isDisable()) {
-                    field.setHit(true);
-                    if (field.isOccupied()) {
-                        field.setColor(Color.RED);
-                        player.setHealth(player.getHealth() - 1);
-                        if (player.getHealth() == 0) {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.isPresent()) {
-                                Platform.exit();
-                                System.exit(0);
-                            }
-                        }
-                    } else
-                        field.setColor(Color.WHITE);
-                    field.getRectangle().setDisable(true);
-                    playerBoard.setDisable(true);
-                    PCBoard.setDisable(false);
-                    textArea.setText("Player health " + player.getHealth());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Red je na igraca");
-                    alert.showAndWait();
-                }
+                    }
+                } else
+                    field.setColor(Color.WHITE);
+                field.getRectangle().setDisable(true);
+                playerBoard.setDisable(false);
+                PCBoard.setDisable(true);
+                textArea.setText("PC health " + PC.getHealth());
+
+                player.enemyTurn(ai);
+                playerBoard.setDisable(true);
+                PCBoard.setDisable(false);
+                textArea.setText("Player health " + player.getHealth());
             };
 
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
@@ -339,16 +320,16 @@ public class Controller {
         playerBoard.setDisable(true);
         PCBoard.setDisable(false);
         Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
-        if (player.getShips().size() != 5)
+        if (player.getShips().size() != 5) {
             alert.showAndWait();
-        else {
+        } else {
             ships.forEach(ship -> ship.setDisable(true));
             player.setOccupiedFields();
             startButton.setDisable(true);
+            randomButton.setDisable(true);
             PC.setRandomShips();
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
-                    if (PC.getFields().get(i).get(j).isOccupied()) PC.getFields().get(i).get(j).setColor(Color.CORAL);
                     if (player.getFields().get(i).get(j).isOccupied())
                         player.getFields().get(i).get(j).setColor(Color.CORAL);
                 }
@@ -359,6 +340,7 @@ public class Controller {
 
     public void playAgain(MouseEvent mouseEvent) {
         startButton.setDisable(false);
+        randomButton.setDisable(false);
         textArea.setText("");
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);
@@ -375,11 +357,23 @@ public class Controller {
     }
 
     public void placeShipsRandom(MouseEvent mouseEvent) {
-       /* player.getShips().clear();
+        player.removeOccupied();
         player.setRandomShips();
-        for(int i=0; i<5; i++){
-            ships.get(i).setLayoutX(player.getShips().get(i).getStartX());
-            ships.get(i).setLayoutY(player.getShips().get(i).getStartY() + 5);
-        }*/
+        ships.forEach(ship -> ship.setDisable(true));
+        for (int i = 0; i < 5; i++) {
+            Ship ship = player.getShips().get(i);
+            Rectangle rectangle = ships.get(i);
+            if (ship.getOrientation() == Orientation.HORIZONTAL) {
+                rectangle.setRotate(0);
+                rectangle.setLayoutY(ship.getStartY() + 5);
+                rectangle.setLayoutX(ship.getStartX());
+            } else {
+                rectangle.setRotate(270);
+                int deviation = outBoard(rectangle);
+                rectangle.setLayoutX(ship.getStartX() - deviation + 5);
+                rectangle.setLayoutY(ship.getStartY() + deviation);
+            }
+        }
+        player.setHealth(0);
     }
 }

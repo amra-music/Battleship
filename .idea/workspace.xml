@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Listener za polja napravljen da ide preko ploca">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/sample/randomAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +99,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Battleship-1" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -231,7 +233,8 @@
       <workItem from="1589662195918" duration="9234000" />
       <workItem from="1589753993302" duration="6528000" />
       <workItem from="1589763744522" duration="640000" />
-      <workItem from="1590009822904" duration="3406000" />
+      <workItem from="1590009822904" duration="5209000" />
+      <workItem from="1590065984958" duration="8982000" />
     </task>
     <task id="LOCAL-00001" summary="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni">
       <created>1587057587482</created>
@@ -464,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590011153881</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Napravljeno da kada se pogodi da se zdravlje ugrozi i kada dospije ne 0 da se zavrsi">
+      <created>1590013528521</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1590013528521</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +496,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Oznacena crvena polja" />
     <MESSAGE value="Oznacena crvena polja sa obje rotacije, napravljeno da se pinuje na sredinu reda ili kolone" />
     <MESSAGE value="Dodata sva polja na igracu tablu i podesen layout" />
     <MESSAGE value="Ispravno bojenje zelenih polja horizontalno" />
@@ -511,17 +520,18 @@
     <MESSAGE value="Random pozicioniranje brodova" />
     <MESSAGE value="Omoguceno ispravno gadjanje polja, reset poloce nakon playAgain" />
     <MESSAGE value="Listener za polja napravljen da ide preko ploca" />
-    <option name="LAST_COMMIT_MESSAGE" value="Listener za polja napravljen da ide preko ploca" />
+    <MESSAGE value="Napravljeno da kada se pogodi da se zdravlje ugrozi i kada dospije ne 0 da se zavrsi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Napravljeno da kada se pogodi da se zdravlje ugrozi i kada dospije ne 0 da se zavrsi" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1589320909036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1589320909036" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1589756680843">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1590068843653">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589756680843" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590068843653" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -542,34 +552,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589321234041" />
-    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1590011152985">
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1590075861846">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590011152985" />
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590075861846" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588284023768" />
-    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1588516433125">
+    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1590066047194">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588516433125" />
-    <state width="1493" height="432" key="GridCell.Tab.0.bottom" timestamp="1590013411224">
+    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590066047194" />
+    <state width="1493" height="243" key="GridCell.Tab.0.bottom" timestamp="1590076586797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="432" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590013411224" />
-    <state width="1493" height="432" key="GridCell.Tab.0.center" timestamp="1590013411224">
+    <state width="1493" height="243" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590076586797" />
+    <state width="1493" height="243" key="GridCell.Tab.0.center" timestamp="1590076586797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="432" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590013411224" />
-    <state width="1493" height="432" key="GridCell.Tab.0.left" timestamp="1590013411224">
+    <state width="1493" height="243" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590076586797" />
+    <state width="1493" height="243" key="GridCell.Tab.0.left" timestamp="1590076586797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="432" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590013411224" />
-    <state width="1493" height="432" key="GridCell.Tab.0.right" timestamp="1590013411224">
+    <state width="1493" height="243" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590076586797" />
+    <state width="1493" height="243" key="GridCell.Tab.0.right" timestamp="1590076586797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="432" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590013411224" />
+    <state width="1493" height="243" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590076586797" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1589674270443">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -594,10 +604,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1588283715526" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589763785186">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590022811548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589763785186" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590022811548" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587237930628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

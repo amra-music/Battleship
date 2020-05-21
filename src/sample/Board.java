@@ -55,6 +55,10 @@ public class Board {
         this.health = health;
     }
 
+    public void setInitialHealth(){
+        ships.forEach(ship -> health+= ship.getSize());
+    }
+
     public void resetBoard() {
         //postavi na plavo, da nije occupied, nije hit
         for (int i = 0; i < 10; i++) {
@@ -69,7 +73,6 @@ public class Board {
 
     public void setOccupiedFields() {
         ships.forEach(ship -> {
-            health += ship.getSize();
             if (ship.getOrientation() == Orientation.HORIZONTAL) {
                 int rowNumber = (int) ship.getStartY() / 50;
                 for (int row = rowNumber; row <= rowNumber; row++) {
@@ -116,7 +119,6 @@ public class Board {
                 }
             }
         }
-        health += ship.getSize();
         return true;
     }
 
@@ -202,7 +204,7 @@ public class Board {
         return string;
     }
 
-    public void enemyTurn(randomAI ai) {
+    public void enemyTurn(RandomAI ai) {
         Pair<Integer, Integer> nextMove = ai.nextMove();
         Field field = fields.get(nextMove.getKey()).get(nextMove.getValue());
         while (field.isHit()) {
@@ -228,7 +230,6 @@ public class Board {
             }
         } else{
             field.setColor(Color.WHITE);
-            field.getRectangle().setDisable(true);
         }
     }
 }

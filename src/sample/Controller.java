@@ -53,7 +53,7 @@ public class Controller {
     private List<Rectangle> ships = new ArrayList();
     private boolean firstTime = true;
 
-    private randomAI ai = new randomAI();
+    private RandomAI ai = new RandomAI();
 
     @FXML
     public void initialize() {
@@ -92,7 +92,7 @@ public class Controller {
 
         //Liseneri na polja ploca
         setBoardFieldsListeners(PC.getFields());
-        setBoardFieldsListeners(player.getFields());
+      //  setBoardFieldsListeners(player.getFields());
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
 
@@ -118,7 +118,6 @@ public class Controller {
                     field.setColor(Color.DODGERBLUE);
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
-                //igrac je na potezu
                 field.setHit(true);
                 if (field.isOccupied()) {
                     field.setColor(Color.RED);
@@ -133,15 +132,12 @@ public class Controller {
                     }
                 } else
                     field.setColor(Color.WHITE);
+
                 field.getRectangle().setDisable(true);
-                playerBoard.setDisable(false);
                 PCBoard.setDisable(true);
-                textArea.setText("PC health " + PC.getHealth());
 
                 player.enemyTurn(ai);
-                playerBoard.setDisable(true);
                 PCBoard.setDisable(false);
-                textArea.setText("Player health " + player.getHealth());
             };
 
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
@@ -316,29 +312,21 @@ public class Controller {
         }
     }
 
-    public void start(MouseEvent mouseEvent) {
+    private void finalPreparations() {
         playerBoard.setDisable(true);
         PCBoard.setDisable(false);
-        Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
-        if (player.getShips().size() != 5) {
-            alert.showAndWait();
-        } else {
-            ships.forEach(ship -> ship.setDisable(true));
-            player.setOccupiedFields();
-            startButton.setDisable(true);
-            randomButton.setDisable(true);
-            PC.setRandomShips();
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    if (player.getFields().get(i).get(j).isOccupied())
-                        player.getFields().get(i).get(j).setColor(Color.CORAL);
-                }
-            }
-            textArea.setText(PC.getHealth() + " player------>" + player.getHealth());
-        }
+        ships.forEach(ship -> ship.setDisable(true));
+        startButton.setDisable(true);
+        randomButton.setDisable(true);
+        PC.setRandomShips();
+        //besmisleno ako je random kliknuto
+        player.setOccupiedFields();
+
+        player.setInitialHealth();
+        PC.setInitialHealth();
     }
 
-    public void playAgain(MouseEvent mouseEvent) {
+    private void reset() {
         startButton.setDisable(false);
         randomButton.setDisable(false);
         textArea.setText("");
@@ -351,9 +339,21 @@ public class Controller {
         }
         PCBoard.setDisable(true);
         playerBoard.setDisable(true);
-
         player.resetBoard();
         PC.resetBoard();
+    }
+
+    public void start(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
+        if (player.getShips().size() != 5) {
+            alert.showAndWait();
+        } else {
+            finalPreparations();
+        }
+    }
+
+    public void playAgain(MouseEvent mouseEvent) {
+        reset();
     }
 
     public void placeShipsRandom(MouseEvent mouseEvent) {
@@ -374,6 +374,5 @@ public class Controller {
                 rectangle.setLayoutY(ship.getStartY() + deviation);
             }
         }
-        player.setHealth(0);
     }
 }

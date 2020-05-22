@@ -1,6 +1,6 @@
 package sample;
 
-public abstract class MojaAI {
+public abstract class AI {
     private int x;
     private int y;
     abstract void nextMove();

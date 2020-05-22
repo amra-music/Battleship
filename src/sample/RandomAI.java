@@ -2,7 +2,7 @@ package sample;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomAI extends MojaAI {
+public class RandomAI extends AI {
 
     public RandomAI() {
     }

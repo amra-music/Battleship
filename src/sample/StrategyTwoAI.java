@@ -74,6 +74,4 @@ public class StrategyTwoAI extends StrategyOneAI {
         }
         setLastDirection(direction);
     }
-
-
 }

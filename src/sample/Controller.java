@@ -7,10 +7,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -35,6 +32,8 @@ public class Controller {
     public Button startButton;
     public GridPane PCBoard;
     public Button randomButton;
+    public ProgressBar PCHealth;
+    public ProgressBar playerHealth;
 
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
@@ -122,6 +121,7 @@ public class Controller {
                 if (field.isOccupied()) {
                     field.setColor(Color.RED);
                     PC.setHealth(PC.getHealth() - 1);
+                    PCHealth.setProgress(PC.getHealth()/17.);
                     if (PC.getHealth() == 0) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
                         Optional<ButtonType> result = alert.showAndWait();
@@ -138,6 +138,7 @@ public class Controller {
 
                 player.enemyTurn(strategyTwoAI);
                 PCBoard.setDisable(false);
+                playerHealth.setProgress(player.getHealth()/17.);
             };
 
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);

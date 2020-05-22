@@ -4,6 +4,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
@@ -297,9 +298,19 @@
       <TextArea fx:id="textArea" layoutX="547.0" layoutY="600.0" prefHeight="234.0" prefWidth="275.0" />
       <Label layoutX="6.0" layoutY="509.0" prefHeight="17.0" prefWidth="481.0" text=" 0          50         100         150       200      250      300     350      400       450" />
       <Button fx:id="playAgainButton" layoutX="700.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="114.0" text="Play again" />
-      <Label layoutX="600.0" layoutY="519.0" prefHeight="17.0" prefWidth="481.0" text=" 0          50         100         150       200      250      300     350      400       450" />
-      <Label layoutX="512.0" layoutY="10.0" lineSpacing="35.0" prefHeight="500.0" prefWidth="33.0" text="0   50 100 150 200 250 300 350 400 450 " textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="581.0" layoutY="519.0" prefHeight="17.0" prefWidth="534.0" text=" A          B            C             D              E             F              G            H            I             J" />
+      <Label layoutX="565.0" lineSpacing="35.0" prefHeight="530.0" prefWidth="19.0" text="0 1 2 3 4 5 6 7 8 9" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="randomButton" layoutX="34.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#placeShipsRandom" prefHeight="50.0" prefWidth="114.0" text="Random" />
+      <ProgressBar fx:id="PCHealth" layoutX="600.0" layoutY="558.0" prefWidth="200.0" progress="1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ProgressBar>
+      <ProgressBar fx:id="playerHealth" layoutX="287.0" layoutY="558.0" prefWidth="200.0" progress="1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ProgressBar>
    </children>
    <padding>
       <Insets left="20.0" />

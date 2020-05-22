@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -212,7 +211,7 @@ public class Board {
         return string;
     }
 
-    public void enemyTurn(MojaAI ai) {
+    public void enemyTurn(AI ai) {
         ai.nextMove();
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {

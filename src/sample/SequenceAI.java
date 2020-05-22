@@ -1,6 +1,6 @@
 package sample;
 
-public class SequenceAI extends MojaAI {
+public class SequenceAI extends AI {
     private int counter;
 
     public SequenceAI() {

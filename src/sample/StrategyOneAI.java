@@ -3,7 +3,7 @@ package sample;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StrategyOneAI extends MojaAI {
+public class StrategyOneAI extends AI {
 
     private int startSearchX = 0;
     private int startSearchY = 0;

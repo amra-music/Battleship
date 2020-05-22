@@ -55,8 +55,8 @@ public class Board {
         this.health = health;
     }
 
-    public void setInitialHealth(){
-        ships.forEach(ship -> health+= ship.getSize());
+    public void setInitialHealth() {
+        ships.forEach(ship -> health += ship.getSize());
     }
 
     public void resetBoard() {
@@ -77,14 +77,18 @@ public class Board {
                 int rowNumber = (int) ship.getStartY() / 50;
                 for (int row = rowNumber; row <= rowNumber; row++) {
                     for (int column = (int) ship.getStartX() / 50; column <= ship.getEndX() / 50; column++) {
-                        fields.get(row).get(column).setOccupied(true);
+                        Field field = fields.get(row).get(column);
+                        field.setOccupied(true);
+                        field.setShip(ship);
                     }
                 }
             } else {
                 int columnNumber = (int) ship.getStartX() / 50;
                 for (int column = columnNumber; column <= columnNumber; column++) {
                     for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
-                        fields.get(row).get(column).setOccupied(true);
+                        Field field = fields.get(row).get(column);
+                        field.setOccupied(true);
+                        field.setShip(ship);
                     }
                 }
             }
@@ -102,7 +106,9 @@ public class Board {
 
             for (int row = rowNumber; row <= rowNumber; row++) {
                 for (int column = (int) ship.getStartX() / 50; column <= ship.getEndX() / 50; column++) {
-                    fields.get(row).get(column).setOccupied(true);
+                    Field field = fields.get(row).get(column);
+                    field.setOccupied(true);
+                    field.setShip(ship);
                 }
             }
         } else {
@@ -115,7 +121,9 @@ public class Board {
 
             for (int column = columnNumber; column <= columnNumber; column++) {
                 for (int row = (int) ship.getStartY() / 50; row <= ship.getEndY() / 50; row++) {
-                    fields.get(row).get(column).setOccupied(true);
+                    Field field = fields.get(row).get(column);
+                    field.setOccupied(true);
+                    field.setShip(ship);
                 }
             }
         }
@@ -149,7 +157,7 @@ public class Board {
         return fields.get((int) (rowPosition / 50)).get((int) (columnPosition / 50));
     }
 
-    public void removeOccupied(){
+    public void removeOccupied() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (fields.get(i).get(j).isOccupied())
@@ -228,15 +236,18 @@ public class Board {
                     System.exit(0);
                 }
             }
-        } else{
+        } else {
             field.setColor(Color.WHITE);
         }
     }
+
     public void enemyTurn(StrategyOneAI ai) {
-        Field field = fields.get(ai.nextX()).get(ai.nextY());
+        ai.generate();
+        System.out.println(ai.getX() + " " + ai.getY());
+        Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {
             ai.generate();
-            field = fields.get(ai.nextX()).get(ai.nextY());
+            field = fields.get(ai.getX()).get(ai.getY());
         }
         try {
             TimeUnit.MILLISECONDS.sleep(300);
@@ -246,6 +257,7 @@ public class Board {
         field.setHit(true);
         if (field.isOccupied()) {
             field.setColor(Color.RED);
+            field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
@@ -255,7 +267,9 @@ public class Board {
                     System.exit(0);
                 }
             }
-        } else{
+            ai.feedback(true, field.getShip().isDestroyed());
+        } else {
+            ai.feedback(false, field.getShip().isDestroyed());
             field.setColor(Color.WHITE);
         }
     }

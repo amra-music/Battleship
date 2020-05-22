@@ -11,7 +11,7 @@ public class Field {
     private double positionY;
     private boolean hit = false;
     private boolean occupied = false;
-    private ShipType shipType = null;
+    private Ship ship = new Ship();
 
 
     public Field(double positionX, double positionY) {
@@ -63,12 +63,12 @@ public class Field {
         this.rectangle = rectangle;
     }
 
-    public ShipType getShipType() {
-        return shipType;
+    public Ship getShip() {
+        return ship;
     }
 
-    public void setShipType(ShipType shipType) {
-        this.shipType = shipType;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public void reset(){
@@ -76,6 +76,7 @@ public class Field {
         occupied = false;
         setColor(Color.DODGERBLUE);
         rectangle.setDisable(false);
+        ship = new Ship();
     }
 
     @Override

@@ -11,6 +11,7 @@ public class Ship {
     private double firstPositionY;
     private int size;
     private Orientation orientation;
+    private int health;
 
 
     public Ship(double width, double firstPositionX, double firstPositionY) {
@@ -18,10 +19,15 @@ public class Ship {
         this.size = (int) (width / 50);
         this.firstPositionX = firstPositionX;
         this.firstPositionY = firstPositionY;
+        this.health = size;
     }
 
     public Ship(int size) {
         this.size = size;
+        this.health = size;
+    }
+
+    public Ship() {
     }
 
     public double getStartX() {
@@ -92,9 +98,19 @@ public class Ship {
         return firstPositionY;
     }
 
-
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public boolean isDestroyed(){
+        return health == 0;
     }
 
     @Override

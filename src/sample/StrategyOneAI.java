@@ -17,28 +17,35 @@ public class StrategyOneAI extends MojaAI {
 
     public StrategyOneAI() {
     }
+
     public int nextX() {
         if (getX() == lastX && getY() == lastY) {
+            System.out.println("Generise X ");
             this.generate();
         }
+        System.out.println("Ne generise X");
         return getX();
     }
 
     public int nextY() {
         if (getX() == lastX && getY() == lastY) {
+            System.out.println("Generise Y ");
             this.generate();
         }
+        System.out.println("Ne generise Y");
         return getY();
     }
 
     public void generate() {
         //If no boat found yet, pick random coordinate
         if (!lastGuessHit && stackDirections.isEmpty()) {
+            System.out.println("1.IF");
             setX(ThreadLocalRandom.current().nextInt(0, 10));
             setY(ThreadLocalRandom.current().nextInt(0, 10));
             return;
         }
         if (!lastGuessHit && !stackDirections.isEmpty()) {
+            System.out.println("2.IF");
             lastX = startSearchX;
             setX(lastX);
             lastY = startSearchY;
@@ -47,11 +54,13 @@ public class StrategyOneAI extends MojaAI {
             return;
         }
         if (lastGuessHit && !stackDirections.isEmpty()) {
+            System.out.println("3.IF");
             tryToMove();
             return;
         }
         //If hit, but stack is empty
         if (lastGuessHit && stackDirections.isEmpty()) {
+            System.out.println("4.IF");
             //Pick random direction
             int direction = ThreadLocalRandom.current().nextInt(0, 4);
             startSearchX = lastX;
@@ -65,13 +74,16 @@ public class StrategyOneAI extends MojaAI {
                     direction = 0;
                 i--;
             }
+            System.out.println("Stack : " + stackDirections);
             tryToMove();
             return;
         }
     }
 
     public void tryToMove() {
+        System.out.println("***Try to move***");
         int direction = (int) stackDirections.pop();
+        System.out.println("Direction pick " + direction);
         while (!move(direction)) {
             if (stackDirections.isEmpty()) {
                 setX(ThreadLocalRandom.current().nextInt(0, 10));
@@ -85,9 +97,10 @@ public class StrategyOneAI extends MojaAI {
         lastDirection = direction;
     }
 
-    public boolean move(int dir) {
+    public boolean move(int direction) {
+        System.out.println("Direction je ovaj primio "+direction);
         //Move North
-        if (dir == 0) {
+        if (direction == 0) {
             if (getY() != 0) {
                 setX(lastX);
                 setY(lastY - 1);
@@ -97,7 +110,7 @@ public class StrategyOneAI extends MojaAI {
             }
         }
         //Move East
-        if (dir == 1) {
+        if (direction == 1) {
             if (getX() != 9) {
                 setX(lastX + 1);
                 setY(lastY);
@@ -107,7 +120,7 @@ public class StrategyOneAI extends MojaAI {
             }
         }
         //Move South
-        if (dir == 2) {
+        if (direction == 2) {
             if (getY() != 9) {
                 setX(lastX);
                 setY(lastY + 1);
@@ -116,7 +129,7 @@ public class StrategyOneAI extends MojaAI {
                 return false;
             }
         }
-        //dir == 3. Move West
+        //direction == 3. Move West
         if (getX() != 0) {
             setX(lastX - 1);
             setY(lastY);
@@ -125,6 +138,7 @@ public class StrategyOneAI extends MojaAI {
             return false;
         }
     }
+
     void reset() {
         startSearchX = 0;
         startSearchY = 0;
@@ -136,6 +150,47 @@ public class StrategyOneAI extends MojaAI {
         stackDirections.empty();
         lastDirection = 0;
         generate();
+    }
+
+    void feedback(boolean getHit, boolean getDestroy) {
+            if (getDestroy) {
+                stackDirections.clear();
+                lastX = 0;
+                lastY = 0;
+                setY(0);
+                setX(0);
+                lastDirection = 0;
+                lastGuessHit = false;
+                return;
+            }
+
+        lastX = getX();
+        lastY = getY();
+
+        //If hit and we can keep going in the direction we just came from, keep searching in that direction
+        if (getHit) {
+            lastGuessHit = true;
+            if (!stackDirections.isEmpty()) {
+                int direction = lastDirection;
+                if (direction == 0 && lastY == 0) {
+                    return;
+                }
+                if (direction == 1 && lastX == 9) {
+                    return;
+                }
+                if (direction == 2 && lastY == 9) {
+                    return;
+                }
+                if (direction == 3 && lastX == 0) {
+                    return;
+                }
+                //Add direction to keep searching in current direction
+                stackDirections.push(direction);
+            }
+            return;
+        } else {
+            lastGuessHit = false;
+        }
     }
 
 

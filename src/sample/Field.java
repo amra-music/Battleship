@@ -11,6 +11,8 @@ public class Field {
     private double positionY;
     private boolean hit = false;
     private boolean occupied = false;
+    private ShipType shipType = null;
+
 
     public Field(double positionX, double positionY) {
         this.positionX = positionX;
@@ -59,6 +61,14 @@ public class Field {
 
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
+    }
+
+    public ShipType getShipType() {
+        return shipType;
+    }
+
+    public void setShipType(ShipType shipType) {
+        this.shipType = shipType;
     }
 
     public void reset(){

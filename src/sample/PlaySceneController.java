@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Controller {
+public class PlaySceneController {
     public Rectangle boatSubmarine;
     public Rectangle boatCarrier;
     public Rectangle boatCruiser;
@@ -104,6 +104,7 @@ public class Controller {
         // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
         // TODO : staviti zvuk
         // TODO : Bug koji se pojavljuje nekada prilikom postavljanja brodica, error da nisu pozicionirani svi iako jesu
+        // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
     }
 
     public void setBoardFieldsListeners(List<List<Field>> boardFields) {

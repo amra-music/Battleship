@@ -213,11 +213,11 @@ public class Board {
     }
 
     public void enemyTurn(MojaAI ai) {
-        Pair<Integer, Integer> nextMove = ai.nextMove();
-        Field field = fields.get(nextMove.getKey()).get(nextMove.getValue());
+        ai.nextMove();
+        Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {
-            nextMove = ai.nextMove();
-            field = fields.get(nextMove.getKey()).get(nextMove.getValue());
+            ai.nextMove();
+            field = fields.get(ai.getY()).get(ai.getX());
         }
         try {
             TimeUnit.MILLISECONDS.sleep(300);
@@ -242,12 +242,11 @@ public class Board {
     }
 
     public void enemyTurn(StrategyOneAI ai) {
-        ai.generate();
-        System.out.println(ai.getX() + " " + ai.getY());
+        ai.nextMove();
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {
-            ai.generate();
-            field = fields.get(ai.getX()).get(ai.getY());
+            ai.nextMove();
+            field = fields.get(ai.getY()).get(ai.getX());
         }
         try {
             TimeUnit.MILLISECONDS.sleep(300);
@@ -269,7 +268,7 @@ public class Board {
             }
             ai.feedback(true, field.getShip().isDestroyed());
         } else {
-            ai.feedback(false, field.getShip().isDestroyed());
+            ai.feedback(false, false);
             field.setColor(Color.WHITE);
         }
     }

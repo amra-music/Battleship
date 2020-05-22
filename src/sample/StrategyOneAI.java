@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.util.Pair;
-
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,13 +13,12 @@ public class StrategyOneAI extends MojaAI {
     private Stack stackDirections = new Stack();
     private int lastDirection = 0;
 
-    public StrategyOneAI() {
-    }
+    public StrategyOneAI() {}
 
     public int nextX() {
         if (getX() == lastX && getY() == lastY) {
             System.out.println("Generise X ");
-            this.generate();
+            this.nextMove();
         }
         System.out.println("Ne generise X");
         return getX();
@@ -30,22 +27,20 @@ public class StrategyOneAI extends MojaAI {
     public int nextY() {
         if (getX() == lastX && getY() == lastY) {
             System.out.println("Generise Y ");
-            this.generate();
+            this.nextMove();
         }
         System.out.println("Ne generise Y");
         return getY();
     }
 
-    public void generate() {
+    public void nextMove() {
         //If no boat found yet, pick random coordinate
         if (!lastGuessHit && stackDirections.isEmpty()) {
-            System.out.println("1.IF");
             setX(ThreadLocalRandom.current().nextInt(0, 10));
             setY(ThreadLocalRandom.current().nextInt(0, 10));
             return;
         }
         if (!lastGuessHit && !stackDirections.isEmpty()) {
-            System.out.println("2.IF");
             lastX = startSearchX;
             setX(lastX);
             lastY = startSearchY;
@@ -54,13 +49,11 @@ public class StrategyOneAI extends MojaAI {
             return;
         }
         if (lastGuessHit && !stackDirections.isEmpty()) {
-            System.out.println("3.IF");
             tryToMove();
             return;
         }
         //If hit, but stack is empty
         if (lastGuessHit && stackDirections.isEmpty()) {
-            System.out.println("4.IF");
             //Pick random direction
             int direction = ThreadLocalRandom.current().nextInt(0, 4);
             startSearchX = lastX;
@@ -74,16 +67,12 @@ public class StrategyOneAI extends MojaAI {
                     direction = 0;
                 i--;
             }
-            System.out.println("Stack : " + stackDirections);
             tryToMove();
-            return;
         }
     }
 
     public void tryToMove() {
-        System.out.println("***Try to move***");
         int direction = (int) stackDirections.pop();
-        System.out.println("Direction pick " + direction);
         while (!move(direction)) {
             if (stackDirections.isEmpty()) {
                 setX(ThreadLocalRandom.current().nextInt(0, 10));
@@ -98,7 +87,6 @@ public class StrategyOneAI extends MojaAI {
     }
 
     public boolean move(int direction) {
-        System.out.println("Direction je ovaj primio "+direction);
         //Move North
         if (direction == 0) {
             if (getY() != 0) {
@@ -149,7 +137,7 @@ public class StrategyOneAI extends MojaAI {
         lastGuessHit = false;
         stackDirections.empty();
         lastDirection = 0;
-        generate();
+        nextMove();
     }
 
     void feedback(boolean getHit, boolean getDestroy) {
@@ -191,11 +179,5 @@ public class StrategyOneAI extends MojaAI {
         } else {
             lastGuessHit = false;
         }
-    }
-
-
-    @Override
-    Pair<Integer, Integer> nextMove() {
-        return null;
     }
 }

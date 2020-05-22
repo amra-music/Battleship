@@ -1,11 +1,9 @@
 package sample;
 
-import javafx.util.Pair;
-
 public abstract class MojaAI {
     private int x;
     private int y;
-    abstract Pair<Integer, Integer> nextMove();
+    abstract void nextMove();
 
     public int getX() {
         return x;

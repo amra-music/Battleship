@@ -135,7 +135,7 @@ public class Controller {
                 field.getRectangle().setDisable(true);
                 PCBoard.setDisable(true);
 
-                player.enemyTurn(strategyOneAI);
+                player.enemyTurn(sequenceAI);
                 PCBoard.setDisable(false);
             };
 
@@ -339,6 +339,9 @@ public class Controller {
         PCBoard.setDisable(true);
         player.resetBoard();
         PC.resetBoard();
+        //ovisno koji je AI ukljucen
+        strategyOneAI.reset();
+        sequenceAI.reset();
     }
 
     public void start(MouseEvent mouseEvent) {

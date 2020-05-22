@@ -15,6 +15,62 @@ public class StrategyOneAI extends MojaAI {
 
     public StrategyOneAI() {}
 
+    public int getStartSearchX() {
+        return startSearchX;
+    }
+
+    public void setStartSearchX(int startSearchX) {
+        this.startSearchX = startSearchX;
+    }
+
+    public int getStartSearchY() {
+        return startSearchY;
+    }
+
+    public void setStartSearchY(int startSearchY) {
+        this.startSearchY = startSearchY;
+    }
+
+    public int getLastX() {
+        return lastX;
+    }
+
+    public void setLastX(int lastX) {
+        this.lastX = lastX;
+    }
+
+    public int getLastY() {
+        return lastY;
+    }
+
+    public void setLastY(int lastY) {
+        this.lastY = lastY;
+    }
+
+    public boolean isLastGuessHit() {
+        return lastGuessHit;
+    }
+
+    public void setLastGuessHit(boolean lastGuessHit) {
+        this.lastGuessHit = lastGuessHit;
+    }
+
+    public Stack getStackDirections() {
+        return stackDirections;
+    }
+
+    public void setStackDirections(Stack stackDirections) {
+        this.stackDirections = stackDirections;
+    }
+
+    public int getLastDirection() {
+        return lastDirection;
+    }
+
+    public void setLastDirection(int lastDirection) {
+        this.lastDirection = lastDirection;
+    }
+
     public int nextX() {
         if (getX() == lastX && getY() == lastY) {
             System.out.println("Generise X ");

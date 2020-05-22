@@ -56,6 +56,7 @@ public class Controller {
     private RandomAI randomAI = new RandomAI();
     private SequenceAI sequenceAI = new SequenceAI();
     private StrategyOneAI strategyOneAI = new StrategyOneAI();
+    private StrategyTwoAI strategyTwoAI = new StrategyTwoAI();
 
     @FXML
     public void initialize() {
@@ -135,7 +136,7 @@ public class Controller {
                 field.getRectangle().setDisable(true);
                 PCBoard.setDisable(true);
 
-                player.enemyTurn(sequenceAI);
+                player.enemyTurn(strategyTwoAI);
                 PCBoard.setDisable(false);
             };
 
@@ -342,6 +343,7 @@ public class Controller {
         //ovisno koji je AI ukljucen
         strategyOneAI.reset();
         sequenceAI.reset();
+        strategyTwoAI.reset();
     }
 
     public void start(MouseEvent mouseEvent) {

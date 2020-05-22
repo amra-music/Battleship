@@ -65,6 +65,7 @@ public class Field {
         hit = false;
         occupied = false;
         setColor(Color.DODGERBLUE);
+        rectangle.setDisable(false);
     }
 
     @Override

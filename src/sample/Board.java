@@ -232,4 +232,31 @@ public class Board {
             field.setColor(Color.WHITE);
         }
     }
+    public void enemyTurn(StrategyOneAI ai) {
+        Field field = fields.get(ai.nextX()).get(ai.nextY());
+        while (field.isHit()) {
+            ai.generate();
+            field = fields.get(ai.nextX()).get(ai.nextY());
+        }
+        try {
+            TimeUnit.MILLISECONDS.sleep(300);
+        } catch (InterruptedException ex) {
+            //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        field.setHit(true);
+        if (field.isOccupied()) {
+            field.setColor(Color.RED);
+            this.setHealth(this.getHealth() - 1);
+            if (this.getHealth() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent()) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }
+        } else{
+            field.setColor(Color.WHITE);
+        }
+    }
 }

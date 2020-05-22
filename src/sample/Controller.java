@@ -55,6 +55,7 @@ public class Controller {
 
     private RandomAI randomAI = new RandomAI();
     private SequenceAI sequenceAI = new SequenceAI();
+    private StrategyOneAI strategyOneAI = new StrategyOneAI();
 
     @FXML
     public void initialize() {
@@ -134,7 +135,7 @@ public class Controller {
                 field.getRectangle().setDisable(true);
                 PCBoard.setDisable(true);
 
-                player.enemyTurn(sequenceAI);
+                player.enemyTurn(strategyOneAI);
                 PCBoard.setDisable(false);
             };
 
@@ -336,7 +337,6 @@ public class Controller {
             ship.setLayoutY(50 * i + 600);
         }
         PCBoard.setDisable(true);
-        playerBoard.setDisable(true);
         player.resetBoard();
         PC.resetBoard();
     }

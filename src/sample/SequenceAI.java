@@ -11,6 +11,11 @@ public class SequenceAI extends AI {
         setY(counter % 10);
         counter++;
     }
+
+    @Override
+    public void feedback(boolean b, boolean destroyed) {
+    }
+
     public void reset(){
         counter = 0;
     }

@@ -5,6 +5,7 @@ public abstract class AI {
     private int y;
     abstract void nextMove();
 
+
     public int getX() {
         return x;
     }
@@ -20,4 +21,6 @@ public abstract class AI {
     public void setY(int y) {
         this.y = y;
     }
+
+    public abstract void feedback(boolean b, boolean destroyed);
 }

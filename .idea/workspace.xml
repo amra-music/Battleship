@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Dodat progress bar, nije namjestena boja">
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/startScene.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/startScene.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/startSceneCSS.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/startSceneControler.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Pocetak pravljenja pocetne scene">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/PlaySceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/playScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/playScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SequenceAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SequenceAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,6 +240,7 @@
       <workItem from="1589763744522" duration="640000" />
       <workItem from="1590009822904" duration="5209000" />
       <workItem from="1590065984958" duration="20989000" />
+      <workItem from="1590250645556" duration="1456000" />
     </task>
     <task id="LOCAL-00001" summary="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni">
       <created>1587057587482</created>
@@ -536,7 +536,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590183742844</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Pocetak pravljenja pocetne scene">
+      <created>1590187691662</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1590187691662</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +565,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Napravljen setPCBoardFieldsListener, a dugme start se prati i disejbla i enejbla PC plocu" />
     <MESSAGE value="Podesene koordinate layout PC ploce" />
     <MESSAGE value="Popravljen bug za disable i enable PC ploce" />
     <MESSAGE value="Napravljena klasa Field" />
@@ -583,17 +589,18 @@
     <MESSAGE value="Popravljen bug za StrategyOneAI, SequrnceAI" />
     <MESSAGE value="Napravljen jos jedan AI" />
     <MESSAGE value="Dodat progress bar, nije namjestena boja" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodat progress bar, nije namjestena boja" />
+    <MESSAGE value="Pocetak pravljenja pocetne scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pocetak pravljenja pocetne scene" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1589320909036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1589320909036" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1590179332120">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1590251674649">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590179332120" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590251674649" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -614,10 +621,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589321234041" />
-    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1590183742313">
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1590187691170">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590183742313" />
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590187691170" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -626,38 +633,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590066047194" />
-    <state width="1493" height="243" key="GridCell.Tab.0.bottom" timestamp="1590187587212">
+    <state width="1493" height="243" key="GridCell.Tab.0.bottom" timestamp="1590251802123">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="243" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590187587212" />
-    <state width="1493" height="243" key="GridCell.Tab.0.center" timestamp="1590187587212">
+    <state width="1493" height="243" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590251802123" />
+    <state width="1493" height="243" key="GridCell.Tab.0.center" timestamp="1590251802122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="243" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590187587212" />
-    <state width="1493" height="243" key="GridCell.Tab.0.left" timestamp="1590187587212">
+    <state width="1493" height="243" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590251802122" />
+    <state width="1493" height="243" key="GridCell.Tab.0.left" timestamp="1590251802122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="243" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590187587212" />
-    <state width="1493" height="243" key="GridCell.Tab.0.right" timestamp="1590187587212">
+    <state width="1493" height="243" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590251802122" />
+    <state width="1493" height="243" key="GridCell.Tab.0.right" timestamp="1590251802122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="243" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590187587212" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1590102361535">
+    <state width="1493" height="243" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590251802122" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590102361535" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1590102361535">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590102361535" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1590102361535">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590102361535" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1590102361535">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590102361535" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
     <state x="498" y="0" key="SettingsEditor" timestamp="1587237940371">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -666,10 +673,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1590167679160" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590022811548">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590187694450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590022811548" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590187694450" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587237930628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

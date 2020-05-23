@@ -22,7 +22,7 @@ public class StrategyTwoAI extends StrategyOneAI {
             setY(arrayX[randomY]);
         }
     }
-
+    @Override
     public void nextMove() {
         //If no boat found yet, pick random coordinate
         if (!isLastGuessHit() && getStackDirections().isEmpty()) {
@@ -59,7 +59,6 @@ public class StrategyTwoAI extends StrategyOneAI {
             tryToMove();
         }
     }
-
 
     public void tryToMove() {
         int direction = (int) getStackDirections().pop();

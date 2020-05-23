@@ -219,36 +219,7 @@ public class Board {
             field = fields.get(ai.getY()).get(ai.getX());
         }
         try {
-            TimeUnit.MILLISECONDS.sleep(300);
-        } catch (InterruptedException ex) {
-            //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        field.setHit(true);
-        if (field.isOccupied()) {
-            field.setColor(Color.RED);
-            this.setHealth(this.getHealth() - 1);
-            if (this.getHealth() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent()) {
-                    Platform.exit();
-                    System.exit(0);
-                }
-            }
-        } else {
-            field.setColor(Color.WHITE);
-        }
-    }
-
-    public void enemyTurn(StrategyOneAI ai) {
-        ai.nextMove();
-        Field field = fields.get(ai.getY()).get(ai.getX());
-        while (field.isHit()) {
-            ai.nextMove();
-            field = fields.get(ai.getY()).get(ai.getX());
-        }
-        try {
-            TimeUnit.MILLISECONDS.sleep(300);
+            TimeUnit.MILLISECONDS.sleep(500);
         } catch (InterruptedException ex) {
             //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

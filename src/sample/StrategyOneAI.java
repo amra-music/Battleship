@@ -88,7 +88,7 @@ public class StrategyOneAI extends AI {
         System.out.println("Ne generise Y");
         return getY();
     }
-
+    @Override
     public void nextMove() {
         //If no boat found yet, pick random coordinate
         if (!lastGuessHit && stackDirections.isEmpty()) {
@@ -195,8 +195,8 @@ public class StrategyOneAI extends AI {
         lastDirection = 0;
         nextMove();
     }
-
-    void feedback(boolean getHit, boolean getDestroy) {
+    @Override
+    public void feedback(boolean getHit, boolean getDestroy) {
             if (getDestroy) {
                 stackDirections.clear();
                 lastX = 0;

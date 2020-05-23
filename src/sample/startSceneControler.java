@@ -21,7 +21,7 @@ public class startSceneControler {
 
     @FXML
     public void initialize() {
-        startSceneImageView.setImage(startSceneImage);
+        //startSceneImageView.setImage(startSceneImage);
     }
 
     public void start(MouseEvent mouseEvent) {

@@ -10,10 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("playScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("startScene.fxml"));
         primaryStage.setTitle("Battleship");
-        primaryStage.setScene(new Scene(root, 1200, 900));
-        primaryStage.resizableProperty().setValue(false);
+        primaryStage.setScene(new Scene(root));
+        //primaryStage.resizableProperty().setValue(false);
         primaryStage.show();
     }
 

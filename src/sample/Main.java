@@ -13,7 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("startScene.fxml"));
         primaryStage.setTitle("Battleship");
         primaryStage.setScene(new Scene(root));
-        //primaryStage.resizableProperty().setValue(false);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

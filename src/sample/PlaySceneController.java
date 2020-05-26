@@ -173,6 +173,7 @@ public class PlaySceneController {
                 //na desni klik, rotacija
                 if (mouseEvent.isSecondaryButtonDown()) {
                     setRotation(shipRectangle);
+                    checkShapeIntersection(shipRectangle);
                 }
             }
         });

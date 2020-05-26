@@ -211,6 +211,26 @@ public class Board {
         return string;
     }
 
+    public void playerTurn(Field field){
+        field.setHit(true);
+        if (field.isOccupied()) {
+            field.setColor(Color.RED);
+            field.getShip().setHealth(field.getShip().getHealth() - 1);
+            this.setHealth(this.getHealth() - 1);
+            if (this.getHealth() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent()) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }
+        } else
+            field.setColor(Color.WHITE);
+
+        field.getRectangle().setDisable(true);
+    }
+
     public void enemyTurn(AI ai) {
         ai.nextMove();
         Field field = fields.get(ai.getY()).get(ai.getX());

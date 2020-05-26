@@ -105,6 +105,7 @@ public class PlaySceneController {
         // TODO : staviti zvuk
         // TODO : Bug koji se pojavljuje nekada prilikom postavljanja brodica, error da nisu pozicionirani svi iako jesu
         // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
+        // TODO : Bug prilikom igranja, zablokirai kad se treba kliknuti
     }
 
     public void setBoardFieldsListeners(List<List<Field>> boardFields) {
@@ -118,24 +119,9 @@ public class PlaySceneController {
                     field.setColor(Color.DODGERBLUE);
             };
             EventHandler<MouseEvent> mouseClicked = event -> {
-                field.setHit(true);
-                if (field.isOccupied()) {
-                    field.setColor(Color.RED);
-                    PC.setHealth(PC.getHealth() - 1);
-                    PCHealth.setProgress(PC.getHealth()/17.);
-                    if (PC.getHealth() == 0) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
-                        Optional<ButtonType> result = alert.showAndWait();
-                        if (result.isPresent()) {
-                            Platform.exit();
-                            System.exit(0);
-                        }
-                    }
-                } else
-                    field.setColor(Color.WHITE);
-
-                field.getRectangle().setDisable(true);
+                PC.playerTurn(field);
                 PCBoard.setDisable(true);
+                PCHealth.setProgress(PC.getHealth()/17.);
 
                 player.enemyTurn(strategyTwoAI);
                 PCBoard.setDisable(false);
@@ -347,6 +333,8 @@ public class PlaySceneController {
         strategyOneAI.reset();
         sequenceAI.reset();
         strategyTwoAI.reset();
+        playerHealth.setProgress(1);
+        PCHealth.setProgress(1);
     }
 
     public void start(MouseEvent mouseEvent) {

@@ -262,4 +262,21 @@ public class Board {
             field.setColor(Color.WHITE);
         }
     }
+    public void enemyTurnTest(AI ai){
+        ai.nextMove();
+        Field field = fields.get(ai.getY()).get(ai.getX());
+        while (field.isHit()) {
+            ai.nextMove();
+            System.out.println(ai.getY()+" "+ai.getX()+"\n");
+            field = fields.get(ai.getY()).get(ai.getX());
+        }
+        field.setHit(true);
+        if (field.isOccupied()) {
+            field.getShip().setHealth(field.getShip().getHealth() - 1);
+            this.setHealth(this.getHealth() - 1);
+            ai.feedback(true, field.getShip().isDestroyed());
+        } else {
+            ai.feedback(false, false);
+        }
+    }
 }

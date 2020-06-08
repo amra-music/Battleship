@@ -311,6 +311,7 @@
             <DropShadow />
          </effect>
       </ProgressBar>
+      <Button fx:id="exploreButton" layoutX="833.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#explore" prefHeight="50.0" prefWidth="114.0" text="Explore" />
    </children>
    <padding>
       <Insets left="20.0" />

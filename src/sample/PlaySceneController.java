@@ -1,12 +1,17 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -94,7 +101,7 @@ public class PlaySceneController {
 
         //Liseneri na polja ploca
         setBoardFieldsListeners(PC.getFields());
-      //  setBoardFieldsListeners(player.getFields());
+        //  setBoardFieldsListeners(player.getFields());
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
 
@@ -121,11 +128,11 @@ public class PlaySceneController {
             EventHandler<MouseEvent> mouseClicked = event -> {
                 PC.playerTurn(field);
                 PCBoard.setDisable(true);
-                PCHealth.setProgress(PC.getHealth()/17.);
+                PCHealth.setProgress(PC.getHealth() / 17.);
 
                 player.enemyTurn(strategyTwoAI);
                 PCBoard.setDisable(false);
-                playerHealth.setProgress(player.getHealth()/17.);
+                playerHealth.setProgress(player.getHealth() / 17.);
             };
 
             field.getRectangle().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
@@ -368,5 +375,71 @@ public class PlaySceneController {
                 rectangle.setLayoutY(ship.getStartY() + deviation);
             }
         }
+    }
+
+    public void explore(MouseEvent mouseEvent) {
+        XYChart.Series random = new XYChart.Series();
+        random.setName("Random");
+        XYChart.Series sequnece = new XYChart.Series();
+        sequnece.setName("Sequence");
+        XYChart.Series strategyOne = new XYChart.Series();
+        strategyOne.setName("StrategyOne");
+        XYChart.Series strategyTwo = new XYChart.Series();
+        strategyTwo.setName("StrategyTwo");
+        String text = "";
+        int hits;
+        /*for (int i = 1; i <= 50; i++) {
+            hits = 0;
+            Board boardTest = new Board(PCBoardFields);
+            boardTest.setRandomShips();
+            boardTest.setHealth(17);
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.enemyTurnTest(randomAI);
+            }
+            random.getData().add(new XYChart.Data(i,hits));
+        }
+        for (int i = 1; i <= 50; i++) {
+            hits = 0;
+            Board boardTest = new Board(PCBoardFields);
+            boardTest.setRandomShips();
+            boardTest.setHealth(17);
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.enemyTurnTest(sequenceAI);
+            }
+            sequnece.getData().add(new XYChart.Data(i,hits));
+            sequenceAI.reset();
+        }*/
+        for (int i = 50; i <= 50; i++) {
+            hits = 0;
+            Board boardTest = new Board(PCBoardFields);
+            boardTest.setRandomShips();
+            boardTest.setHealth(17);
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.enemyTurnTest(strategyTwoAI);
+            }
+            text+=i+". gađanja "+hits+"\n";
+            boardTest.resetBoard();
+            strategyTwoAI.reset();
+        }
+        textArea.setText(text);
+
+     /*   try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
+            Parent root = loader.load();
+            chartController chartController = loader.getController();
+            chartController.transferData(random,sequnece,strategyOne);
+
+            Stage startStage = new Stage();
+            startStage.setTitle("Battleship");
+            startStage.setResizable(false);
+            startStage.setScene(new Scene(root));
+            startStage.showAndWait();
+        } catch (IOException error) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
+            alert.showAndWait();
+        }*/
     }
 }

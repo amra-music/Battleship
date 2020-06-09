@@ -6,7 +6,7 @@ public class SequenceAI extends AI {
     public SequenceAI() {
     }
 
-    public void nextMove() {
+    public void nextMove(boolean isHit) {
         setX(counter / 10);
         setY(counter % 10);
         counter++;

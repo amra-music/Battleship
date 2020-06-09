@@ -232,10 +232,10 @@ public class Board {
     }
 
     public void enemyTurn(AI ai) {
-        ai.nextMove();
+        ai.nextMove(false);
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {
-            ai.nextMove();
+            ai.nextMove(true);
             field = fields.get(ai.getY()).get(ai.getX());
         }
         try {
@@ -263,19 +263,25 @@ public class Board {
         }
     }
     public void enemyTurnTest(AI ai){
-        ai.nextMove();
+        System.out.println("Generisi pozicije");
+        ai.nextMove(false);
+        System.out.println("Izgenerisano polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isHit()) {
-            ai.nextMove();
-            System.out.println(ai.getY()+" "+ai.getX()+"\n");
+            System.out.println("Polje je vec gađano, generise se novo");
+            ai.nextMove(true);
+            System.out.println("Polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
             field = fields.get(ai.getY()).get(ai.getX());
         }
+        System.out.println("Polje nije prije gadjano");
         field.setHit(true);
         if (field.isOccupied()) {
+            System.out.println("Pogodjen je brod");
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
             ai.feedback(true, field.getShip().isDestroyed());
         } else {
+            System.out.println("Nije pogodjen brod");
             ai.feedback(false, false);
         }
     }

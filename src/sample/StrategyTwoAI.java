@@ -22,14 +22,15 @@ public class StrategyTwoAI extends StrategyOneAI {
             setY(arrayX[randomY]);
         }
     }
+
     @Override
-    public void nextMove() {
+    public void nextMove(boolean isHit) {
         //If no boat found yet, pick random coordinate
         if (!isLastGuessHit() && getStackDirections().isEmpty()) {
             setCoordinates();
             return;
         }
-        if (!isLastGuessHit() && !getStackDirections().isEmpty()) {
+        if (!isLastGuessHit() || isHit) {
             setLastX(getStartSearchX());
             setX(getLastX());
             setLastY(getStartSearchY());
@@ -37,38 +38,40 @@ public class StrategyTwoAI extends StrategyOneAI {
             tryToMove();
             return;
         }
-        if (isLastGuessHit() && !getStackDirections().isEmpty()) {
+        if (!getStackDirections().isEmpty()) {
             tryToMove();
             return;
         }
         //If hit, but stack is empty
-        if (isLastGuessHit() && getStackDirections().isEmpty()) {
-            //Pick random direction
-            int direction = ThreadLocalRandom.current().nextInt(0, 4);
-            setStartSearchX(getLastX());
-            setStartSearchY(getLastY());
-            //Add all dirs to stack in random order
-            int i = 4;
-            while (i > 0) {
-                getStackDirections().push(direction);
-                direction++;
-                if (direction == 4)
-                    direction = 0;
-                i--;
-            }
-            tryToMove();
+        //Pick random direction
+        int direction = ThreadLocalRandom.current().nextInt(0, 4);
+        setStartSearchX(getLastX());
+        setStartSearchY(getLastY());
+        //Add all dirs to stack in random order
+        int i = 4;
+        while (i > 0) {
+            getStackDirections().push(direction);
+            direction++;
+            if (direction == 4)
+                direction = 0;
+            i--;
         }
+        tryToMove();
     }
 
     public void tryToMove() {
-        int direction = (int) getStackDirections().pop();
+        if (getStackDirections().isEmpty()) {
+            setLastGuessHit(false);
+            return;
+        }
+        int direction = getStackDirections().pop();
         while (!move(direction)) {
             if (getStackDirections().isEmpty()) {
                 setCoordinates();
                 setLastDirection(direction);
                 return;
             } else {
-                direction = (int) getStackDirections().pop();
+                direction = getStackDirections().pop();
             }
         }
         setLastDirection(direction);

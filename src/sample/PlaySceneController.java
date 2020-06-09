@@ -130,7 +130,7 @@ public class PlaySceneController {
                 PCBoard.setDisable(true);
                 PCHealth.setProgress(PC.getHealth() / 17.);
 
-                player.enemyTurn(strategyTwoAI);
+                player.enemyTurn(strategyOneAI);
                 PCBoard.setDisable(false);
                 playerHealth.setProgress(player.getHealth() / 17.);
             };
@@ -388,7 +388,7 @@ public class PlaySceneController {
         strategyTwo.setName("StrategyTwo");
         String text = "";
         int hits;
-        /*for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 50; i++) {
             hits = 0;
             Board boardTest = new Board(PCBoardFields);
             boardTest.setRandomShips();
@@ -410,9 +410,30 @@ public class PlaySceneController {
             }
             sequnece.getData().add(new XYChart.Data(i,hits));
             sequenceAI.reset();
-        }*/
-        for (int i = 50; i <= 50; i++) {
+        }
+        System.out.println("**************************EXPLORE***************************");
+        for (int i = 1; i <= 50; i++) {
+            System.out.println("*********************START*****************");
             hits = 0;
+            StrategyOneAI strategyOneAI = new StrategyOneAI();
+            Board boardTest = new Board(PCBoardFields);
+            boardTest.setRandomShips();
+            boardTest.setHealth(17);
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.enemyTurnTest(strategyOneAI);
+            }
+            text+=i+". gađanja "+hits+"\n";
+            boardTest.resetBoard();
+            strategyOne.getData().add(new XYChart.Data<>(i,hits));
+            //strategyTwoAI.reset();
+        }
+        textArea.setText(text);
+        /*
+        for (int i = 48; i <= 50; i++) {
+            System.out.println("*********************START*****************");
+            hits = 0;
+            StrategyOneAI strategyTwoAI = new StrategyTwoAI();
             Board boardTest = new Board(PCBoardFields);
             boardTest.setRandomShips();
             boardTest.setHealth(17);
@@ -422,15 +443,14 @@ public class PlaySceneController {
             }
             text+=i+". gađanja "+hits+"\n";
             boardTest.resetBoard();
-            strategyTwoAI.reset();
-        }
-        textArea.setText(text);
-
-     /*   try {
+            strategyTwo.getData().add(new XYChart.Data<>(i,hits));
+            //strategyTwoAI.reset();
+        }*/
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
             Parent root = loader.load();
             chartController chartController = loader.getController();
-            chartController.transferData(random,sequnece,strategyOne);
+            chartController.transferData(random,sequnece,strategyOne,strategyTwo);
 
             Stage startStage = new Stage();
             startStage.setTitle("Battleship");
@@ -440,6 +460,6 @@ public class PlaySceneController {
         } catch (IOException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.showAndWait();
-        }*/
+        }
     }
 }

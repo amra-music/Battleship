@@ -15,8 +15,8 @@ public class chartController {
     public void initialize() {
     }
 
-    public void transferData(XYChart.Series series1,XYChart.Series series2,XYChart.Series series3) {
-        lineChart.getData().addAll(series1,series2,series3);
+    public void transferData(XYChart.Series series1,XYChart.Series series2,XYChart.Series series3,XYChart.Series series4) {
+        lineChart.getData().addAll(series1,series2,series3,series4);
     }
 
 }

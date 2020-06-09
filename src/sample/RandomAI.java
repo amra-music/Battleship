@@ -7,7 +7,7 @@ public class RandomAI extends AI {
     public RandomAI() {
     }
 
-    public void nextMove(){
+    public void nextMove(boolean isHit){
         setX(ThreadLocalRandom.current().nextInt(0,10));
         setY(ThreadLocalRandom.current().nextInt(0,10));
     }

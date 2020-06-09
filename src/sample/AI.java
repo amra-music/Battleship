@@ -3,7 +3,7 @@ package sample;
 public abstract class AI {
     private int x;
     private int y;
-    abstract void nextMove();
+    abstract void nextMove(boolean isHit);
 
 
     public int getX() {

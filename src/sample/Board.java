@@ -301,4 +301,31 @@ public class Board {
         }
     }
 
+    public void enemyTurnTestRadi(StrategyTwoAI ai){
+        System.out.println("Generisi pozicije");
+        ai.nextMove(false);
+        System.out.println("Izgenerisano polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
+        Field field = fields.get(ai.getY()).get(ai.getX());
+        while (field.isShot()) {
+            System.out.println("Polje je vec gađano, generise se novo");
+            System.out.println("PRVI PUT "+ai.isPrviPut());
+            ai.nextMove(true);
+            System.out.println("Polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
+            field = fields.get(ai.getY()).get(ai.getX());
+        }
+        System.out.println("Polje nije prije gadjano");
+        field.setShot(true);
+        if(ai.isAvailableCoordinates(ai.getX(),ai.getY()) && ai.isPrviPut()) ai.setAvailableCoordinates(ai.getAvailableCoordinates()-1);
+        if (field.isOccupied()) {
+            System.out.println("Pogodjen je brod");
+            field.getShip().setHealth(field.getShip().getHealth() - 1);
+            field.getRectangle().setFill(Color.RED);
+            this.setHealth(this.getHealth() - 1);
+            ai.feedback(true, field.getShip().isDestroyed());
+        } else {
+            System.out.println("Nije pogodjen brod");
+            field.getRectangle().setFill(Color.WHITE);
+            ai.feedback(false, false);
+        }
+    }
 }

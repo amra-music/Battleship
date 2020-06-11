@@ -6,6 +6,7 @@ public class StrategyTwoAI extends StrategyOneAI {
     private int[] arrayX = {1, 3, 5, 7, 9};
     private int[] arrayY = {0, 2, 4, 6, 8};
     private int availableCoordinates = 50;
+    private boolean prviPut = true;
 
     public StrategyTwoAI() {
     }
@@ -18,21 +19,41 @@ public class StrategyTwoAI extends StrategyOneAI {
         this.availableCoordinates = availableCoordinates;
     }
 
-    private boolean isAvailableCoordinates(int x, int y) {
+    public boolean isPrviPut() {
+        return prviPut;
+    }
+
+    public boolean isAvailableCoordinates(int x, int y) {
         return ((y % 2 == 0 && x % 2 == 1) || (x % 2 == 0 && y % 2 == 1));
     }
 
     private void setCoordinates() {
-        if (ThreadLocalRandom.current().nextInt(0, 2) == 0) {
-            int randomX = ThreadLocalRandom.current().nextInt(0, 5);
-            setX(arrayX[randomX]);
-            int randomY = ThreadLocalRandom.current().nextInt(0, 5);
-            setY(arrayY[randomY]);
+        if (availableCoordinates != 0) {
+            if (ThreadLocalRandom.current().nextInt(0, 2) == 0) {
+                int randomX = ThreadLocalRandom.current().nextInt(0, 5);
+                setX(arrayX[randomX]);
+                int randomY = ThreadLocalRandom.current().nextInt(0, 5);
+                setY(arrayY[randomY]);
+            } else {
+                int randomX = ThreadLocalRandom.current().nextInt(0, 5);
+                setX(arrayY[randomX]);
+                int randomY = ThreadLocalRandom.current().nextInt(0, 5);
+                setY(arrayX[randomY]);
+            }
         } else {
-            int randomX = ThreadLocalRandom.current().nextInt(0, 5);
-            setX(arrayY[randomX]);
-            int randomY = ThreadLocalRandom.current().nextInt(0, 5);
-            setY(arrayX[randomY]);
+            System.out.println("SVE POTROSENEEEEEEE*****");
+            if(ThreadLocalRandom.current().nextInt(0, 2) == 0) {
+                int randomX = ThreadLocalRandom.current().nextInt(0, 5);
+                setX(arrayX[randomX]);
+                int randomY = ThreadLocalRandom.current().nextInt(0, 5);
+                setY(arrayX[randomY]);
+            } else {
+                int randomX = ThreadLocalRandom.current().nextInt(0, 5);
+                setX(arrayY[randomX]);
+                int randomY = ThreadLocalRandom.current().nextInt(0, 5);
+                setY(arrayY[randomY]);
+            }
+            prviPut = false;
         }
     }
 

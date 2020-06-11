@@ -379,19 +379,16 @@ public class PlaySceneController {
 
     public void explore(MouseEvent mouseEvent) {
 
-        XYChart.Series random = new XYChart.Series();
+        XYChart.Series<Number, Number> random = new XYChart.Series<>();
         random.setName("Random");
-        XYChart.Series sequnece = new XYChart.Series();
+        XYChart.Series<Number, Number> sequnece = new XYChart.Series<>();
         sequnece.setName("Sequence");
-        XYChart.Series strategyOne = new XYChart.Series();
+        XYChart.Series<Number, Number> strategyOne = new XYChart.Series<>();
         strategyOne.setName("StrategyOne");
-        XYChart.Series noviAI = new XYChart.Series();
-        noviAI.setName("Novi AI");
-        XYChart.Series noviAIPametni = new XYChart.Series();
-        noviAIPametni.setName("Novi AI Pametni");
-        String text = "";
+        XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
+        strategyTwo.setName("StrategyTwo");
         int hits;
-      /*  for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 100; i++) {
             hits = 0;
             Board boardTest = new Board(PCBoardFields);
             boardTest.setRandomShips();
@@ -400,9 +397,9 @@ public class PlaySceneController {
                 hits++;
                 boardTest.enemyTurnTest(randomAI);
             }
-            random.getData().add(new XYChart.Data(i,hits));
+            random.getData().add(new XYChart.Data<>(i, hits));
         }
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 100; i++) {
             hits = 0;
             Board boardTest = new Board(PCBoardFields);
             boardTest.setRandomShips();
@@ -411,12 +408,10 @@ public class PlaySceneController {
                 hits++;
                 boardTest.enemyTurnTest(sequenceAI);
             }
-            sequnece.getData().add(new XYChart.Data(i,hits));
+            sequnece.getData().add(new XYChart.Data<>(i, hits));
             sequenceAI.reset();
-        }*/
-        System.out.println("**************************EXPLORE***************************");
-        for (int i = 1; i <= 50; i++) {
-            System.out.println("*********************START*****************");
+        }
+        for (int i = 1; i <= 100; i++) {
             hits = 0;
             StrategyOneAI strategyOneAI = new StrategyOneAI();
             Board boardTest = new Board(PCBoardFields);
@@ -426,52 +421,26 @@ public class PlaySceneController {
                 hits++;
                 boardTest.enemyTurnTest(strategyOneAI);
             }
-            text+=i+". gađanja "+hits+"\n";
-            boardTest.resetBoard();
-            strategyOne.getData().add(new XYChart.Data<>(i,hits));
-            //strategyTwoAI.reset();
+            strategyOne.getData().add(new XYChart.Data<>(i, hits));
         }
-        textArea.setText(text);
-        /*for(int i=1;i<=50;i++){
-            PC.resetBoard();
-            PC.setFields(PCBoardFields);
-            PC.setRandomShips();
-            PC.setHealth(17);
-            NoviAI ai = new NoviAI(PC);
-            ai.run();
-            noviAI.getData().add(new XYChart.Data<>(i,ai.getShotsSize()));
-        }*/
-        for(int i=1;i<=50;i++){
-            PC.resetBoard();
-            PC.setFields(PCBoardFields);
-            PC.setRandomShips();
-            PC.setHealth(17);
-            NoviAI ai = new NoviAIPametni(PC);
-            ai.run();
-            noviAIPametni.getData().add(new XYChart.Data<>(i,ai.getShotsSize()));
-        }
-
-        /*for (int i = 48; i <= 50; i++) {
-            System.out.println("*********************START*****************");
+        for (int i = 1; i <= 100; i++) {
             hits = 0;
-            StrategyOneAI strategyTwoAI = new StrategyTwoAI();
+            StrategyTwoAI strategyTwoAI = new StrategyTwoAI();
             Board boardTest = new Board(PCBoardFields);
+            boardTest.resetBoard();
             boardTest.setRandomShips();
             boardTest.setHealth(17);
             while (boardTest.getHealth() != 0) {
                 hits++;
-                boardTest.enemyTurnTest(strategyTwoAI);
+                boardTest.enemyTurnTestRadi(strategyTwoAI);
             }
-            text+=i+". gađanja "+hits+"\n";
-            boardTest.resetBoard();
-            strategyTwo.getData().add(new XYChart.Data<>(i,hits));
-            //strategyTwoAI.reset();
-        }*/
+            strategyTwo.getData().add(new XYChart.Data<>(i, hits));
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
             Parent root = loader.load();
             chartController chartController = loader.getController();
-            chartController.transferData(random,sequnece,strategyOne,noviAI, noviAIPametni);
+            chartController.transferData(random, sequnece, strategyOne,strategyTwo);
 
             Stage startStage = new Stage();
             startStage.setTitle("Battleship");

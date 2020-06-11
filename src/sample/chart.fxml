@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.chartController">
+   <children>
+      <LineChart fx:id="lineChart" layoutX="14.0" prefHeight="800.0" prefWidth="1800.0" title="Strategija">
+        <xAxis>
+          <NumberAxis prefWidth="781.0" side="LEFT" tickLabelGap="0.0" upperBound="500.0" fx:id="x">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></NumberAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="broj gađanja" lowerBound="17.0" prefHeight="390.0" prefWidth="60.0" side="LEFT" tickLabelGap="5.0" upperBound="101.0">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </LineChart>
+      <Line endX="1610.0" layoutX="189.0" layoutY="627.0" startX="-100.0" stroke="#e80505" />
+   </children>
+</AnchorPane>

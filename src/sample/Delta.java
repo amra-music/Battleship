@@ -1,10 +1,10 @@
 package sample;
 
 public class Delta {
-    double x;
-    double y;
-    double layoutX;
-    double layoutY;
+    private double x;
+    private double y;
+    private double firstLayoutX;
+    private double firstLayoutY;
 
     public Delta() {
     }
@@ -17,11 +17,27 @@ public class Delta {
         return y;
     }
 
-    public double getLayoutX() {
-        return layoutX;
+    public void setX(double x) {
+        this.x = x;
     }
 
-    public double getLayoutY() {
-        return layoutY;
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getFirstLayoutX() {
+        return firstLayoutX;
+    }
+
+    public double getFirstLayoutY() {
+        return firstLayoutY;
+    }
+
+    public void setFirstLayoutX(double firstLayoutX) {
+        this.firstLayoutX = firstLayoutX;
+    }
+
+    public void setFirstLayoutY(double firstLayoutY) {
+        this.firstLayoutY = firstLayoutY;
     }
 }

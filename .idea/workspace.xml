@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Ispravno bojenje polja vertikalno te ispravno pinovanje">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Napravljen graf za random i sequence, za pametne AI beskonacna petlja">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/PlaySceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SequenceAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SequenceAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/chart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/chart.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/chartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/chartController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +65,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -73,7 +82,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1aX6IAiPKUqNStI5gZ8FElzZM6k" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -83,6 +94,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -98,22 +110,23 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Battleship-1" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="sample" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="sample" />
     </key>
   </component>
   <component name="RunManager">
@@ -223,6 +236,27 @@
       <workItem from="1588453306542" duration="6273000" />
       <workItem from="1588515985223" duration="454000" />
       <workItem from="1588522385282" duration="2723000" />
+      <workItem from="1589318667339" duration="10651000" />
+      <workItem from="1589460179569" duration="108000" />
+      <workItem from="1589494469568" duration="2205000" />
+      <workItem from="1589498271040" duration="7128000" />
+      <workItem from="1589551134475" duration="14218000" />
+      <workItem from="1589632096062" duration="6768000" />
+      <workItem from="1589662195918" duration="9234000" />
+      <workItem from="1589753993302" duration="6528000" />
+      <workItem from="1589763744522" duration="640000" />
+      <workItem from="1590009822904" duration="5209000" />
+      <workItem from="1590065984958" duration="20989000" />
+      <workItem from="1590250645556" duration="2859000" />
+      <workItem from="1590328392867" duration="368000" />
+      <workItem from="1590334719592" duration="1860000" />
+      <workItem from="1590515993412" duration="5880000" />
+      <workItem from="1590784769065" duration="596000" />
+      <workItem from="1590861515963" duration="9000" />
+      <workItem from="1590929417404" duration="8000" />
+      <workItem from="1591558989249" duration="4000" />
+      <workItem from="1591626353839" duration="15799000" />
+      <workItem from="1591709786603" duration="21500000" />
     </task>
     <task id="LOCAL-00001" summary="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni">
       <created>1587057587482</created>
@@ -315,7 +349,259 @@
       <option name="project" value="LOCAL" />
       <updated>1588524534064</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Napravljene klase Ship i Board, te omogućemo spasavanje pozicija brodića">
+      <created>1588895113232</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1588895113232</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Bezuspjesan pokusaj optimizacije prvog mjesta pozicije brodica">
+      <created>1589322226148</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1589322226148</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Napravljeno da kada se pritisne start da se moze prelaziti preko polja PC ploce i pritiskati na polja pri cemu se ispise pozicija polja u text area">
+      <created>1589328226337</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1589328226337</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Napravljeno da kada se klikne promijeni se boja na crvenu">
+      <created>1589328608890</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1589328608890</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Napravljen setPCBoardFieldsListener, a dugme start se prati i disejbla i enejbla PC plocu">
+      <created>1589495014540</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1589495014540</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Podesene koordinate layout PC ploce">
+      <created>1589495822373</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1589495822373</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Popravljen bug za disable i enable PC ploce">
+      <created>1589498957294</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1589498957294</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Napravljena klasa Field">
+      <created>1589499361482</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1589499361482</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Napravljena klasa Field sa svim poljima, pokusaj ispisivanja svih polja i brodica">
+      <created>1589499634088</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1589499634088</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Field klasa radi">
+      <created>1589501729231</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1589501729231</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Popravljeno ispisivanje polja ploce">
+      <created>1589505469890</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1589505469890</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Optimizirana outBoard klasa">
+      <created>1589506763259</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1589506763259</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Reorganizacija GUI-a">
+      <created>1589564229291</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1589564229291</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Napravljeno oznacanje ocupied polja, te da se obiljeze hit polja">
+      <created>1589584950616</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1589584950616</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Popravljen bug kod spasavanja horizontalne pozicije. Napravljena metoda setUpShips koja polja na kojim su brodovi oznacava kao ocuppied">
+      <created>1589634143168</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1589634143169</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Napravljeno da simuliram kada igra igrac, a kada racunar te da se ovisno od toga moze kliknuti neko polje">
+      <created>1589640422167</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1589640422167</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Napravljeno da simuliram kada igra igrac, a kada racunar te da se ovisno od toga moze kliknuti neko polje, popravljeni bugovi">
+      <created>1589664325216</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1589664325216</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Random pozicioniranje brodova">
+      <created>1589673855674</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1589673855674</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Omoguceno ispravno gadjanje polja, reset poloce nakon playAgain">
+      <created>1589760692333</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1589760692333</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Listener za polja napravljen da ide preko ploca">
+      <created>1590011153881</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1590011153881</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Napravljeno da kada se pogodi da se zdravlje ugrozi i kada dospije ne 0 da se zavrsi">
+      <created>1590013528521</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1590013528521</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Napravljen random AI i dugme random">
+      <created>1590076731650</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1590076731650</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Popravljeni neki nedostaci">
+      <created>1590095929774</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1590095929775</updated>
+    </task>
+    <task id="LOCAL-00037" summary="SequenceAI klasa napravljena kao i MojaAI roditeljska klasa iz koje ce biti izvedeni svi AI. Poslije ce MojaAI biti refaktorisana na AI">
+      <created>1590097938653</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1590097938653</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Radi StrategyOneAI, postoji bug">
+      <created>1590167668619</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1590167668619</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Pracenje da li je brod unisten, ne radi">
+      <created>1590170514628</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1590170514628</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Popravljen bug za StrategyOneAI, SequrnceAI">
+      <created>1590177809264</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1590177809264</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Napravljen jos jedan AI">
+      <created>1590180648274</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1590180648274</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Dodat progress bar, nije namjestena boja">
+      <created>1590183742844</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1590183742844</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Pocetak pravljenja pocetne scene">
+      <created>1590187691662</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1590187691662</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Doradjena AI klasa">
+      <created>1590252301592</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1590252301592</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Popravljena slika za pocetnu stranicu">
+      <created>1590253504329</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1590253504329</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Napravljeno da se pokreće početna stranica">
+      <created>1590516850514</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1590516850514</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Napravljeno da intersekcija radi kad je rotira brodic">
+      <created>1590518525517</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1590518525517</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Progresbar popravljen prilikom playAgain">
+      <created>1590521300522</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1590521300522</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Napravljen graf za random i sequence, za pametne AI beskonacna petlja">
+      <created>1591649290579</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1591649290579</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,114 +622,147 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Napravljena rotacija na desni klik jednog brodića i omogućn osnovno drag and drop po sceni" />
-    <MESSAGE value="Hover preko polja" />
-    <MESSAGE value="Napravljena kolizija sa poljima" />
-    <MESSAGE value="Prije promjena listenera" />
-    <MESSAGE value="DragListener za sve brodice" />
-    <MESSAGE value="Napravljano da ako nije na ploci se vrati na svoje mjesto" />
-    <MESSAGE value="Napravljeno da se oboji samo jedna kolona ili red koji se presijecaju" />
-    <MESSAGE value="Napravljeno da se oboji samo jedna kolona ili red koji se presijecaju i popravljeno sa coskova" />
-    <MESSAGE value="Oznacena crvena polja" />
-    <MESSAGE value="Oznacena crvena polja sa obje rotacije, napravljeno da se pinuje na sredinu reda ili kolone" />
-    <MESSAGE value="Dodata sva polja na igracu tablu i podesen layout" />
-    <MESSAGE value="Ispravno bojenje zelenih polja horizontalno" />
-    <MESSAGE value="Ispravno bojenje polja vertikalno te ispravno pinovanje" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ispravno bojenje polja vertikalno te ispravno pinovanje" />
+    <MESSAGE value="Optimizirana outBoard klasa" />
+    <MESSAGE value="Reorganizacija GUI-a" />
+    <MESSAGE value="Napravljeno oznacanje ocupied polja, te da se obiljeze hit polja" />
+    <MESSAGE value="Popravljen bug kod spasavanja horizontalne pozicije. Napravljena metoda setUpShips koja polja na kojim su brodovi oznacava kao ocuppied" />
+    <MESSAGE value="Napravljeno da simuliram kada igra igrac, a kada racunar te da se ovisno od toga moze kliknuti neko polje" />
+    <MESSAGE value="Napravljeno da simuliram kada igra igrac, a kada racunar te da se ovisno od toga moze kliknuti neko polje, popravljeni bugovi" />
+    <MESSAGE value="Random pozicioniranje brodova" />
+    <MESSAGE value="Omoguceno ispravno gadjanje polja, reset poloce nakon playAgain" />
+    <MESSAGE value="Listener za polja napravljen da ide preko ploca" />
+    <MESSAGE value="Napravljeno da kada se pogodi da se zdravlje ugrozi i kada dospije ne 0 da se zavrsi" />
+    <MESSAGE value="Napravljen random AI i dugme random" />
+    <MESSAGE value="Popravljeni neki nedostaci" />
+    <MESSAGE value="SequenceAI klasa napravljena kao i MojaAI roditeljska klasa iz koje ce biti izvedeni svi AI. Poslije ce MojaAI biti refaktorisana na AI" />
+    <MESSAGE value="Radi StrategyOneAI, postoji bug" />
+    <MESSAGE value="Pracenje da li je brod unisten, ne radi" />
+    <MESSAGE value="Popravljen bug za StrategyOneAI, SequrnceAI" />
+    <MESSAGE value="Napravljen jos jedan AI" />
+    <MESSAGE value="Dodat progress bar, nije namjestena boja" />
+    <MESSAGE value="Pocetak pravljenja pocetne scene" />
+    <MESSAGE value="Doradjena AI klasa" />
+    <MESSAGE value="Popravljena slika za pocetnu stranicu" />
+    <MESSAGE value="Napravljeno da se pokreće početna stranica" />
+    <MESSAGE value="Napravljeno da intersekcija radi kad je rotira brodic" />
+    <MESSAGE value="Progresbar popravljen prilikom playAgain" />
+    <MESSAGE value="Napravljen graf za random i sequence, za pametne AI beskonacna petlja" />
+    <option name="LAST_COMMIT_MESSAGE" value="Napravljen graf za random i sequence, za pametne AI beskonacna petlja" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1588350762191">
+    <state x="361" y="71" key="#Inspections" timestamp="1589320909036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1588350762191" />
+    <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1589320909036" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1591744663632">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591744663632" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588350813620" />
-    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586968480725">
+    <state x="564" y="243" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1589319142645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586968480725" />
-    <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1588289111068">
+    <state x="564" y="243" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1536.824@0.0.1536.824" timestamp="1589319142645" />
+    <state x="523" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588891202098">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588289111068" />
-    <state x="376" y="7" key="CommitChangelistDialog2" timestamp="1588524533430">
+    <state x="523" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1588891202098" />
+    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588882639207">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="376" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588524533430" />
+    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588882639207" />
+    <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1589321234041">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589321234041" />
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1591723821563">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591723821563" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588284023768" />
-    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1588516433125">
+    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1590066047194">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588516433125" />
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1588525052810">
+    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590066047194" />
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1591746914424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588525052810" />
-    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1588525052810">
+    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591746914424" />
+    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1591746914424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588525052810" />
-    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1588525052809">
+    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591746914424" />
+    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1591746914424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588525052809" />
-    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1588525052810">
+    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591746914424" />
+    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1591746914424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588525052810" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1588522732542">
+    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591746914424" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588522732542" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1588522732542">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588522732542" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1588522732542">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588522732542" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1588522732542">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1590187715408">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588522732542" />
-    <state x="498" y="0" key="SettingsEditor" timestamp="1587237940371">
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590187715408" />
+    <state x="498" y="0" key="SettingsEditor" timestamp="1591743458295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587237940371" />
-    <state x="618" y="327" key="VCS.ChangelistChooser" timestamp="1588283715526">
+    <state x="498" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591743458295" />
+    <state x="618" y="327" key="VCS.ChangelistChooser" timestamp="1590167679160">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1588283715526" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588380878011">
+    <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1590167679160" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1591723814167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588380878011" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591723814167" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587237930628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1587237930628" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588433388152">
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591745521277">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588433388152" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1591745521277" />
+    <state x="499" y="178" key="extract.method.dialog" timestamp="1590170341543">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="178" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1590170341543" />
     <state x="209" y="114" key="new project wizard" timestamp="1588280256887">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="114" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1588280256887" />
-    <state x="475" y="31" key="refactoring.ChangeSignatureDialog" timestamp="1588425905410">
+    <state x="475" y="31" key="refactoring.ChangeSignatureDialog" timestamp="1591728341818">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="475" y="31" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1588425905410" />
-    <state x="431" y="145" key="search.everywhere.popup" timestamp="1588346399001">
+    <state x="475" y="31" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1591728341818" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1591635375243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588346399001" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1591635375243" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588886177774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588886177774" />
   </component>
 </project>

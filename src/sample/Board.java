@@ -94,6 +94,17 @@ public class Board {
         });
     }
 
+    public boolean shoot (int x, int y){
+        Field field = getField(x*50,y*50);
+        field.setShot(true);
+        if(field.isOccupied()) {
+            field.getRectangle().setFill(Color.RED);
+            health--;
+        }
+        else field.getRectangle().setFill(Color.WHITE);
+        return field.isOccupied();
+    }
+
     public boolean setOccupiedFields(Ship ship) {
         if (ship.getOrientation() == Orientation.HORIZONTAL) {
             int rowNumber = (int) ship.getStartY() / 50;
@@ -212,7 +223,7 @@ public class Board {
     }
 
     public void playerTurn(Field field){
-        field.setHit(true);
+        field.setShot(true);
         if (field.isOccupied()) {
             field.setColor(Color.RED);
             field.getShip().setHealth(field.getShip().getHealth() - 1);
@@ -234,7 +245,7 @@ public class Board {
     public void enemyTurn(AI ai) {
         ai.nextMove(false);
         Field field = fields.get(ai.getY()).get(ai.getX());
-        while (field.isHit()) {
+        while (field.isShot()) {
             ai.nextMove(true);
             field = fields.get(ai.getY()).get(ai.getX());
         }
@@ -243,7 +254,7 @@ public class Board {
         } catch (InterruptedException ex) {
             //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        field.setHit(true);
+        field.setShot(true);
         if (field.isOccupied()) {
             field.setColor(Color.RED);
             field.getShip().setHealth(field.getShip().getHealth() - 1);
@@ -262,19 +273,23 @@ public class Board {
             field.setColor(Color.WHITE);
         }
     }
+
+    public void enemyTurn(NoviAI ai) {
+        ai.run();
+    }
     public void enemyTurnTest(AI ai){
         System.out.println("Generisi pozicije");
         ai.nextMove(false);
         System.out.println("Izgenerisano polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
         Field field = fields.get(ai.getY()).get(ai.getX());
-        while (field.isHit()) {
+        while (field.isShot()) {
             System.out.println("Polje je vec gađano, generise se novo");
             ai.nextMove(true);
             System.out.println("Polje Y:"+ai.getY()+" X: "+ai.getX()+"\n");
             field = fields.get(ai.getY()).get(ai.getX());
         }
         System.out.println("Polje nije prije gadjano");
-        field.setHit(true);
+        field.setShot(true);
         if (field.isOccupied()) {
             System.out.println("Pogodjen je brod");
             field.getShip().setHealth(field.getShip().getHealth() - 1);
@@ -285,4 +300,5 @@ public class Board {
             ai.feedback(false, false);
         }
     }
+
 }

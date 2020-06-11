@@ -5,8 +5,21 @@ import java.util.concurrent.ThreadLocalRandom;
 public class StrategyTwoAI extends StrategyOneAI {
     private int[] arrayX = {1, 3, 5, 7, 9};
     private int[] arrayY = {0, 2, 4, 6, 8};
+    private int availableCoordinates = 50;
 
     public StrategyTwoAI() {
+    }
+
+    public int getAvailableCoordinates() {
+        return availableCoordinates;
+    }
+
+    public void setAvailableCoordinates(int availableCoordinates) {
+        this.availableCoordinates = availableCoordinates;
+    }
+
+    private boolean isAvailableCoordinates(int x, int y) {
+        return ((y % 2 == 0 && x % 2 == 1) || (x % 2 == 0 && y % 2 == 1));
     }
 
     private void setCoordinates() {

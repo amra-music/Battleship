@@ -378,17 +378,20 @@ public class PlaySceneController {
     }
 
     public void explore(MouseEvent mouseEvent) {
+
         XYChart.Series random = new XYChart.Series();
         random.setName("Random");
         XYChart.Series sequnece = new XYChart.Series();
         sequnece.setName("Sequence");
         XYChart.Series strategyOne = new XYChart.Series();
         strategyOne.setName("StrategyOne");
-        XYChart.Series strategyTwo = new XYChart.Series();
-        strategyTwo.setName("StrategyTwo");
+        XYChart.Series noviAI = new XYChart.Series();
+        noviAI.setName("Novi AI");
+        XYChart.Series noviAIPametni = new XYChart.Series();
+        noviAIPametni.setName("Novi AI Pametni");
         String text = "";
         int hits;
-        for (int i = 1; i <= 50; i++) {
+      /*  for (int i = 1; i <= 50; i++) {
             hits = 0;
             Board boardTest = new Board(PCBoardFields);
             boardTest.setRandomShips();
@@ -410,7 +413,7 @@ public class PlaySceneController {
             }
             sequnece.getData().add(new XYChart.Data(i,hits));
             sequenceAI.reset();
-        }
+        }*/
         System.out.println("**************************EXPLORE***************************");
         for (int i = 1; i <= 50; i++) {
             System.out.println("*********************START*****************");
@@ -429,8 +432,26 @@ public class PlaySceneController {
             //strategyTwoAI.reset();
         }
         textArea.setText(text);
-        /*
-        for (int i = 48; i <= 50; i++) {
+        /*for(int i=1;i<=50;i++){
+            PC.resetBoard();
+            PC.setFields(PCBoardFields);
+            PC.setRandomShips();
+            PC.setHealth(17);
+            NoviAI ai = new NoviAI(PC);
+            ai.run();
+            noviAI.getData().add(new XYChart.Data<>(i,ai.getShotsSize()));
+        }*/
+        for(int i=1;i<=50;i++){
+            PC.resetBoard();
+            PC.setFields(PCBoardFields);
+            PC.setRandomShips();
+            PC.setHealth(17);
+            NoviAI ai = new NoviAIPametni(PC);
+            ai.run();
+            noviAIPametni.getData().add(new XYChart.Data<>(i,ai.getShotsSize()));
+        }
+
+        /*for (int i = 48; i <= 50; i++) {
             System.out.println("*********************START*****************");
             hits = 0;
             StrategyOneAI strategyTwoAI = new StrategyTwoAI();
@@ -450,7 +471,7 @@ public class PlaySceneController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
             Parent root = loader.load();
             chartController chartController = loader.getController();
-            chartController.transferData(random,sequnece,strategyOne,strategyTwo);
+            chartController.transferData(random,sequnece,strategyOne,noviAI, noviAIPametni);
 
             Stage startStage = new Stage();
             startStage.setTitle("Battleship");

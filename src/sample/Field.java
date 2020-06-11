@@ -9,7 +9,7 @@ public class Field {
     private Rectangle rectangle;
     private double positionX;
     private double positionY;
-    private boolean hit = false;
+    private boolean shot = false;
     private boolean occupied = false;
     private Ship ship = new Ship();
 
@@ -33,12 +33,12 @@ public class Field {
         return positionY;
     }
 
-    public boolean isHit() {
-        return hit;
+    public boolean isShot() {
+        return shot;
     }
 
-    public void setHit(boolean hit) {
-        this.hit = hit;
+    public void setShot(boolean shot) {
+        this.shot = shot;
     }
 
     public boolean isOccupied() {
@@ -72,7 +72,7 @@ public class Field {
     }
 
     public void reset(){
-        hit = false;
+        shot = false;
         occupied = false;
         setColor(Color.DODGERBLUE);
         rectangle.setDisable(false);
@@ -84,7 +84,7 @@ public class Field {
         return "{" +
                 "positionX=" + positionX +
                 ", positionY=" + positionY +
-                ", hit=" + hit +
+                ", hit=" + shot +
                 ", occupied=" + occupied +
                 '}';
     }

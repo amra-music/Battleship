@@ -1,10 +1,11 @@
 package sample;
 
-public abstract class AI {
+public abstract class DummyAI {
     private int x;
     private int y;
-    abstract void nextMove(boolean isHit);
 
+    public DummyAI() {
+    }
 
     public int getX() {
         return x;
@@ -22,5 +23,5 @@ public abstract class AI {
         this.y = y;
     }
 
-    public abstract void feedback(boolean b, boolean destroyed);
+    abstract public void nextMove();
 }

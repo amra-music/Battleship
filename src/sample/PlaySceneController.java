@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +24,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PlaySceneController {
     public Rectangle boatSubmarine;
@@ -377,6 +374,30 @@ public class PlaySceneController {
         }
     }
 
+    private int dummyTestAI(DummyAI ai) {
+        int hits = 0;
+        Board boardTest = new Board(PCBoardFields);
+        boardTest.setRandomShips();
+        boardTest.setHealth(17);
+        while (boardTest.getHealth() != 0) {
+            hits++;
+            boardTest.dummyAITest(ai);
+        }
+        return hits;
+    }
+
+    private int smartTestAI(SmartAI ai) {
+        int hits = 0;
+        Board boardTest = new Board(PCBoardFields);
+        boardTest.setRandomShips();
+        boardTest.setHealth(17);
+        while (boardTest.getHealth() != 0) {
+            hits++;
+            boardTest.smartAITest(ai);
+        }
+        return hits;
+    }
+
     public void explore(MouseEvent mouseEvent) {
 
         XYChart.Series<Number, Number> random = new XYChart.Series<>();
@@ -387,61 +408,33 @@ public class PlaySceneController {
         strategyOne.setName("StrategyOne");
         XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
         strategyTwo.setName("StrategyTwo");
-        int hits;
-        for (int i = 1; i <= 100; i++) {
-            hits = 0;
-            Board boardTest = new Board(PCBoardFields);
-            boardTest.setRandomShips();
-            boardTest.setHealth(17);
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.enemyTurnTest(randomAI);
+
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 100; j++) {
+                switch (i) {
+                    case 1:
+                        DummyAI randomAI = new RandomAI();
+                        random.getData().add(new XYChart.Data<>(j, dummyTestAI(randomAI)));
+                        break;
+                    case 2:
+                        DummyAI sequenceAI = new SequenceAI();
+                        sequnece.getData().add(new XYChart.Data<>(j, dummyTestAI(sequenceAI)));
+                        break;
+                    case 3:
+                        SmartAI strategyOneAI = new StrategyOneAI();
+                        strategyOne.getData().add(new XYChart.Data<>(j, smartTestAI(strategyOneAI)));
+                        break;
+                    case 4:
+                        SmartAI strategyTwoAI = new StrategyTwoAI();
+                        strategyTwo.getData().add(new XYChart.Data<>(j, smartTestAI(strategyTwoAI)));
+                }
             }
-            random.getData().add(new XYChart.Data<>(i, hits));
-        }
-        for (int i = 1; i <= 100; i++) {
-            hits = 0;
-            Board boardTest = new Board(PCBoardFields);
-            boardTest.setRandomShips();
-            boardTest.setHealth(17);
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.enemyTurnTest(sequenceAI);
-            }
-            sequnece.getData().add(new XYChart.Data<>(i, hits));
-            sequenceAI.reset();
-        }
-        for (int i = 1; i <= 100; i++) {
-            hits = 0;
-            StrategyOneAI strategyOneAI = new StrategyOneAI();
-            Board boardTest = new Board(PCBoardFields);
-            boardTest.setRandomShips();
-            boardTest.setHealth(17);
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.enemyTurnTest(strategyOneAI);
-            }
-            strategyOne.getData().add(new XYChart.Data<>(i, hits));
-        }
-        for (int i = 1; i <= 100; i++) {
-            hits = 0;
-            StrategyTwoAI strategyTwoAI = new StrategyTwoAI();
-            Board boardTest = new Board(PCBoardFields);
-            boardTest.resetBoard();
-            boardTest.setRandomShips();
-            boardTest.setHealth(17);
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.enemyTurnTestRadi(strategyTwoAI);
-            }
-            strategyTwo.getData().add(new XYChart.Data<>(i, hits));
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
             Parent root = loader.load();
             chartController chartController = loader.getController();
-            chartController.transferData(random, sequnece, strategyOne,strategyTwo);
-
+            chartController.transferData(random, sequnece, strategyOne, strategyTwo);
             Stage startStage = new Stage();
             startStage.setTitle("Battleship");
             startStage.setResizable(false);

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Napravljen noviAI, ali dosta spor">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Napravljeno da rade sve 4 AI na grafiku">
+      <change afterPath="$PROJECT_DIR$/src/sample/DummyAI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/SmartAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/PlaySceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SequenceAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SequenceAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyOneAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StrategyTwoAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/chartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/chartController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,13 +257,7 @@
       <workItem from="1591558989249" duration="4000" />
       <workItem from="1591626353839" duration="15799000" />
       <workItem from="1591709786603" duration="21500000" />
-    </task>
-    <task id="LOCAL-00002" summary="Hover preko polja">
-      <created>1588267753188</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1588267753188</updated>
+      <workItem from="1591961920771" duration="4337000" />
     </task>
     <task id="LOCAL-00003" summary="Napravljena kolizija sa poljima">
       <created>1588290011802</created>
@@ -595,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591898756859</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Napravljeno da rade sve 4 AI na grafiku">
+      <created>1591901636327</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1591901636327</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,7 +625,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Reorganizacija GUI-a" />
     <MESSAGE value="Napravljeno oznacanje ocupied polja, te da se obiljeze hit polja" />
     <MESSAGE value="Popravljen bug kod spasavanja horizontalne pozicije. Napravljena metoda setUpShips koja polja na kojim su brodovi oznacava kao ocuppied" />
     <MESSAGE value="Napravljeno da simuliram kada igra igrac, a kada racunar te da se ovisno od toga moze kliknuti neko polje" />
@@ -643,17 +649,18 @@
     <MESSAGE value="Progresbar popravljen prilikom playAgain" />
     <MESSAGE value="Napravljen graf za random i sequence, za pametne AI beskonacna petlja" />
     <MESSAGE value="Napravljen noviAI, ali dosta spor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Napravljen noviAI, ali dosta spor" />
+    <MESSAGE value="Napravljeno da rade sve 4 AI na grafiku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Napravljeno da rade sve 4 AI na grafiku" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Inspections" timestamp="1591901207418">
+    <state x="361" y="71" key="#Inspections" timestamp="1591902198301">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1591901207418" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1591899569169">
+    <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1591902198301" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1591967439333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591899569169" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591967439333" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -662,22 +669,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="564" y="243" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1536.824@0.0.1536.824" timestamp="1589319142645" />
-    <state x="383" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591896403785">
+    <state x="383" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591966060351">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="383" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1591896403785" />
-    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588882639207">
+    <state x="383" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1591966060351" />
+    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591969261052">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588882639207" />
+    <state x="766" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591969261052" />
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1589321234041">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589321234041" />
-    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1591898756233">
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1591969230417">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591898756233" />
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591969230417" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -686,38 +693,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590066047194" />
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1591901542123">
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1591969151980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591901542123" />
-    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1591901542123">
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591969151980" />
+    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1591969151980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591901542123" />
-    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1591901542122">
+    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591969151980" />
+    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1591969151980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591901542122" />
-    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1591901542123">
+    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591969151980" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1591969151980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591901542123" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1591899889993">
+    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591969151980" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1591911659015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591899889993" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1591899889993">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591911659015" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1591911659015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591899889993" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1591899889993">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591911659015" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1591911659015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591899889993" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1591899889993">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591911659015" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1591911659015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591899889993" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591911659015" />
     <state x="498" y="0" key="SettingsEditor" timestamp="1591743458295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -726,10 +733,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1590167679160" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1591723814167">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1591906829759">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591723814167" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591906829759" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587237930628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -750,10 +757,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="475" y="31" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1591728341818" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1591635375243">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1591969053846">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1591635375243" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1591969053846" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588886177774">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

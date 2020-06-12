@@ -1,19 +1,16 @@
 package sample;
 
-public class SequenceAI extends AI {
-    private int counter;
+public class SequenceAI extends DummyAI {
+    private int counter = 0;
 
     public SequenceAI() {
+        reset();
     }
 
-    public void nextMove(boolean isHit) {
+    public void nextMove() {
         setX(counter / 10);
         setY(counter % 10);
         counter++;
-    }
-
-    @Override
-    public void feedback(boolean b, boolean destroyed) {
     }
 
     public void reset(){

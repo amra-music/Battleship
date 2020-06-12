@@ -2,7 +2,7 @@ package sample;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StrategyTwoAI extends StrategyOneAI {
+public class StrategyTwoAI extends SmartAI {
     private int[] arrayX = {1, 3, 5, 7, 9};
     private int[] arrayY = {0, 2, 4, 6, 8};
     private int availableCoordinates = 50;
@@ -41,7 +41,6 @@ public class StrategyTwoAI extends StrategyOneAI {
                 setY(arrayX[randomY]);
             }
         } else {
-            System.out.println("SVE POTROSENEEEEEEE*****");
             if(ThreadLocalRandom.current().nextInt(0, 2) == 0) {
                 int randomX = ThreadLocalRandom.current().nextInt(0, 5);
                 setX(arrayX[randomX]);
@@ -58,13 +57,13 @@ public class StrategyTwoAI extends StrategyOneAI {
     }
 
     @Override
-    public void nextMove(boolean isHit) {
+    public void nextMove(boolean isShot) {
         //If no boat found yet, pick random coordinate
         if (!isLastGuessHit() && getStackDirections().isEmpty()) {
             setCoordinates();
             return;
         }
-        if (!isLastGuessHit() || isHit) {
+        if (!isLastGuessHit() || isShot) {
             setLastX(getStartSearchX());
             setX(getLastX());
             setLastY(getStartSearchY());
@@ -109,5 +108,11 @@ public class StrategyTwoAI extends StrategyOneAI {
             }
         }
         setLastDirection(direction);
+    }
+
+    @Override
+    public void feedback(boolean getHit, boolean getDestroy, int x, int y) {
+        if(this.isAvailableCoordinates(x,y)) this.setAvailableCoordinates(this.getAvailableCoordinates()-1);
+        super.feedback(getHit, getDestroy, x, y);
     }
 }

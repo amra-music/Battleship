@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="751.0" prefWidth="1200.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.startSceneControler">
+<Pane fx:id="primaryScene" onMousePressed="#drag" prefHeight="749.0" prefWidth="1200.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.startSceneControler">
    <children>
       <ImageView fx:id="startSceneImageView" fitHeight="920.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>

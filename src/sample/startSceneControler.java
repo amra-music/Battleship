@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class startSceneControler {
     public Button optionsButton;
     public Button exitButton;
     public ImageView startSceneImageView;
+    public Pane primaryScene;
 
 
     @FXML
@@ -31,7 +33,7 @@ public class startSceneControler {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("playScene.fxml"));
             Stage startStage = new Stage();
-            startStage.setTitle("Battleship");
+            startStage.initStyle(StageStyle.UNDECORATED);
             startStage.setResizable(false);
             startStage.setScene(new Scene(root));
             startButton.getScene().getWindow().hide();
@@ -48,5 +50,13 @@ public class startSceneControler {
 
     public void exit(MouseEvent mouseEvent) {
         Platform.exit();
+    }
+
+    public void drag(MouseEvent mouseEvent) {
+        Stage stage = (Stage) primaryScene.getScene().getWindow();
+        primaryScene.setOnMouseDragged(dragEvent -> {
+            stage.setX(dragEvent.getScreenX() - mouseEvent.getSceneX());
+            stage.setY(dragEvent.getScreenY() - mouseEvent.getSceneY());
+        });
     }
 }

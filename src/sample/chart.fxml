@@ -31,6 +31,9 @@
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
             </AnchorPane>
          </top>
          <center>

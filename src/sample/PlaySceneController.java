@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -39,6 +42,8 @@ public class PlaySceneController {
     public Button randomButton;
     public ProgressBar PCHealth;
     public ProgressBar playerHealth;
+    public BorderPane primaryScene;
+    public AnchorPane title;
 
     private Image boatFiveImage = new Image("sample/boatFive.png");
     private Image boatFourImage = new Image("sample/boatFour.png");
@@ -104,13 +109,15 @@ public class PlaySceneController {
         PCBoard.setDisable(true);
 
 
-        // TODO : pokusati napraviti elegantnijim vracanje brodica na poziciju kada se klikne play again/ da nekako vratim brodice na firstPosition
         // TODO : kada se pogodi da se na tom mjestu napravi X
         // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
         // TODO : staviti zvuk
-        // TODO : Bug koji se pojavljuje nekada prilikom postavljanja brodica, error da nisu pozicionirani svi iako jesu
+        // TODO : kad fulis, kad pogodis, kad pobijdedis i kad izgubis
+        // TODO : prozor pobjede/poraza
+        // TODO : button css
+        // TODO : options da se odabrere AI i zvuk da se moze iskljuciti
+        // TODO : game rules
         // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
-        // TODO : Bug prilikom igranja, zablokirai kad se treba kliknuti
     }
 
     public void setBoardFieldsListeners(List<List<Field>> boardFields) {
@@ -492,5 +499,17 @@ public class PlaySceneController {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.showAndWait();
         }
+    }
+
+    public void drag(MouseEvent mouseEvent) {
+        Stage stage = (Stage) primaryScene.getScene().getWindow();
+        title.setOnMouseDragged(dragEvent -> {
+            stage.setX(dragEvent.getScreenX() - mouseEvent.getSceneX());
+            stage.setY(dragEvent.getScreenY() - mouseEvent.getSceneY());
+        });
+    }
+
+    public void close(MouseEvent mouseEvent) {
+        Platform.exit();
     }
 }

@@ -323,13 +323,16 @@ public class PlaySceneController {
     private void reset() {
         startButton.setDisable(false);
         randomButton.setDisable(false);
-        textArea.setText("");
+        double size = 10;
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);
             ship.setDisable(false);
             ship.setRotate(0);
-            ship.setLayoutX(10);
-            ship.setLayoutY(50 * i + 600);
+            if (i != 0)
+                size = size + ships.get(i - 1).getWidth() + 10;
+            ship.setLayoutX(size);
+            ship.setLayoutY(620);
+
         }
         PCBoard.setDisable(true);
         player.resetBoard();

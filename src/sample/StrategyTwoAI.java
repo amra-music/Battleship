@@ -6,7 +6,6 @@ public class StrategyTwoAI extends SmartAI {
     private int[] arrayX = {1, 3, 5, 7, 9};
     private int[] arrayY = {0, 2, 4, 6, 8};
     private int availableCoordinates = 50;
-    private boolean prviPut = true;
 
     public StrategyTwoAI() {
     }
@@ -17,10 +16,6 @@ public class StrategyTwoAI extends SmartAI {
 
     public void setAvailableCoordinates(int availableCoordinates) {
         this.availableCoordinates = availableCoordinates;
-    }
-
-    public boolean isPrviPut() {
-        return prviPut;
     }
 
     public boolean isAvailableCoordinates(int x, int y) {
@@ -52,7 +47,6 @@ public class StrategyTwoAI extends SmartAI {
                 int randomY = ThreadLocalRandom.current().nextInt(0, 5);
                 setY(arrayY[randomY]);
             }
-            prviPut = false;
         }
     }
 

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
@@ -92,17 +93,6 @@ public class Board {
                 }
             }
         });
-    }
-
-    public boolean shoot (int x, int y){
-        Field field = getField(x*50,y*50);
-        field.setShot(true);
-        if(field.isOccupied()) {
-            field.getRectangle().setFill(Color.RED);
-            health--;
-        }
-        else field.getRectangle().setFill(Color.WHITE);
-        return field.isOccupied();
     }
 
     public boolean setOccupiedFields(Ship ship) {
@@ -203,14 +193,11 @@ public class Board {
 
     @Override
     public String toString() {
-        ships.sort(new Comparator<Ship>() {
-            @Override
-            public int compare(Ship o1, Ship o2) {
-                if (o1.getSize() > o2.getSize()) return -1;
-                else if (o1.getSize() == o2.getSize())
-                    return 0;
-                return 1;
-            }
+        ships.sort((o1, o2) -> {
+            if (o1.getSize() > o2.getSize()) return -1;
+            else if (o1.getSize() == o2.getSize())
+                return 0;
+            return 1;
         });
         String string = "Ships = ";
         for (Ship ship : ships) {
@@ -242,7 +229,35 @@ public class Board {
         field.getRectangle().setDisable(true);
     }
 
-    public void enemyTurn(StrategyOneAI ai) {
+    public void enemyTurn(DummyAI ai) {
+        ai.nextMove();
+        Field field = fields.get(ai.getY()).get(ai.getX());
+        while (field.isShot()) {
+            ai.nextMove();
+            field = fields.get(ai.getY()).get(ai.getX());
+        }
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ignored) {
+        }
+        field.setShot(true);
+        if (field.isOccupied()) {
+            field.setColor(Color.RED);
+            field.getShip().setHealth(field.getShip().getHealth() - 1);
+            this.setHealth(this.getHealth() - 1);
+            if (this.getHealth() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent()) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }
+        } else {
+            field.setColor(Color.WHITE);
+        }
+    }
+    public void enemyTurn(SmartAI ai) {
         ai.nextMove(false);
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isShot()) {
@@ -251,8 +266,7 @@ public class Board {
         }
         try {
             TimeUnit.MILLISECONDS.sleep(500);
-        } catch (InterruptedException ex) {
-            //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ignored) {
         }
         field.setShot(true);
         if (field.isOccupied()) {
@@ -302,5 +316,13 @@ public class Board {
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
         }
+    }
+
+    public void resetTest() {
+        setHealth(17);
+        getFields().forEach(listField->listField.forEach(field -> {
+            if(field.isShot())
+                field.setShot(false);
+        }));
     }
 }

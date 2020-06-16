@@ -20,6 +20,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -409,7 +410,7 @@ public class PlaySceneController {
         XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
         strategyTwo.setName("StrategyTwo");
 
-        for (int i = 1; i <= 4; i++) {
+       /* for (int i = 1; i <= 4; i++) {
             for (int j = 1; j <= 100; j++) {
                 switch (i) {
                     case 1:
@@ -429,6 +430,49 @@ public class PlaySceneController {
                         strategyTwo.getData().add(new XYChart.Data<>(j, smartTestAI(strategyTwoAI)));
                 }
             }
+        }*/
+        for(int i =1; i<=100;i++){
+            DummyAI randomAI = new RandomAI();
+            DummyAI sequenceAI = new SequenceAI();
+            SmartAI strategyOneAI = new StrategyOneAI();
+            SmartAI strategyTwoAI = new StrategyTwoAI();
+            int hits = 0;
+            Board boardTest = new Board(PCBoardFields);
+            boardTest.setRandomShips();
+            boardTest.setHealth(17);
+
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.dummyAITest(randomAI);
+            }
+            random.getData().add(new XYChart.Data<>(i, hits));
+
+            hits=0;
+            boardTest.resetTest();
+
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.dummyAITest(sequenceAI);
+            }
+            sequnece.getData().add(new XYChart.Data<>(i, hits));
+
+            hits=0;
+            boardTest.resetTest();
+
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.smartAITest(strategyOneAI);
+            }
+            strategyOne.getData().add(new XYChart.Data<>(i, hits));
+
+            hits=0;
+            boardTest.resetTest();
+
+            while (boardTest.getHealth() != 0) {
+                hits++;
+                boardTest.smartAITest(strategyTwoAI);
+            }
+            strategyTwo.getData().add(new XYChart.Data<>(i, hits));
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
@@ -436,9 +480,10 @@ public class PlaySceneController {
             chartController chartController = loader.getController();
             chartController.transferData(random, sequnece, strategyOne, strategyTwo);
             Stage startStage = new Stage();
-            startStage.setTitle("Battleship");
+            startStage.initStyle(StageStyle.UNDECORATED);
             startStage.setResizable(false);
             startStage.setScene(new Scene(root));
+            startStage.getScene().getStylesheets().add("sample/explore.css");
             startStage.showAndWait();
         } catch (IOException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());

@@ -1,26 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.chartController">
    <children>
-      <LineChart fx:id="lineChart" layoutX="14.0" prefHeight="800.0" prefWidth="1800.0" title="Strategija">
-        <xAxis>
-          <NumberAxis prefWidth="781.0" side="LEFT" tickLabelGap="0.0" upperBound="500.0" fx:id="x">
-               <tickLabelFont>
-                  <Font size="10.0" />
-               </tickLabelFont></NumberAxis>
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="y" label="broj gađanja" lowerBound="17.0" prefHeight="390.0" prefWidth="60.0" side="LEFT" tickLabelGap="5.0" upperBound="101.0">
-               <tickLabelFont>
-                  <Font size="10.0" />
-               </tickLabelFont></NumberAxis>
-        </yAxis>
-      </LineChart>
-      <Line endX="1610.0" layoutX="189.0" layoutY="627.0" startX="-100.0" stroke="#e80505" />
+      <BorderPane prefHeight="800.0" prefWidth="1800.0">
+         <top>
+            <AnchorPane fx:id="title" onMousePressed="#titleClick" prefHeight="43.0" prefWidth="1800.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="1688.0" layoutY="3.0" mnemonicParsing="false" onMousePressed="#close" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #47A3B5;" text="C L O S E">
+                     <font>
+                        <Font name="Nirmala UI Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="836.0" layoutY="9.0" text="R E P O R T">
+                     <font>
+                        <Font name="Nirmala UI Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </AnchorPane>
+         </top>
+         <center>
+            <LineChart fx:id="lineChart" prefHeight="600.0" prefWidth="1600.0" styleClass="chart-series-line" stylesheets="@explore.css" BorderPane.alignment="CENTER">
+              <xAxis>
+                 <NumberAxis autoRanging="false" label="Iterations" styleClass="chart-series-line" stylesheets="@explore.css" upperBound="105.0" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Number of shots" side="LEFT" />
+              </yAxis>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </LineChart>
+         </center>
+         <bottom>
+            <AnchorPane prefHeight="2.0" prefWidth="1800.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
+         </right></BorderPane>
+      <Line endX="1620.0" layoutX="154.0" layoutY="625.0" startX="-92.0" stroke="RED" strokeWidth="3.0" />
    </children>
 </AnchorPane>

@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,6 +23,7 @@ public class startSceneControler {
     public Button exitButton;
     public ImageView startSceneImageView;
     public Pane primaryScene;
+    public AnchorPane title;
 
 
     @FXML
@@ -53,8 +55,8 @@ public class startSceneControler {
     }
 
     public void drag(MouseEvent mouseEvent) {
-        Stage stage = (Stage) primaryScene.getScene().getWindow();
-        primaryScene.setOnMouseDragged(dragEvent -> {
+        Stage stage = (Stage) title.getScene().getWindow();
+        title.setOnMouseDragged(dragEvent -> {
             stage.setX(dragEvent.getScreenX() - mouseEvent.getSceneX());
             stage.setY(dragEvent.getScreenY() - mouseEvent.getSceneY());
         });

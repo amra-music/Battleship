@@ -301,9 +301,9 @@ public class Board {
 
     private void showEndScreen(boolean win) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("winScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("endScene.fxml"));
             Stage playStage = (Stage) fields.get(0).get(0).getRectangle().getScene().getWindow();
-            loader.setController(new WinSceneController(win, playStage));
+            loader.setController(new EndSceneController(win, playStage));
             Parent root = loader.load();
             Stage endStage = new Stage();
             endStage.initStyle(StageStyle.UNDECORATED);

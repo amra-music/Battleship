@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ChartController {
+public class ReportController {
     //@FXML
     public LineChart<Number, Number> lineChart;
     //@FXML

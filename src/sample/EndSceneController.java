@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class WinSceneController {
+public class EndSceneController {
     public AnchorPane title;
     public ImageView endPicture;
     public Label endTextLabel;
@@ -32,7 +32,7 @@ public class WinSceneController {
         this.playStage = playStage;
     }
 
-    public WinSceneController(boolean win, Stage playStage) {
+    public EndSceneController(boolean win, Stage playStage) {
         setWin(win);
         setPlayStage(playStage);
     }

@@ -485,10 +485,10 @@ public class PlaySceneController {
             strategyTwo.getData().add(new XYChart.Data<>(i, hits));
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chart.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("report.fxml"));
             Parent root = loader.load();
-            ChartController chartController = loader.getController();
-            chartController.transferData(random, sequnece, strategyOne, strategyTwo);
+            ReportController reportController = loader.getController();
+            reportController.transferData(random, sequnece, strategyOne, strategyTwo);
             Stage startStage = new Stage();
             startStage.initStyle(StageStyle.UNDECORATED);
             startStage.setResizable(false);

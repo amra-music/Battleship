@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,12 +35,13 @@ public class startSceneControler {
     public void start(MouseEvent mouseEvent) {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("playScene.fxml"));
-            Stage startStage = new Stage();
-            startStage.initStyle(StageStyle.UNDECORATED);
-            startStage.setResizable(false);
-            startStage.setScene(new Scene(root));
-            startButton.getScene().getWindow().hide();
-            startStage.showAndWait();
+            Stage playStage = new Stage();
+            playStage.initStyle(StageStyle.UNDECORATED);
+            playStage.setResizable(false);
+            playStage.setScene(new Scene(root));
+            Stage startStage = (Stage) startButton.getScene().getWindow();
+            startStage.close();
+            playStage.show();
         } catch (IOException error) {
             Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
             alert.showAndWait();
@@ -47,7 +49,18 @@ public class startSceneControler {
     }
 
     public void rules(MouseEvent mouseEvent) {
-
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("rules.fxml"));
+            Stage rulesStage = new Stage();
+            rulesStage.initStyle(StageStyle.UNDECORATED);
+            rulesStage.initModality(Modality.APPLICATION_MODAL);
+            rulesStage.setResizable(false);
+            rulesStage.setScene(new Scene(root));
+            rulesStage.show();
+        } catch (IOException error) {
+            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            alert.showAndWait();
+        }
     }
 
     public void exit(MouseEvent mouseEvent) {

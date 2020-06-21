@@ -310,10 +310,11 @@ public class Board {
             endStage.initModality(Modality.APPLICATION_MODAL);
             endStage.setResizable(false);
             endStage.setScene(new Scene(root));
-            endStage.showAndWait();
+            endStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
+            endStage.show();
         } catch (IOException error) {
             Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
-            alert.showAndWait();
+            alert.show();
         }
     }
 

@@ -20,7 +20,7 @@ import java.io.IOException;
 public class StartSceneControler {
     public Pane scenePane;
     public Button startButton;
-    public Button optionsButton;
+    public Button rulesButton;
     public Button exitButton;
     public ImageView startSceneImageView;
     public Pane primaryScene;
@@ -29,7 +29,9 @@ public class StartSceneControler {
 
     @FXML
     public void initialize() {
-
+        startButton.getStyleClass().add("start-button");
+        rulesButton.getStyleClass().add("start-button");
+        exitButton.getStyleClass().add("start-button");
     }
 
     public void start(MouseEvent mouseEvent) {
@@ -39,12 +41,13 @@ public class StartSceneControler {
             playStage.initStyle(StageStyle.UNDECORATED);
             playStage.setResizable(false);
             playStage.setScene(new Scene(root));
+            playStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
             Stage startStage = (Stage) startButton.getScene().getWindow();
             startStage.close();
             playStage.show();
         } catch (IOException error) {
             Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
-            alert.showAndWait();
+            alert.show();
         }
     }
 
@@ -59,7 +62,7 @@ public class StartSceneControler {
             rulesStage.show();
         } catch (IOException error) {
             Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
-            alert.showAndWait();
+            alert.show();
         }
     }
 

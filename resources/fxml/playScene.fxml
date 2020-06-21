@@ -322,12 +322,12 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Rectangle>
-            <Button fx:id="startButton" layoutX="443.0" layoutY="695.0" mnemonicParsing="false" onMouseClicked="#start" prefHeight="50.0" prefWidth="114.0" text="Start" />
-            <Button fx:id="playAgainButton" layoutX="568.0" layoutY="695.0" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="114.0" text="Play again" />
-            <Button fx:id="randomButton" layoutY="695.0" mnemonicParsing="false" onMousePressed="#placeShipsRandom" prefHeight="50.0" prefWidth="114.0" text="Random" />
+            <Button fx:id="startButton" layoutX="443.0" layoutY="695.0" mnemonicParsing="false" onMouseClicked="#start" prefHeight="50.0" prefWidth="114.0" styleClass="glass-grey-button" text="Start" />
+            <Button fx:id="playAgainButton" layoutX="568.0" layoutY="695.0" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="114.0" styleClass="glass-grey-button" text="Play again" />
+            <Button fx:id="randomButton" layoutY="695.0" mnemonicParsing="false" onMousePressed="#placeShipsRandom" prefHeight="50.0" prefWidth="114.0" styleClass="glass-grey-button" text="Random" />
             <ProgressBar fx:id="PCHealth" layoutX="600.0" layoutY="555.0" prefHeight="18.0" prefWidth="500.0" progress="1.0" />
             <ProgressBar fx:id="playerHealth" layoutY="555.0" prefHeight="18.0" prefWidth="500.0" progress="1.0" />
-            <Button fx:id="exploreButton" layoutX="986.0" layoutY="615.0" mnemonicParsing="false" onMousePressed="#explore" prefHeight="50.0" prefWidth="114.0" text="Test" />
+            <Button fx:id="exploreButton" layoutX="986.0" layoutY="615.0" mnemonicParsing="false" onMousePressed="#explore" prefHeight="50.0" prefWidth="114.0" styleClass="glass-grey-button" text="Test" />
             <Label alignment="CENTER" layoutY="577.0" prefHeight="17.0" prefWidth="500.0" text="P L A Y E R   H E A L T H">
                <font>
                   <Font name="System Bold" size="12.0" />

@@ -355,7 +355,7 @@ public class PlaySceneController {
     public void start(MouseEvent mouseEvent) {
         Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
         if (player.getShips().size() != 5) {
-            alert.showAndWait();
+            alert.show();
         } else {
             finalPreparations();
         }
@@ -420,27 +420,6 @@ public class PlaySceneController {
         XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
         strategyTwo.setName("StrategyTwo");
 
-       /* for (int i = 1; i <= 4; i++) {
-            for (int j = 1; j <= 100; j++) {
-                switch (i) {
-                    case 1:
-                        DummyAI randomAI = new RandomAI();
-                        random.getData().add(new XYChart.Data<>(j, dummyTestAI(randomAI)));
-                        break;
-                    case 2:
-                        DummyAI sequenceAI = new SequenceAI();
-                        sequnece.getData().add(new XYChart.Data<>(j, dummyTestAI(sequenceAI)));
-                        break;
-                    case 3:
-                        SmartAI strategyOneAI = new StrategyOneAI();
-                        strategyOne.getData().add(new XYChart.Data<>(j, smartTestAI(strategyOneAI)));
-                        break;
-                    case 4:
-                        SmartAI strategyTwoAI = new StrategyTwoAI();
-                        strategyTwo.getData().add(new XYChart.Data<>(j, smartTestAI(strategyTwoAI)));
-                }
-            }
-        }*/
         for(int i =1; i<=100;i++){
             DummyAI randomAI = new RandomAI();
             DummyAI sequenceAI = new SequenceAI();
@@ -493,11 +472,10 @@ public class PlaySceneController {
             startStage.initStyle(StageStyle.UNDECORATED);
             startStage.setResizable(false);
             startStage.setScene(new Scene(root));
-          //  startStage.getScene().getStylesheets().add("css/explore.css");
-            startStage.showAndWait();
+            startStage.show();
         } catch (IOException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
-            alert.showAndWait();
+            alert.show();
         }
     }
 

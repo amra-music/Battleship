@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="primaryScene" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PlaySceneController">
+<BorderPane fx:id="primaryScene" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleship.PlaySceneController">
     <top>
         <AnchorPane fx:id="title" onMousePressed="#drag" prefHeight="43.0" prefWidth="1100.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
             <children>
@@ -37,7 +37,7 @@
     <center>
       <Pane fx:id="scene2" accessibleRole="NODE" prefHeight="745.0" prefWidth="1100.0">
           <stylesheets>
-              <URL value="@CSS.css" />
+              <URL value="@../css/CSS.css" />
           </stylesheets>
           <children>
             <Pane layoutY="608.0" prefHeight="65.0" prefWidth="907.0" style="-fx-background-color: #99bdb6; -fx-background-radius: 35; -fx-border-color: black; -fx-border-radius: 35;" />

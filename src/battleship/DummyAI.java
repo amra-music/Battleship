@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 public abstract class DummyAI {
     private int x;

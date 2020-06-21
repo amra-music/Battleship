@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import java.util.concurrent.ThreadLocalRandom;
 

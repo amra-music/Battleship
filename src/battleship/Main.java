@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("startScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/startScene.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.getIcons().add(new Image("sample/icon.png"));
+        primaryStage.getIcons().add(new Image("/img/icon.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

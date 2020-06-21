@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -11,7 +11,6 @@ public class RulesController {
 
     @FXML
     public void initialize() {
-
     }
 
     public void drag(MouseEvent mouseEvent) {

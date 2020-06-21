@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -301,7 +301,7 @@ public class Board {
 
     private void showEndScreen(boolean win) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("endScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/endScene.fxml"));
             Stage playStage = (Stage) fields.get(0).get(0).getRectangle().getScene().getWindow();
             loader.setController(new EndSceneController(win, playStage));
             Parent root = loader.load();

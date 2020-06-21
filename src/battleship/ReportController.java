@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -9,11 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ReportController {
-    //@FXML
     public LineChart<Number, Number> lineChart;
-    //@FXML
     public NumberAxis x;
-    //@FXML
     public NumberAxis y;
     public AnchorPane title;
 

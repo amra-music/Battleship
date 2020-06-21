@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -45,11 +45,11 @@ public class PlaySceneController {
     public BorderPane primaryScene;
     public AnchorPane title;
 
-    private Image boatFiveImage = new Image("sample/boatFive.png");
-    private Image boatFourImage = new Image("sample/boatFour.png");
-    private Image boatThree1Image = new Image("sample/boatThree1.png");
-    private Image boatThree2Image = new Image("sample/boatThree2.png");
-    private Image boatTwoImage = new Image("sample/boatTwo.png");
+    private Image boatFiveImage = new Image("/img/boatFive.png");
+    private Image boatFourImage = new Image("/img/boatFour.png");
+    private Image boatThree1Image = new Image("/img/boatThree1.png");
+    private Image boatThree2Image = new Image("/img/boatThree2.png");
+    private Image boatTwoImage = new Image("/img/boatTwo.png");
 
     public Pane scene2;
     //polja jedne i druge ploce
@@ -485,7 +485,7 @@ public class PlaySceneController {
             strategyTwo.getData().add(new XYChart.Data<>(i, hits));
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("report.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/report.fxml"));
             Parent root = loader.load();
             ReportController reportController = loader.getController();
             reportController.transferData(random, sequnece, strategyOne, strategyTwo);
@@ -493,7 +493,7 @@ public class PlaySceneController {
             startStage.initStyle(StageStyle.UNDECORATED);
             startStage.setResizable(false);
             startStage.setScene(new Scene(root));
-            startStage.getScene().getStylesheets().add("sample/explore.css");
+          //  startStage.getScene().getStylesheets().add("css/explore.css");
             startStage.showAndWait();
         } catch (IOException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());

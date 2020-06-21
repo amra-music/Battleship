@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 public class SequenceAI extends DummyAI {
     private int counter = 0;

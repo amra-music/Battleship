@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class startSceneControler {
+public class StartSceneControler {
     public Pane scenePane;
     public Button startButton;
     public Button optionsButton;
@@ -34,7 +34,7 @@ public class startSceneControler {
 
     public void start(MouseEvent mouseEvent) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("playScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/playScene.fxml"));
             Stage playStage = new Stage();
             playStage.initStyle(StageStyle.UNDECORATED);
             playStage.setResizable(false);
@@ -50,7 +50,7 @@ public class startSceneControler {
 
     public void rules(MouseEvent mouseEvent) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("rules.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/rules.fxml"));
             Stage rulesStage = new Stage();
             rulesStage.initStyle(StageStyle.UNDECORATED);
             rulesStage.initModality(Modality.APPLICATION_MODAL);

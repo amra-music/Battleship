@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 import javafx.geometry.Orientation;
 

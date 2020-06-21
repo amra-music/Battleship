@@ -1,4 +1,4 @@
-package sample;
+package battleship;
 
 public class Delta {
     private double x;

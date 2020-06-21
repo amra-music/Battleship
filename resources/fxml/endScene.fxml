@@ -41,4 +41,15 @@
          </children>
       </GridPane>
    </center>
+    <bottom>
+        <AnchorPane prefHeight="2.0" prefWidth="1100.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
+    </bottom>
+    <left>
+        <AnchorPane prefHeight="785.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+            </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="780.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+            </AnchorPane>
+    </right>
 </BorderPane>

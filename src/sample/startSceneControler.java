@@ -46,7 +46,7 @@ public class startSceneControler {
         }
     }
 
-    public void options(MouseEvent mouseEvent) {
+    public void rules(MouseEvent mouseEvent) {
 
     }
 

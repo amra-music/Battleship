@@ -1,19 +1,24 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 public class Board {
     private List<List<Field>> fields = new ArrayList<>();
@@ -216,12 +221,15 @@ public class Board {
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
+                showEndScreen(true);
+                /*
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent()) {
                     Platform.exit();
                     System.exit(0);
                 }
+                */
             }
         } else
             field.setColor(Color.WHITE);
@@ -274,17 +282,38 @@ public class Board {
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
+                showEndScreen(false);
+                /*
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent()) {
                     Platform.exit();
                     System.exit(0);
                 }
+                */
             }
             ai.feedback(true, field.getShip().isDestroyed(),ai.getX(),ai.getY());
         } else {
             ai.feedback(false, false,ai.getX(),ai.getY());
             field.setColor(Color.WHITE);
+        }
+    }
+
+    private void showEndScreen(boolean win) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("winScene.fxml"));
+            Stage playStage = (Stage) fields.get(0).get(0).getRectangle().getScene().getWindow();
+            loader.setController(new WinSceneController(win, playStage));
+            Parent root = loader.load();
+            Stage endStage = new Stage();
+            endStage.initStyle(StageStyle.UNDECORATED);
+            endStage.initModality(Modality.APPLICATION_MODAL);
+            endStage.setResizable(false);
+            endStage.setScene(new Scene(root));
+            endStage.showAndWait();
+        } catch (IOException error) {
+            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            alert.showAndWait();
         }
     }
 

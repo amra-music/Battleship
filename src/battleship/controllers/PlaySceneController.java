@@ -31,6 +31,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class PlaySceneController {
     public Rectangle boatSubmarine;
@@ -47,7 +48,12 @@ public class PlaySceneController {
     public BorderPane primaryScene;
     public AnchorPane title;
     public Button soundButton;
+    public RadioButton randomRButton;
+    public RadioButton sequenceRButton;
+    public RadioButton strategyOneRButton;
+    public RadioButton strategyTwoRButton;
 
+    private ToggleGroup strategys = new ToggleGroup();
     private Image boatFiveImage = new Image("/img/boatFive.png");
     private Image boatFourImage = new Image("/img/boatFour.png");
     private Image boatThree1Image = new Image("/img/boatThree1.png");
@@ -74,6 +80,11 @@ public class PlaySceneController {
 
     @FXML
     public void initialize() {
+
+        randomRButton.setToggleGroup(strategys);
+        sequenceRButton.setToggleGroup(strategys);
+        strategyOneRButton.setToggleGroup(strategys);
+        strategyTwoRButton.setToggleGroup(strategys);
 
         //radi prevlacenja brodica na player plocu
         for (Node currentNode : playerBoard.getChildren()) {
@@ -325,6 +336,10 @@ public class PlaySceneController {
         ships.forEach(ship -> ship.setDisable(true));
         startButton.setDisable(true);
         randomButton.setDisable(true);
+        randomRButton.setDisable(true);
+        sequenceRButton.setDisable(true);
+        strategyOneRButton.setDisable(true);
+        strategyTwoRButton.setDisable(true);
         PC.setRandomShips();
         //besmisleno ako je random kliknuto
         player.setOccupiedFields();
@@ -336,6 +351,10 @@ public class PlaySceneController {
     private void reset() {
         startButton.setDisable(false);
         randomButton.setDisable(false);
+        randomRButton.setDisable(false);
+        sequenceRButton.setDisable(false);
+        strategyOneRButton.setDisable(false);
+        strategyTwoRButton.setDisable(false);
         double size = 10;
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);
@@ -359,9 +378,20 @@ public class PlaySceneController {
     }
 
     public void start(MouseEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, "Nisu postavljeni svi brodici na polje!");
         if (player.getShips().size() != 5) {
-            alert.show();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/warning.fxml"));
+                Parent root = loader.load();
+                Stage wariningStage = new Stage();
+                wariningStage.initStyle(StageStyle.UNDECORATED);
+                wariningStage.initModality(Modality.APPLICATION_MODAL);
+                wariningStage.setResizable(false);
+                wariningStage.setScene(new Scene(root));
+                wariningStage.show();
+            } catch (IOException error) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
+                alert.show();
+            }
         } else {
             finalPreparations();
         }

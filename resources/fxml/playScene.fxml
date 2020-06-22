@@ -364,6 +364,10 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+            <RadioButton fx:id="randomRButton" layoutX="710.0" layoutY="710.0" mnemonicParsing="false" text="Random" />
+            <RadioButton fx:id="sequenceRButton" layoutX="800.0" layoutY="710.0" mnemonicParsing="false" text="Sequence" />
+            <RadioButton fx:id="strategyOneRButton" layoutX="900.0" layoutY="710.0" mnemonicParsing="false" text="Strategy 1" />
+            <RadioButton fx:id="strategyTwoRButton" layoutX="999.0" layoutY="710.0" mnemonicParsing="false" text="Strategy 2" />
          </children>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />

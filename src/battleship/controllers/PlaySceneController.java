@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -38,7 +39,6 @@ public class PlaySceneController {
     public Rectangle boatDestroyer;
     public Rectangle boatBattleship;
     public GridPane playerBoard;
-    public TextArea textArea;
     public Button startButton;
     public GridPane PCBoard;
     public Button randomButton;
@@ -46,22 +46,25 @@ public class PlaySceneController {
     public ProgressBar playerHealth;
     public BorderPane primaryScene;
     public AnchorPane title;
+    public Button soundButton;
 
     private Image boatFiveImage = new Image("/img/boatFive.png");
     private Image boatFourImage = new Image("/img/boatFour.png");
     private Image boatThree1Image = new Image("/img/boatThree1.png");
     private Image boatThree2Image = new Image("/img/boatThree2.png");
     private Image boatTwoImage = new Image("/img/boatTwo.png");
+    private Image soundOnButtonImage = new Image("/img/soundOn1.png",65,25,true,true);
+    private Image soundOffButtonImage = new Image("/img/soundOff1.png",65,25,true,true);
 
     public Pane scene2;
     //polja jedne i druge ploce
-    private List<Rectangle> playerBoardFields = new ArrayList();
-    private List<Rectangle> PCBoardFields = new ArrayList();
+    private List<Rectangle> playerBoardFields = new ArrayList<>();
+    private List<Rectangle> PCBoardFields = new ArrayList<>();
 
     private Bounds playerBoardBounds;
     private Board player = new Board();
     private Board PC = new Board();
-    private List<Rectangle> ships = new ArrayList();
+    private List<Rectangle> ships = new ArrayList<>();
     private boolean firstTime = true;
 
     private RandomAI randomAI = new RandomAI();
@@ -93,6 +96,7 @@ public class PlaySceneController {
         boatCruiser.setFill(new ImagePattern(boatThree2Image));
         boatSubmarine.setFill(new ImagePattern(boatThree1Image));
         boatDestroyer.setFill(new ImagePattern(boatTwoImage));
+        soundButton.setGraphic(new ImageView(soundOnButtonImage));
 
         ships.add(boatCarrier);
         ships.add(boatBattleship);
@@ -115,10 +119,7 @@ public class PlaySceneController {
         // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
         // TODO : staviti zvuk
         // TODO : kad fulis, kad pogodis, kad pobijdedis i kad izgubis
-        // TODO : prozor pobjede/poraza
-        // TODO : button css
         // TODO : options da se odabrere AI i zvuk da se moze iskljuciti
-        // TODO : game rules
         // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
     }
 
@@ -185,8 +186,11 @@ public class PlaySceneController {
                 if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
                     shipRectangle.setLayoutX(dragDelta.getFirstLayoutX());
                     shipRectangle.setLayoutY(dragDelta.getFirstLayoutY());
+                    shipRectangle.setRotate(0);
                     player.removeShip(ship);
+                    Sound.INSTANCE.error();
                 } else {
+                    Sound.INSTANCE.shipPlaced();
                     for (Shape field : playerBoardFields) {
                         if (field.getFill() == Color.GREEN) {
                             ship.setOrientation(shipRectangle.getRotate());
@@ -219,8 +223,8 @@ public class PlaySceneController {
 
                 shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
                 shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
-                System.out.println(shipRectangle.getLayoutX());
-                System.out.println(shipRectangle.getLayoutY());
+                /*System.out.println(shipRectangle.getLayoutX());
+                System.out.println(shipRectangle.getLayoutY());*/
 
                 checkShapeIntersection(shipRectangle);
             }
@@ -370,6 +374,7 @@ public class PlaySceneController {
     public void placeShipsRandom(MouseEvent mouseEvent) {
         player.removeOccupied();
         player.setRandomShips();
+        Sound.INSTANCE.shipPlaced();
         ships.forEach(ship -> ship.setDisable(true));
         for (int i = 0; i < 5; i++) {
             Ship ship = player.getShips().get(i);
@@ -492,5 +497,16 @@ public class PlaySceneController {
 
     public void close(MouseEvent mouseEvent) {
         Platform.exit();
+    }
+
+    public void sound(MouseEvent mouseEvent) {
+        if(Sound.INSTANCE.isSoundEnabled()) {
+            Sound.INSTANCE.setSoundEnabled(false);
+            soundButton.setGraphic(new ImageView(soundOffButtonImage));
+        }
+      else {
+           Sound.INSTANCE.setSoundEnabled(true);
+           soundButton.setGraphic(new ImageView(soundOnButtonImage));
+       }
     }
 }

@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Dugmad napravljena">
-      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Controleri u posebnom paketu; Boldiran text na endScene">
+      <change afterPath="$PROJECT_DIR$/resources/audio/error.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/game_won.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/hit.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/intro.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/lost_trumpet.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/music.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/ship_placed.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/water_miss.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/soundONN.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/soundOff.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/soundOff1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/soundOn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/soundOn1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/battleship/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/CSS.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/explore.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/startSceneCSS.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/endScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/endScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/fxml/playScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/playScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/fxml/report.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/report.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/rules.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/rulesScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/startScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/startScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/battleship/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/EndSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/EndSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/RulesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/RulesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/StartSceneControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/StartSceneControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +74,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="CSS File" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -120,7 +122,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -129,18 +131,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="sample" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\fxml" />
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\img" />
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="sample" />
     </key>
   </component>
   <component name="RunManager">
@@ -283,14 +286,7 @@
       <workItem from="1592339817371" duration="952000" />
       <workItem from="1592342434706" duration="2037000" />
       <workItem from="1592739221305" duration="24855000" />
-      <workItem from="1592819142600" duration="3636000" />
-    </task>
-    <task id="LOCAL-00014" summary="Napravljene klase Ship i Board, te omogućemo spasavanje pozicija brodića">
-      <created>1588895113232</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1588895113232</updated>
+      <workItem from="1592819142600" duration="16305000" />
     </task>
     <task id="LOCAL-00015" summary="Bezuspjesan pokusaj optimizacije prvog mjesta pozicije brodica">
       <created>1589322226148</created>
@@ -628,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592820089245</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Controleri u posebnom paketu; Boldiran text na endScene">
+      <created>1592832638485</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1592832638485</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -651,7 +654,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Pracenje da li je brod unisten, ne radi" />
     <MESSAGE value="Popravljen bug za StrategyOneAI, SequrnceAI" />
     <MESSAGE value="Napravljen jos jedan AI" />
     <MESSAGE value="Dodat progress bar, nije namjestena boja" />
@@ -676,17 +678,22 @@
     <MESSAGE value="Napravljen Rules" />
     <MESSAGE value="Napravljen css za dugmad" />
     <MESSAGE value="Dugmad napravljena" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dugmad napravljena" />
+    <MESSAGE value="Controleri u posebnom paketu; Boldiran text na endScene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Controleri u posebnom paketu; Boldiran text na endScene" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1591902198301">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1591902198301" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1592743316476">
+    <state x="514" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592834959416">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592743316476" />
+    <state x="514" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1592834959416" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1592844795358">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592844795358" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -707,34 +714,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589321234041" />
-    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1592820088274">
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1592832637843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1592820088274" />
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1592832637843" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588284023768" />
-    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1590066047194">
+    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1592832901978">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590066047194" />
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1592832578174">
+    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592832901978" />
+    <state width="1493" height="227" key="GridCell.Tab.0.bottom" timestamp="1592846934110">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592832578174" />
-    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1592832578174">
+    <state width="1493" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592846934110" />
+    <state width="1493" height="227" key="GridCell.Tab.0.center" timestamp="1592846934109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592832578174" />
-    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1592832578174">
+    <state width="1493" height="227" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592846934109" />
+    <state width="1493" height="227" key="GridCell.Tab.0.left" timestamp="1592846934109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592832578174" />
-    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1592832578174">
+    <state width="1493" height="227" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592846934109" />
+    <state width="1493" height="227" key="GridCell.Tab.0.right" timestamp="1592846934109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592832578174" />
+    <state width="1493" height="227" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592846934109" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1592332781881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -775,10 +782,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="178" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1590170341543" />
-    <state x="463" y="10" width="611" height="804" key="find.popup" timestamp="1592779952290">
+    <state x="188" y="20" width="611" height="804" key="find.popup" timestamp="1592846928011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="463" y="10" width="611" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1592779952290" />
+    <state x="188" y="20" width="611" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1592846928011" />
     <state x="209" y="114" key="new project wizard" timestamp="1592065801554">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

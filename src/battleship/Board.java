@@ -194,7 +194,6 @@ public class Board {
             }
             i--;
         }
-
     }
 
     @Override
@@ -215,10 +214,11 @@ public class Board {
         return string;
     }
 
-    public void playerTurn(Field field){
+    public void playerTurn(Field field) {
         field.setShot(true);
         if (field.isOccupied()) {
             field.setColor(Color.RED);
+            Sound.INSTANCE.hit();
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
@@ -232,8 +232,10 @@ public class Board {
                 }
                 */
             }
-        } else
+        } else {
             field.setColor(Color.WHITE);
+            Sound.INSTANCE.miss();
+        }
 
         field.getRectangle().setDisable(true);
     }
@@ -266,6 +268,7 @@ public class Board {
             field.setColor(Color.WHITE);
         }
     }
+
     public void enemyTurn(SmartAI ai) {
         ai.nextMove(false);
         Field field = fields.get(ai.getY()).get(ai.getX());
@@ -293,15 +296,15 @@ public class Board {
                 }
                 */
             }
-            ai.feedback(true, field.getShip().isDestroyed(),ai.getX(),ai.getY());
+            ai.feedback(true, field.getShip().isDestroyed(), ai.getX(), ai.getY());
         } else {
-            ai.feedback(false, false,ai.getX(),ai.getY());
+            ai.feedback(false, false, ai.getX(), ai.getY());
             field.setColor(Color.WHITE);
         }
     }
 
     private void showEndScreen(boolean win) {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/endScene.fxml"));
             Stage playStage = (Stage) fields.get(0).get(0).getRectangle().getScene().getWindow();
             loader.setController(new EndSceneController(win, playStage));
@@ -313,13 +316,15 @@ public class Board {
             endStage.setScene(new Scene(root));
             endStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
             endStage.show();
+            if (win) Sound.INSTANCE.gameWon();
+            else Sound.INSTANCE.gameLost();
         } catch (IOException error) {
-            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.show();
         }
     }
 
-    public void smartAITest(SmartAI ai){
+    public void smartAITest(SmartAI ai) {
         ai.nextMove(false);
         Field field = fields.get(ai.getY()).get(ai.getX());
         while (field.isShot()) {
@@ -330,11 +335,12 @@ public class Board {
         if (field.isOccupied()) {
             field.getShip().setHealth(field.getShip().getHealth() - 1);
             this.setHealth(this.getHealth() - 1);
-            ai.feedback(true, field.getShip().isDestroyed(),ai.getX(),ai.getY());
+            ai.feedback(true, field.getShip().isDestroyed(), ai.getX(), ai.getY());
         } else {
             ai.feedback(false, false, ai.getX(), ai.getY());
         }
     }
+
     public void dummyAITest(DummyAI ai) {
         ai.nextMove();
         Field field = this.getFields().get(ai.getY()).get(ai.getX());
@@ -351,8 +357,8 @@ public class Board {
 
     public void resetTest() {
         setHealth(17);
-        getFields().forEach(listField->listField.forEach(field -> {
-            if(field.isShot())
+        getFields().forEach(listField -> listField.forEach(field -> {
+            if (field.isShot())
                 field.setShot(false);
         }));
     }

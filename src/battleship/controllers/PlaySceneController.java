@@ -59,8 +59,8 @@ public class PlaySceneController {
     private Image boatThree1Image = new Image("/img/boatThree1.png");
     private Image boatThree2Image = new Image("/img/boatThree2.png");
     private Image boatTwoImage = new Image("/img/boatTwo.png");
-    private Image soundOnButtonImage = new Image("/img/soundOn1.png",65,25,true,true);
-    private Image soundOffButtonImage = new Image("/img/soundOff1.png",65,25,true,true);
+    private Image soundOnButtonImage = new Image("/img/soundOn1.png", 65, 25, true, true);
+    private Image soundOffButtonImage = new Image("/img/soundOff1.png", 65, 25, true, true);
 
     public Pane scene2;
     //polja jedne i druge ploce
@@ -71,8 +71,8 @@ public class PlaySceneController {
     private Board player = new Board();
     private Board PC = new Board();
     private List<Rectangle> ships = new ArrayList<>();
-    private boolean firstTime = true;
-
+    private DummyAI dummyAI = null;
+    private SmartAI smartAI = null;
     private RandomAI randomAI = new RandomAI();
     private SequenceAI sequenceAI = new SequenceAI();
     private StrategyOneAI strategyOneAI = new StrategyOneAI();
@@ -85,6 +85,7 @@ public class PlaySceneController {
         sequenceRButton.setToggleGroup(strategys);
         strategyOneRButton.setToggleGroup(strategys);
         strategyTwoRButton.setToggleGroup(strategys);
+        strategys.selectToggle(strategyTwoRButton);
 
         //radi prevlacenja brodica na player plocu
         for (Node currentNode : playerBoard.getChildren()) {
@@ -121,15 +122,10 @@ public class PlaySceneController {
 
         //Liseneri na polja ploca
         setBoardFieldsListeners(PC.getFields());
-        //  setBoardFieldsListeners(player.getFields());
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
 
 
-        // TODO : kada se pogodi da se na tom mjestu napravi X
-        // TODO : napraviti kao health slicicu koja ce se mijenjati u skladu sa zdravljem
-        // TODO : staviti zvuk
-        // TODO : kad fulis, kad pogodis, kad pobijdedis i kad izgubis
         // TODO : options da se odabrere AI i zvuk da se moze iskljuciti
         // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
     }
@@ -149,7 +145,10 @@ public class PlaySceneController {
                 PCBoard.setDisable(true);
                 PCHealth.setProgress(PC.getHealth() / 17.);
 
-                player.enemyTurn(strategyOneAI);
+                if (smartAI != null) player.enemyTurn(smartAI);
+                else player.enemyTurn(dummyAI);
+
+
                 PCBoard.setDisable(false);
                 playerHealth.setProgress(player.getHealth() / 17.);
             };
@@ -234,9 +233,6 @@ public class PlaySceneController {
 
                 shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
                 shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
-                /*System.out.println(shipRectangle.getLayoutX());
-                System.out.println(shipRectangle.getLayoutY());*/
-
                 checkShapeIntersection(shipRectangle);
             }
         });
@@ -355,6 +351,8 @@ public class PlaySceneController {
         sequenceRButton.setDisable(false);
         strategyOneRButton.setDisable(false);
         strategyTwoRButton.setDisable(false);
+        dummyAI = null;
+        smartAI = null;
         double size = 10;
         for (int i = 0; i < ships.size(); i++) {
             Rectangle ship = ships.get(i);
@@ -393,6 +391,15 @@ public class PlaySceneController {
                 alert.show();
             }
         } else {
+            if (smartAI == null && dummyAI == null) {
+                if (strategys.getSelectedToggle() == strategyTwoRButton)
+                    smartAI = strategyTwoAI;
+                else if (strategys.getSelectedToggle() == strategyOneRButton)
+                    smartAI = strategyOneAI;
+                else if (strategys.getSelectedToggle() == sequenceRButton)
+                    dummyAI = sequenceAI;
+                else dummyAI = randomAI;
+            }
             finalPreparations();
         }
     }
@@ -457,7 +464,7 @@ public class PlaySceneController {
         XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
         strategyTwo.setName("StrategyTwo");
 
-        for(int i =1; i<=100;i++){
+        for (int i = 1; i <= 100; i++) {
             DummyAI randomAI = new RandomAI();
             DummyAI sequenceAI = new SequenceAI();
             SmartAI strategyOneAI = new StrategyOneAI();
@@ -473,7 +480,7 @@ public class PlaySceneController {
             }
             random.getData().add(new XYChart.Data<>(i, hits));
 
-            hits=0;
+            hits = 0;
             boardTest.resetTest();
 
             while (boardTest.getHealth() != 0) {
@@ -482,7 +489,7 @@ public class PlaySceneController {
             }
             sequnece.getData().add(new XYChart.Data<>(i, hits));
 
-            hits=0;
+            hits = 0;
             boardTest.resetTest();
 
             while (boardTest.getHealth() != 0) {
@@ -491,7 +498,7 @@ public class PlaySceneController {
             }
             strategyOne.getData().add(new XYChart.Data<>(i, hits));
 
-            hits=0;
+            hits = 0;
             boardTest.resetTest();
 
             while (boardTest.getHealth() != 0) {
@@ -530,13 +537,12 @@ public class PlaySceneController {
     }
 
     public void sound(MouseEvent mouseEvent) {
-        if(Sound.INSTANCE.isSoundEnabled()) {
+        if (Sound.INSTANCE.isSoundEnabled()) {
             Sound.INSTANCE.setSoundEnabled(false);
             soundButton.setGraphic(new ImageView(soundOffButtonImage));
+        } else {
+            Sound.INSTANCE.setSoundEnabled(true);
+            soundButton.setGraphic(new ImageView(soundOnButtonImage));
         }
-      else {
-           Sound.INSTANCE.setSoundEnabled(true);
-           soundButton.setGraphic(new ImageView(soundOnButtonImage));
-       }
     }
 }

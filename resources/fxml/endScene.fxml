@@ -36,8 +36,14 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="playAgainButton" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Play again" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="exitButton" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Exit" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="playAgainButton" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Play again" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Exit" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </GridPane>
    </center>

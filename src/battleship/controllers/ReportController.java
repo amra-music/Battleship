@@ -1,4 +1,4 @@
-package battleship;
+package battleship.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;

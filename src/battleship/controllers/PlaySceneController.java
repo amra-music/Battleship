@@ -1,5 +1,6 @@
-package battleship;
+package battleship.controllers;
 
+import battleship.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -409,7 +411,7 @@ public class PlaySceneController {
         return hits;
     }
 
-    public void explore(MouseEvent mouseEvent) {
+    public void test(MouseEvent mouseEvent) {
 
         XYChart.Series<Number, Number> random = new XYChart.Series<>();
         random.setName("Random");
@@ -468,11 +470,12 @@ public class PlaySceneController {
             Parent root = loader.load();
             ReportController reportController = loader.getController();
             reportController.transferData(random, sequnece, strategyOne, strategyTwo);
-            Stage startStage = new Stage();
-            startStage.initStyle(StageStyle.UNDECORATED);
-            startStage.setResizable(false);
-            startStage.setScene(new Scene(root));
-            startStage.show();
+            Stage reportStage = new Stage();
+            reportStage.initStyle(StageStyle.UNDECORATED);
+            reportStage.initModality(Modality.APPLICATION_MODAL);
+            reportStage.setResizable(false);
+            reportStage.setScene(new Scene(root));
+            reportStage.show();
         } catch (IOException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.show();

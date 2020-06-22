@@ -1,5 +1,6 @@
 package battleship;
 
+import battleship.controllers.EndSceneController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;

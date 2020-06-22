@@ -33,3 +33,7 @@
             linear-gradient(#d6d6d6 50%, lightblue 100%),
             radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
 }
+
+.text-endScene{
+    -fx-font-weight: bold;
+}

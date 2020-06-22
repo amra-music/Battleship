@@ -31,16 +31,16 @@
          </rowConstraints>
          <children>
             <ImageView fx:id="endPicture" fitHeight="198.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2" />
-            <Label fx:id="endTextLabel" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <Label fx:id="endTextLabel" styleClass="text-endScene" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="playAgainButton" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Play again" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="playAgainButton" mnemonicParsing="false" onMousePressed="#playAgain" prefHeight="50.0" prefWidth="90.0" styleClass="glass-grey-button" text="Play again" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="95.0" styleClass="glass-grey-button" text="Exit" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="exitButton" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="90.0" styleClass="glass-grey-button" text="Exit" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

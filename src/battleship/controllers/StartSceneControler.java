@@ -1,4 +1,4 @@
-package battleship;
+package battleship.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -26,14 +26,6 @@ public class StartSceneControler {
     public Pane primaryScene;
     public AnchorPane title;
 
-
-    @FXML
-    public void initialize() {
-        startButton.getStyleClass().add("start-button");
-        rulesButton.getStyleClass().add("start-button");
-        exitButton.getStyleClass().add("start-button");
-    }
-
     public void start(MouseEvent mouseEvent) {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/playScene.fxml"));
@@ -53,7 +45,7 @@ public class StartSceneControler {
 
     public void rules(MouseEvent mouseEvent) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/rules.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/rulesScene.fxml"));
             Stage rulesStage = new Stage();
             rulesStage.initStyle(StageStyle.UNDECORATED);
             rulesStage.initModality(Modality.APPLICATION_MODAL);

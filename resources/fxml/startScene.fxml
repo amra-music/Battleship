@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleship.StartSceneControler">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleship.controllers.StartSceneControler">
    <top>
       <AnchorPane fx:id="title" onMousePressed="#drag" prefHeight="43.0" prefWidth="1100.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -26,7 +26,7 @@
                   <Image url="@../img/battleship.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" alignment="CENTER" layoutX="745.0" layoutY="83.0" mnemonicParsing="false" onMousePressed="#start" prefHeight="50.0" prefWidth="130.0" text="Start">
+            <Button fx:id="startButton" alignment="CENTER" layoutX="745.0" layoutY="83.0" mnemonicParsing="false" onMousePressed="#start" prefHeight="50.0" prefWidth="130.0" styleClass="start-button" text="Start">
                <font>
                   <Font size="15.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="rulesButton" layoutX="745.0" layoutY="152.0" mnemonicParsing="false" onMousePressed="#rules" prefHeight="50.0" prefWidth="130.0" text="Rules">
+            <Button fx:id="rulesButton" layoutX="745.0" layoutY="152.0" mnemonicParsing="false" onMousePressed="#rules" prefHeight="50.0" prefWidth="130.0" styleClass="start-button" text="Rules">
                <font>
                   <Font size="15.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="exitButton" layoutX="745.0" layoutY="225.0" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="130.0" text="Exit">
+            <Button fx:id="exitButton" layoutX="745.0" layoutY="225.0" mnemonicParsing="false" onMousePressed="#exit" prefHeight="50.0" prefWidth="130.0" styleClass="start-button" text="Exit">
                <font>
                   <Font size="15.0" />
                </font>

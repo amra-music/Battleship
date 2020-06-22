@@ -1,4 +1,4 @@
-package battleship;
+package battleship.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -23,7 +23,6 @@ public class EndSceneController {
     private boolean win;
     private Stage playStage;
 
-
     public void setWin(boolean win) {
         this.win = win;
     }
@@ -39,11 +38,11 @@ public class EndSceneController {
 
     @FXML
     public void initialize() {
-        if (win){
+        if (win) {
             endTextLabel.setText("Congratulations! You win");
             endPicture.setImage(new Image("/img/win.png"));
         } else {
-            endTextLabel.setText("Ohh no! You lose");
+            endTextLabel.setText("Ohh no!\nYou lose");
             endPicture.setImage(new Image("/img/lose.png"));
         }
     }
@@ -57,7 +56,7 @@ public class EndSceneController {
     }
 
     public void playAgain(MouseEvent mouseEvent) {
-        try{
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/playScene.fxml"));
             Stage newPlayStage = new Stage();
             newPlayStage.initStyle(StageStyle.UNDECORATED);
@@ -68,7 +67,7 @@ public class EndSceneController {
             currentStage.close();
             newPlayStage.show();
         } catch (IOException error) {
-            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.show();
         }
     }

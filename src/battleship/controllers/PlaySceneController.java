@@ -30,6 +30,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -177,6 +178,16 @@ public class PlaySceneController {
                 }
                 if (isBoatOnBoard(shipRectangle, playerBoardBounds)) {
                     player.removeShip(ship);
+                    int deviation = shipRectangle.getRotate() == 270 ? outBoard(shipRectangle) : 0;
+                    int column = (int) (shipRectangle.getLayoutX() + deviation) / 50;
+                    int row = (int) (shipRectangle.getLayoutY() - deviation) / 50;
+
+                    for (int i  = 0; i < ship.getSize(); i++) {
+                        if (shipRectangle.getRotate() == 270)
+                            playerBoardFields.get((row + i) * 10 + column).setDisable(false);
+                        else
+                            playerBoardFields.get(row * 10 + column + i).setDisable(false);
+                    }
                 }
                 dragDelta.setX(shipRectangle.getLayoutX() - mouseEvent.getSceneX());
                 dragDelta.setY(shipRectangle.getLayoutY() - mouseEvent.getSceneY());
@@ -194,30 +205,55 @@ public class PlaySceneController {
                 shipRectangle.setCursor(Cursor.OPEN_HAND);
 
                 if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
-                    shipRectangle.setLayoutX(dragDelta.getFirstLayoutX());
-                    shipRectangle.setLayoutY(dragDelta.getFirstLayoutY());
-                    shipRectangle.setRotate(0);
-                    player.removeShip(ship);
-                    Sound.INSTANCE.error();
+                    resetShip(shipRectangle, dragDelta, ship);
                 } else {
                     Sound.INSTANCE.shipPlaced();
-                    for (Shape field : playerBoardFields) {
+                    for (int i = 0; i < playerBoardFields.size(); i++) {
+                        Shape field = playerBoardFields.get(i);
                         if (field.getFill() == Color.GREEN) {
                             ship.setOrientation(shipRectangle.getRotate());
                             ship.setStartY(field.getLayoutY());
                             ship.setStartX(field.getLayoutX());
-                            player.addShip(ship);
                             //ovaj if-else je za pravilno snapovanje
                             if (shipRectangle.getRotate() == 0) {
+                                int brojac = 0;
+                                for (int j  = 0; j < ship.getSize(); j++) {
+                                    if (playerBoardFields.get(i + j).getFill() == Color.GREEN)
+                                        brojac++;
+                                }
+                                if (brojac != ship.getSize()) {
+                                    resetShip(shipRectangle, dragDelta, ship);
+                                    break;
+                                }
+                                for (int j = 0; j < ship.getSize(); j++) {
+                                    playerBoardFields.get(i + j).setDisable(true);
+                                }
                                 shipRectangle.setLayoutY(field.getLayoutY() + 5);
                                 shipRectangle.setLayoutX(field.getLayoutX());
+                                player.addShip(ship);
                                 break;
                             } else {
+                                int brojac = 0;
+                                for (int j  = 0; j < ship.getSize(); j++) {
+                                    if (playerBoardFields.get(i + j * 10).getFill() == Color.GREEN)
+                                        brojac++;
+                                }
+                                if (brojac != ship.getSize()) {
+                                    resetShip(shipRectangle, dragDelta, ship);
+                                    break;
+                                }
+                                for (int j = 0; j < ship.getSize(); j++) {
+                                    playerBoardFields.get(i + j * 10).setDisable(true);
+                                }
                                 int deviation = outBoard(shipRectangle);
                                 shipRectangle.setLayoutX(field.getLayoutX() - deviation + 5);
                                 shipRectangle.setLayoutY(field.getLayoutY() + deviation);
+                                player.addShip(ship);
                                 break;
                             }
+                        } else if (field.getFill() == Color.CORAL) {
+                            resetShip(shipRectangle, dragDelta, ship);
+                            break;
                         }
                     }
                 }
@@ -236,6 +272,14 @@ public class PlaySceneController {
                 checkShapeIntersection(shipRectangle);
             }
         });
+    }
+
+    private void resetShip(Rectangle shipRectangle, Delta dragDelta, Ship ship) {
+        shipRectangle.setLayoutX(dragDelta.getFirstLayoutX());
+        shipRectangle.setLayoutY(dragDelta.getFirstLayoutY());
+        shipRectangle.setRotate(0);
+        player.removeShip(ship);
+        Sound.INSTANCE.error();
     }
 
     private void setDodgerblueColor(List<Rectangle> board) {
@@ -302,21 +346,23 @@ public class PlaySceneController {
             if (intersect.getBoundsInLocal().getWidth() != -1) {
 
                 if (block.getRotate() == 0) {
-                    if (occupiesOneRow(block, field) && occupiesRightWidth(block, field) &&
+                    if (occupiesOneRow(block, field) && occupiesRightWidth(block, field) && !field.isDisable() &&
                             occupiesRightWidth2(block, field) && isBoatOnBoard(block, playerBoardBounds)) {
                         field.setFill(Color.GREEN);
-                    } else if (occupiesOneRow(block, field) && occupiesRightWidth(block, field) &&
-                            occupiesRightWidth2(block, field) && !isBoatOnBoard(block, playerBoardBounds))
+                    } else if ((field.isDisable() && occupiesRightWidth(block, field) &&
+                            occupiesRightWidth2(block, field) && occupiesOneRow(block, field)) || (occupiesOneRow(block, field) && occupiesRightWidth(block, field) &&
+                            occupiesRightWidth2(block, field) && !isBoatOnBoard(block, playerBoardBounds)))
                         field.setFill(Color.CORAL);
                     else
                         field.setFill(Color.DODGERBLUE);
                 } else {
-                    if (occupiesOneColumn(block, field) && occupiesRightHight(block, field)
+                    if (occupiesOneColumn(block, field) && occupiesRightHight(block, field) && !field.isDisable()
                             && occupiesRightHight2(block, field) && isBoatOnBoard(block, playerBoardBounds))
                         field.setFill(Color.GREEN);
                     else if
-                    (occupiesOneColumn(block, field) && occupiesRightHight(block, field)
-                                    && occupiesRightHight2(block, field) && !isBoatOnBoard(block, playerBoardBounds))
+                    ((field.isDisable() && occupiesRightHight(block, field)
+                                    && occupiesRightHight2(block, field) && occupiesOneColumn(block, field)) || (occupiesOneColumn(block, field) && occupiesRightHight(block, field)
+                                    && occupiesRightHight2(block, field) && !isBoatOnBoard(block, playerBoardBounds)))
                         field.setFill(Color.CORAL);
                     else
                         field.setFill(Color.DODGERBLUE);
@@ -342,6 +388,7 @@ public class PlaySceneController {
 
         player.setInitialHealth();
         PC.setInitialHealth();
+        playerBoardFields.forEach(field->field.setDisable(false));
     }
 
     private void reset() {
@@ -386,6 +433,7 @@ public class PlaySceneController {
                 wariningStage.setResizable(false);
                 wariningStage.setScene(new Scene(root));
                 wariningStage.show();
+                Sound.INSTANCE.error();
             } catch (IOException error) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
                 alert.show();

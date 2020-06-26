@@ -1,5 +1,6 @@
 package battleship.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -18,7 +19,8 @@ public class ReportController {
     public void initialize() {
     }
 
-    public void transferData(XYChart.Series<Number, Number> series1, XYChart.Series<Number, Number> series2, XYChart.Series<Number, Number> series3, XYChart.Series<Number, Number> series4) {
+    public void transferData(XYChart.Series<Number, Number> series1, XYChart.Series<Number, Number> series2, XYChart.Series<Number, Number> series3, XYChart.Series<Number, Number> series4, int iterations) {
+        x.setUpperBound(iterations);
         lineChart.getData().addAll(series1, series2, series3, series4);
     }
 
@@ -33,5 +35,14 @@ public class ReportController {
             report.setX(dragEvent.getScreenX() - mouseEvent.getSceneX());
             report.setY(dragEvent.getScreenY() - mouseEvent.getSceneY());
         });
+    }
+
+    public void exportTxt(ActionEvent actionEvent) {
+        String txt;
+
+        // 17,18,19,...,100
+        //
+        //lineChart.getData().get(0).getData().forEach();
+        System.out.println();
     }
 }

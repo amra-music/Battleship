@@ -39,7 +39,7 @@
          <center>
             <LineChart fx:id="lineChart" prefHeight="600.0" prefWidth="1600.0" styleClass="chart-series-line" BorderPane.alignment="CENTER">
               <xAxis>
-                 <NumberAxis autoRanging="false" label="Iterations" styleClass="chart-series-line" upperBound="105.0" fx:id="x" />
+                 <NumberAxis autoRanging="false" label="Iterations" styleClass="chart-series-line" fx:id="x" />
               </xAxis>
               <yAxis>
                 <NumberAxis fx:id="y" label="Number of shots" side="LEFT" />
@@ -62,5 +62,10 @@
             <AnchorPane prefHeight="200.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
          </right></BorderPane>
       <Line endX="1615.0" layoutX="154.0" layoutY="589.0" startX="-85.0" stroke="RED" strokeWidth="2.0" />
+      <Button layoutX="70.0" layoutY="740.0" mnemonicParsing="false" onAction="#exportTxt" prefHeight="35.0" prefWidth="120.0" styleClass="glass-grey-button" stylesheets="@../css/button.css" text="Save as .txt file">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

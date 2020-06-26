@@ -340,7 +340,7 @@
                </cursor></Button>
             <ProgressBar fx:id="PCHealth" layoutX="600.0" layoutY="555.0" prefHeight="18.0" prefWidth="500.0" progress="1.0" />
             <ProgressBar fx:id="playerHealth" layoutY="555.0" prefHeight="18.0" prefWidth="500.0" progress="1.0" />
-            <Button fx:id="exploreButton" layoutX="961.0" layoutY="616.0" mnemonicParsing="false" onMousePressed="#test" prefHeight="50.0" prefWidth="114.0" styleClass="glass-grey-button" text="Test">
+            <Button fx:id="exploreButton" layoutX="1022.0" layoutY="616.0" mnemonicParsing="false" onMousePressed="#test" prefHeight="35.0" prefWidth="74.0" styleClass="glass-grey-button" text="Test">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -373,6 +373,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Spinner fx:id="iterationsSpinner" editable="true" layoutX="912.0" layoutY="621.0" prefHeight="25.0" prefWidth="107.0" />
+            <ProgressBar fx:id="loadingBar" layoutX="912.0" layoutY="655.0" maxHeight="9.0" prefHeight="9.0" prefWidth="183.0" progress="0.0" styleClass="loading-bar" />
          </children>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />

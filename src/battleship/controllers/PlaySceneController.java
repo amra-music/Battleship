@@ -27,6 +27,7 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class PlaySceneController {
     public RadioButton sequenceRButton;
     public RadioButton strategyOneRButton;
     public RadioButton strategyTwoRButton;
+    public Spinner<Integer> iterationsSpinner;
+    public ProgressBar loadingBar;
 
     private ToggleGroup strategys = new ToggleGroup();
     private Image boatFiveImage = new Image("/img/boatFive.png");
@@ -79,8 +82,26 @@ public class PlaySceneController {
     private StrategyOneAI strategyOneAI = new StrategyOneAI();
     private StrategyTwoAI strategyTwoAI = new StrategyTwoAI();
 
+    private <T> void commitEditorText(Spinner<T> spinner) {
+        if (!spinner.isEditable()) return;
+        String text = spinner.getEditor().getText();
+        SpinnerValueFactory<T> valueFactory = spinner.getValueFactory();
+        if (valueFactory != null) {
+            StringConverter<T> converter = valueFactory.getConverter();
+            if (converter != null) {
+                T value = converter.fromString(text);
+                valueFactory.setValue(value);
+            }
+        }
+    }
+
     @FXML
     public void initialize() {
+        iterationsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 1000000));
+        iterationsSpinner.focusedProperty().addListener((s, ov, nv) -> {
+            if (nv) return;
+            commitEditorText(iterationsSpinner);
+        });
 
         randomRButton.setToggleGroup(strategys);
         sequenceRButton.setToggleGroup(strategys);
@@ -182,7 +203,7 @@ public class PlaySceneController {
                     int column = (int) (shipRectangle.getLayoutX() + deviation) / 50;
                     int row = (int) (shipRectangle.getLayoutY() - deviation) / 50;
 
-                    for (int i  = 0; i < ship.getSize(); i++) {
+                    for (int i = 0; i < ship.getSize(); i++) {
                         if (shipRectangle.getRotate() == 270)
                             playerBoardFields.get((row + i) * 10 + column).setDisable(false);
                         else
@@ -217,7 +238,7 @@ public class PlaySceneController {
                             //ovaj if-else je za pravilno snapovanje
                             if (shipRectangle.getRotate() == 0) {
                                 int brojac = 0;
-                                for (int j  = 0; j < ship.getSize(); j++) {
+                                for (int j = 0; j < ship.getSize(); j++) {
                                     if (playerBoardFields.get(i + j).getFill() == Color.GREEN)
                                         brojac++;
                                 }
@@ -234,7 +255,7 @@ public class PlaySceneController {
                                 break;
                             } else {
                                 int brojac = 0;
-                                for (int j  = 0; j < ship.getSize(); j++) {
+                                for (int j = 0; j < ship.getSize(); j++) {
                                     if (playerBoardFields.get(i + j * 10).getFill() == Color.GREEN)
                                         brojac++;
                                 }
@@ -388,7 +409,7 @@ public class PlaySceneController {
 
         player.setInitialHealth();
         PC.setInitialHealth();
-        playerBoardFields.forEach(field->field.setDisable(false));
+        playerBoardFields.forEach(field -> field.setDisable(false));
     }
 
     private void reset() {
@@ -511,65 +532,71 @@ public class PlaySceneController {
         strategyOne.setName("StrategyOne");
         XYChart.Series<Number, Number> strategyTwo = new XYChart.Series<>();
         strategyTwo.setName("StrategyTwo");
+        Thread thread = new Thread(() -> {
+            for (int i = 1; i <= iterationsSpinner.getValue(); i++) {
+                DummyAI randomAI = new RandomAI();
+                DummyAI sequenceAI = new SequenceAI();
+                SmartAI strategyOneAI = new StrategyOneAI();
+                SmartAI strategyTwoAI = new StrategyTwoAI();
+                int hits = 0;
+                Board boardTest = new Board(PCBoardFields);
+                boardTest.setRandomShips();
+                boardTest.setHealth(17);
 
-        for (int i = 1; i <= 100; i++) {
-            DummyAI randomAI = new RandomAI();
-            DummyAI sequenceAI = new SequenceAI();
-            SmartAI strategyOneAI = new StrategyOneAI();
-            SmartAI strategyTwoAI = new StrategyTwoAI();
-            int hits = 0;
-            Board boardTest = new Board(PCBoardFields);
-            boardTest.setRandomShips();
-            boardTest.setHealth(17);
+                while (boardTest.getHealth() != 0) {
+                    hits++;
+                    boardTest.dummyAITest(randomAI);
+                }
+                random.getData().add(new XYChart.Data<>(i, hits));
 
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.dummyAITest(randomAI);
+                hits = 0;
+                boardTest.resetTest();
+
+                while (boardTest.getHealth() != 0) {
+                    hits++;
+                    boardTest.dummyAITest(sequenceAI);
+                }
+                sequnece.getData().add(new XYChart.Data<>(i, hits));
+
+                hits = 0;
+                boardTest.resetTest();
+
+                while (boardTest.getHealth() != 0) {
+                    hits++;
+                    boardTest.smartAITest(strategyOneAI);
+                }
+                strategyOne.getData().add(new XYChart.Data<>(i, hits));
+
+                hits = 0;
+                boardTest.resetTest();
+
+                while (boardTest.getHealth() != 0) {
+                    hits++;
+                    boardTest.smartAITest(strategyTwoAI);
+                }
+                strategyTwo.getData().add(new XYChart.Data<>(i, hits));
+                final int finalI = i;
+                Platform.runLater(() -> loadingBar.setProgress(finalI / (double) iterationsSpinner.getValue()));
             }
-            random.getData().add(new XYChart.Data<>(i, hits));
-
-            hits = 0;
-            boardTest.resetTest();
-
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.dummyAITest(sequenceAI);
-            }
-            sequnece.getData().add(new XYChart.Data<>(i, hits));
-
-            hits = 0;
-            boardTest.resetTest();
-
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.smartAITest(strategyOneAI);
-            }
-            strategyOne.getData().add(new XYChart.Data<>(i, hits));
-
-            hits = 0;
-            boardTest.resetTest();
-
-            while (boardTest.getHealth() != 0) {
-                hits++;
-                boardTest.smartAITest(strategyTwoAI);
-            }
-            strategyTwo.getData().add(new XYChart.Data<>(i, hits));
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/report.fxml"));
-            Parent root = loader.load();
-            ReportController reportController = loader.getController();
-            reportController.transferData(random, sequnece, strategyOne, strategyTwo);
-            Stage reportStage = new Stage();
-            reportStage.initStyle(StageStyle.UNDECORATED);
-            reportStage.initModality(Modality.APPLICATION_MODAL);
-            reportStage.setResizable(false);
-            reportStage.setScene(new Scene(root));
-            reportStage.show();
-        } catch (IOException error) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
-            alert.show();
-        }
+            Platform.runLater(() -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/report.fxml"));
+                    Parent root = loader.load();
+                    ReportController reportController = loader.getController();
+                    reportController.transferData(random, sequnece, strategyOne, strategyTwo, iterationsSpinner.getValue());
+                    Stage reportStage = new Stage();
+                    reportStage.initStyle(StageStyle.UNDECORATED);
+                    reportStage.initModality(Modality.APPLICATION_MODAL);
+                    reportStage.setResizable(false);
+                    reportStage.setScene(new Scene(root));
+                    reportStage.show();
+                } catch (IOException error) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
+                    alert.show();
+                }
+            });
+        });
+        thread.start();
     }
 
     public void drag(MouseEvent mouseEvent) {

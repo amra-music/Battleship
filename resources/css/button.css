@@ -37,3 +37,12 @@
 .text-endScene{
     -fx-font-weight: bold;
 }
+
+.progress-bar > .bar {
+    -fx-background-insets: 1 1 2 1;
+    -fx-padding: 0.20em;
+}
+
+.loading-bar > .bar {
+    -fx-background-color: forestgreen;
+}

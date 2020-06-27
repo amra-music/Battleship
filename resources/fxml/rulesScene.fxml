@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleship.controllers.RulesController">
+    <top>
+        <AnchorPane fx:id="title" onMousePressed="#drag" prefHeight="43.0" prefWidth="1100.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+            <children>
+                <Button layoutX="1038.0" layoutY="2.0" mnemonicParsing="false" onMousePressed="#close" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #47A3B5;" text="C L O S E">
+                    <font>
+                        <Font name="Nirmala UI Bold" size="13.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Label layoutX="503.0" layoutY="9.0" text="H O W   T O   P L A Y">
+                    <font>
+                        <Font name="Nirmala UI Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <cursor>
+                <Cursor fx:constant="MOVE" />
+            </cursor>
+        </AnchorPane>
+    </top>
+   <center>
+      <GridPane maxHeight="702.0" prefHeight="702.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="387.99998474121094" minHeight="10.0" prefHeight="383.99998474121094" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="286.4" minHeight="10.0" prefHeight="118.40001525878904" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="651.0" fitWidth="1062.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+               <image>
+                  <Image url="@../img/howToPlay.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+   </center>
+    <bottom>
+        <AnchorPane prefHeight="2.0" prefWidth="1100.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER" />
+    </bottom>
+    <left>
+        <AnchorPane prefHeight="785.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+            </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="780.0" prefWidth="2.0" style="-fx-background-color: #47A3B5;" BorderPane.alignment="CENTER">
+            </AnchorPane>
+    </right>
+</BorderPane>

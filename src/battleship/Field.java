@@ -13,13 +13,7 @@ public class Field {
     private boolean occupied = false;
     private Ship ship = new Ship();
 
-
-    public Field(double positionX, double positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-    }
-
-    public Field(Rectangle rectangle){
+    public Field(Rectangle rectangle) {
         this.rectangle = rectangle;
         this.positionX = rectangle.getLayoutX();
         this.positionY = rectangle.getLayoutY();
@@ -53,7 +47,9 @@ public class Field {
         rectangle.setFill(color);
     }
 
-    public Paint getColor() { return rectangle.getFill(); }
+    public Paint getColor() {
+        return rectangle.getFill();
+    }
 
     public Rectangle getRectangle() {
         return rectangle;
@@ -71,7 +67,7 @@ public class Field {
         this.ship = ship;
     }
 
-    public void reset(){
+    public void reset() {
         shot = false;
         occupied = false;
         setColor(Color.DODGERBLUE);

@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(new Image("/img/icon.png"));
         primaryStage.setScene(new Scene(root));
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         primaryStage.show();
     }
 

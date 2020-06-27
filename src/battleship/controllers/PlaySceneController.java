@@ -1,6 +1,7 @@
 package battleship.controllers;
 
 import battleship.*;
+import battleship.AI.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,9 +32,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class PlaySceneController {
     public Rectangle boatSubmarine;
@@ -146,10 +145,6 @@ public class PlaySceneController {
         setBoardFieldsListeners(PC.getFields());
         playerBoard.setDisable(true);
         PCBoard.setDisable(true);
-
-
-        // TODO : options da se odabrere AI i zvuk da se moze iskljuciti
-        // TODO : ako je polje occupied onda kada se presijece sa tim poljem ne moze se tu postaviti
     }
 
     public void setBoardFieldsListeners(List<List<Field>> boardFields) {
@@ -186,112 +181,103 @@ public class PlaySceneController {
     public void setDragListeners(final Rectangle shipRectangle) {
         final Delta dragDelta = new Delta();
         Ship ship = new Ship(shipRectangle.getWidth(), shipRectangle.getLayoutX(), shipRectangle.getLayoutY());
-        shipRectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                shipRectangle.toFront();
-                shipRectangle.setCursor(Cursor.CLOSED_HAND);
+        shipRectangle.setOnMousePressed(mouseEvent -> {
+            shipRectangle.toFront();
+            shipRectangle.setCursor(Cursor.CLOSED_HAND);
 
-                //zapamti pocetnu poziciju
-                if (dragDelta.getFirstLayoutX() == 0) {
-                    dragDelta.setFirstLayoutX(shipRectangle.getLayoutX());
-                    dragDelta.setFirstLayoutY(shipRectangle.getLayoutY());
-                }
-                if (isBoatOnBoard(shipRectangle, playerBoardBounds)) {
-                    player.removeShip(ship);
-                    int deviation = shipRectangle.getRotate() == 270 ? outBoard(shipRectangle) : 0;
-                    int column = (int) (shipRectangle.getLayoutX() + deviation) / 50;
-                    int row = (int) (shipRectangle.getLayoutY() - deviation) / 50;
+            //zapamti pocetnu poziciju
+            if (dragDelta.getFirstLayoutX() == 0) {
+                dragDelta.setFirstLayoutX(shipRectangle.getLayoutX());
+                dragDelta.setFirstLayoutY(shipRectangle.getLayoutY());
+            }
+            if (isBoatOnBoard(shipRectangle, playerBoardBounds)) {
+                player.removeShip(ship);
+                int deviation = shipRectangle.getRotate() == 270 ? outBoard(shipRectangle) : 0;
+                int column = (int) (shipRectangle.getLayoutX() + deviation) / 50;
+                int row = (int) (shipRectangle.getLayoutY() - deviation) / 50;
 
-                    for (int i = 0; i < ship.getSize(); i++) {
-                        if (shipRectangle.getRotate() == 270)
-                            playerBoardFields.get((row + i) * 10 + column).setDisable(false);
-                        else
-                            playerBoardFields.get(row * 10 + column + i).setDisable(false);
-                    }
-                }
-                dragDelta.setX(shipRectangle.getLayoutX() - mouseEvent.getSceneX());
-                dragDelta.setY(shipRectangle.getLayoutY() - mouseEvent.getSceneY());
-
-                //na desni klik, rotacija
-                if (mouseEvent.isSecondaryButtonDown()) {
-                    setRotation(shipRectangle);
-                    checkShapeIntersection(shipRectangle);
+                for (int i = 0; i < ship.getSize(); i++) {
+                    if (shipRectangle.getRotate() == 270)
+                        playerBoardFields.get((row + i) * 10 + column).setDisable(false);
+                    else
+                        playerBoardFields.get(row * 10 + column + i).setDisable(false);
                 }
             }
-        });
-        shipRectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                shipRectangle.setCursor(Cursor.OPEN_HAND);
+            dragDelta.setX(shipRectangle.getLayoutX() - mouseEvent.getSceneX());
+            dragDelta.setY(shipRectangle.getLayoutY() - mouseEvent.getSceneY());
 
-                if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
-                    resetShip(shipRectangle, dragDelta, ship);
-                } else {
-                    Sound.INSTANCE.shipPlaced();
-                    for (int i = 0; i < playerBoardFields.size(); i++) {
-                        Shape field = playerBoardFields.get(i);
-                        if (field.getFill() == Color.GREEN) {
-                            ship.setOrientation(shipRectangle.getRotate());
-                            ship.setStartY(field.getLayoutY());
-                            ship.setStartX(field.getLayoutX());
-                            //ovaj if-else je za pravilno snapovanje
-                            if (shipRectangle.getRotate() == 0) {
-                                int brojac = 0;
-                                for (int j = 0; j < ship.getSize(); j++) {
-                                    if (playerBoardFields.get(i + j).getFill() == Color.GREEN)
-                                        brojac++;
-                                }
-                                if (brojac != ship.getSize()) {
-                                    resetShip(shipRectangle, dragDelta, ship);
-                                    break;
-                                }
-                                for (int j = 0; j < ship.getSize(); j++) {
-                                    playerBoardFields.get(i + j).setDisable(true);
-                                }
-                                shipRectangle.setLayoutY(field.getLayoutY() + 5);
-                                shipRectangle.setLayoutX(field.getLayoutX());
-                                player.addShip(ship);
-                                break;
-                            } else {
-                                int brojac = 0;
-                                for (int j = 0; j < ship.getSize(); j++) {
-                                    if (playerBoardFields.get(i + j * 10).getFill() == Color.GREEN)
-                                        brojac++;
-                                }
-                                if (brojac != ship.getSize()) {
-                                    resetShip(shipRectangle, dragDelta, ship);
-                                    break;
-                                }
-                                for (int j = 0; j < ship.getSize(); j++) {
-                                    playerBoardFields.get(i + j * 10).setDisable(true);
-                                }
-                                int deviation = outBoard(shipRectangle);
-                                shipRectangle.setLayoutX(field.getLayoutX() - deviation + 5);
-                                shipRectangle.setLayoutY(field.getLayoutY() + deviation);
-                                player.addShip(ship);
-                                break;
-                            }
-                        } else if (field.getFill() == Color.CORAL) {
-                            resetShip(shipRectangle, dragDelta, ship);
-                            break;
-                        }
-                    }
-                }
-                for (Shape field : playerBoardFields) {
-                    if (field.getFill() == Color.GREEN || field.getFill() == Color.CORAL)
-                        field.setFill(Color.DODGERBLUE);
-                }
-            }
-        });
-        shipRectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-                shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
-                shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
+            //na desni klik, rotacija
+            if (mouseEvent.isSecondaryButtonDown()) {
+                setRotation(shipRectangle);
                 checkShapeIntersection(shipRectangle);
             }
+        });
+        shipRectangle.setOnMouseReleased(mouseEvent -> {
+            shipRectangle.setCursor(Cursor.OPEN_HAND);
+
+            if (!isBoatOnBoard(shipRectangle, playerBoardBounds)) {
+                resetShip(shipRectangle, dragDelta, ship);
+            } else {
+                Sound.INSTANCE.shipPlaced();
+                for (int i = 0; i < playerBoardFields.size(); i++) {
+                    Shape field = playerBoardFields.get(i);
+                    if (field.getFill() == Color.GREEN) {
+                        ship.setOrientation(shipRectangle.getRotate());
+                        ship.setStartY(field.getLayoutY());
+                        ship.setStartX(field.getLayoutX());
+                        //ovaj if-else je za pravilno snapovanje
+                        if (shipRectangle.getRotate() == 0) {
+                            int brojac = 0;
+                            for (int j = 0; j < ship.getSize(); j++) {
+                                if (playerBoardFields.get(i + j).getFill() == Color.GREEN)
+                                    brojac++;
+                            }
+                            if (brojac != ship.getSize()) {
+                                resetShip(shipRectangle, dragDelta, ship);
+                                break;
+                            }
+                            for (int j = 0; j < ship.getSize(); j++) {
+                                playerBoardFields.get(i + j).setDisable(true);
+                            }
+                            shipRectangle.setLayoutY(field.getLayoutY() + 5);
+                            shipRectangle.setLayoutX(field.getLayoutX());
+                            player.addShip(ship);
+                            break;
+                        } else {
+                            int brojac = 0;
+                            for (int j = 0; j < ship.getSize(); j++) {
+                                if (playerBoardFields.get(i + j * 10).getFill() == Color.GREEN)
+                                    brojac++;
+                            }
+                            if (brojac != ship.getSize()) {
+                                resetShip(shipRectangle, dragDelta, ship);
+                                break;
+                            }
+                            for (int j = 0; j < ship.getSize(); j++) {
+                                playerBoardFields.get(i + j * 10).setDisable(true);
+                            }
+                            int deviation = outBoard(shipRectangle);
+                            shipRectangle.setLayoutX(field.getLayoutX() - deviation + 5);
+                            shipRectangle.setLayoutY(field.getLayoutY() + deviation);
+                            player.addShip(ship);
+                            break;
+                        }
+                    } else if (field.getFill() == Color.CORAL) {
+                        resetShip(shipRectangle, dragDelta, ship);
+                        break;
+                    }
+                }
+            }
+            for (Shape field : playerBoardFields) {
+                if (field.getFill() == Color.GREEN || field.getFill() == Color.CORAL)
+                    field.setFill(Color.DODGERBLUE);
+            }
+        });
+        shipRectangle.setOnMouseDragged(mouseEvent -> {
+
+            shipRectangle.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
+            shipRectangle.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
+            checkShapeIntersection(shipRectangle);
         });
     }
 
@@ -301,13 +287,6 @@ public class PlaySceneController {
         shipRectangle.setRotate(0);
         player.removeShip(ship);
         Sound.INSTANCE.error();
-    }
-
-    private void setDodgerblueColor(List<Rectangle> board) {
-        for (Rectangle field : board) {
-            if (field.getFill() == Color.CORAL)
-                field.setFill(Color.DODGERBLUE);
-        }
     }
 
     private void setRotation(Rectangle ship) {
@@ -498,32 +477,7 @@ public class PlaySceneController {
         }
     }
 
-    private int dummyTestAI(DummyAI ai) {
-        int hits = 0;
-        Board boardTest = new Board(PCBoardFields);
-        boardTest.setRandomShips();
-        boardTest.setHealth(17);
-        while (boardTest.getHealth() != 0) {
-            hits++;
-            boardTest.dummyAITest(ai);
-        }
-        return hits;
-    }
-
-    private int smartTestAI(SmartAI ai) {
-        int hits = 0;
-        Board boardTest = new Board(PCBoardFields);
-        boardTest.setRandomShips();
-        boardTest.setHealth(17);
-        while (boardTest.getHealth() != 0) {
-            hits++;
-            boardTest.smartAITest(ai);
-        }
-        return hits;
-    }
-
     public void test(MouseEvent mouseEvent) {
-
         XYChart.Series<Number, Number> random = new XYChart.Series<>();
         random.setName("Random");
         XYChart.Series<Number, Number> sequnece = new XYChart.Series<>();

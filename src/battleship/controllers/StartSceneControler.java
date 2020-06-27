@@ -1,7 +1,6 @@
 package battleship.controllers;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +17,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class StartSceneControler {
-    public Pane scenePane;
     public Button startButton;
     public Button rulesButton;
     public Button exitButton;
@@ -27,24 +25,24 @@ public class StartSceneControler {
     public AnchorPane title;
 
     public void start(MouseEvent mouseEvent) {
-        try{
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/playScene.fxml"));
             Stage playStage = new Stage();
             playStage.initStyle(StageStyle.UNDECORATED);
             playStage.setResizable(false);
             playStage.setScene(new Scene(root));
-            playStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
+            playStage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             Stage startStage = (Stage) startButton.getScene().getWindow();
             startStage.close();
             playStage.show();
         } catch (IOException error) {
-            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.show();
         }
     }
 
     public void rules(MouseEvent mouseEvent) {
-        try{
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/rulesScene.fxml"));
             Stage rulesStage = new Stage();
             rulesStage.initStyle(StageStyle.UNDECORATED);
@@ -53,7 +51,7 @@ public class StartSceneControler {
             rulesStage.setScene(new Scene(root));
             rulesStage.show();
         } catch (IOException error) {
-            Alert alert  = new Alert(Alert.AlertType.ERROR, "Problem "+error.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Problem " + error.getMessage());
             alert.show();
         }
     }

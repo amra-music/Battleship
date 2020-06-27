@@ -1,5 +1,7 @@
 package battleship;
 
+import battleship.AI.DummyAI;
+import battleship.AI.SmartAI;
 import battleship.controllers.EndSceneController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +68,6 @@ public class Board {
     }
 
     public void resetBoard() {
-        //postavi na plavo, da nije occupied, nije hit
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Field field = fields.get(i).get(j);
@@ -140,27 +141,12 @@ public class Board {
     public void setFields(List<Rectangle> fields) {
         List<Field> row = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
-            row.add(new Field(fields.get(i - 1)));//.getLayoutX(), fields.get(i - 1).getLayoutY()));
+            row.add(new Field(fields.get(i - 1)));
             if (i % 10 == 0) {
                 this.fields.add(row);
                 row = new ArrayList<>();
             }
         }
-    }
-
-    //daj polje za rectangle
-    /*public Field getField(Rectangle rectangle) {
-        for (int row = 0; row < 10; row++) {
-            for (int element = 0; element < 10; element++) {
-                Field field = fields.get(row).get(element);
-                if (field.getPositionX() == rectangle.getLayoutX() && field.getPositionY() == rectangle.getLayoutY())
-                    return field;
-            }
-        }
-        return null;
-    }*/
-    public Field getField(double columnPosition, double rowPosition) {
-        return fields.get((int) (rowPosition / 50)).get((int) (columnPosition / 50));
     }
 
     public void removeOccupied() {
@@ -204,14 +190,14 @@ public class Board {
                 return 0;
             return 1;
         });
-        String string = "Ships = ";
+        StringBuilder string = new StringBuilder("Ships = ");
         for (Ship ship : ships) {
-            string += ship + "\n";
+            string.append(ship).append("\n");
         }
-        string += "***Fields*** \n";
+        string.append("***Fields*** \n");
         for (List<Field> row : fields)
-            string += row.toString() + "\n";
-        return string;
+            string.append(row.toString()).append("\n");
+        return string.toString();
     }
 
     public void playerTurn(Field field) {
@@ -223,14 +209,6 @@ public class Board {
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
                 showEndScreen(true);
-                /*
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You win!");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent()) {
-                    Platform.exit();
-                    System.exit(0);
-                }
-                */
             }
         } else {
             field.setColor(Color.WHITE);
@@ -287,14 +265,6 @@ public class Board {
             this.setHealth(this.getHealth() - 1);
             if (this.getHealth() == 0) {
                 showEndScreen(false);
-                /*
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You lost :(");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent()) {
-                    Platform.exit();
-                    System.exit(0);
-                }
-                */
             }
             ai.feedback(true, field.getShip().isDestroyed(), ai.getX(), ai.getY());
         } else {
@@ -314,7 +284,7 @@ public class Board {
             endStage.initModality(Modality.APPLICATION_MODAL);
             endStage.setResizable(false);
             endStage.setScene(new Scene(root));
-            endStage.getScene().getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
+            endStage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             endStage.show();
             if (win) Sound.INSTANCE.gameWon();
             else Sound.INSTANCE.gameLost();

@@ -9,7 +9,6 @@ public enum Sound {
     private AudioClip WATER_MISS;
     private AudioClip GAME_WON;
     private AudioClip GAME_LOST;
-    private AudioClip MUSIC;
     private AudioClip ERROR;
     boolean isSoundEnabled = true;
 
@@ -19,7 +18,6 @@ public enum Sound {
         this.WATER_MISS = getAudioClip("file:resources/audio/water_miss.wav");
         this.GAME_WON = getAudioClip("file:resources/audio/game_won.wav");
         this.GAME_LOST = getAudioClip("file:resources/audio/lost_trumpet.wav");
-        this.MUSIC = getAudioClip("file:resources/audio/music.mp3");
         this.ERROR = getAudioClip("file:resources/audio/error.wav");
     }
 
@@ -47,11 +45,6 @@ public enum Sound {
     public void gameLost() {
         if (!isSoundEnabled) return;
         GAME_LOST.play();
-    }
-
-    public void music() {
-        if (!isSoundEnabled) return;
-        MUSIC.play();
     }
 
     public void error() {

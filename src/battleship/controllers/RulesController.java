@@ -1,6 +1,5 @@
 package battleship.controllers;
 
-import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -8,10 +7,6 @@ import javafx.stage.Stage;
 
 public class RulesController {
     public AnchorPane title;
-
-    @FXML
-    public void initialize() {
-    }
 
     public void drag(MouseEvent mouseEvent) {
         Stage stage = (Stage) title.getScene().getWindow();

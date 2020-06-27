@@ -109,7 +109,8 @@ public class Ship {
     public void setHealth(int health) {
         this.health = health;
     }
-    public boolean isDestroyed(){
+
+    public boolean isDestroyed() {
         return health == 0;
     }
 

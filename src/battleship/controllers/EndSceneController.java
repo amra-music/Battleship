@@ -63,6 +63,7 @@ public class EndSceneController {
             newPlayStage.setResizable(false);
             newPlayStage.setScene(new Scene(root));
             Stage currentStage = (Stage) title.getScene().getWindow();
+            newPlayStage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             playStage.close();
             currentStage.close();
             newPlayStage.show();

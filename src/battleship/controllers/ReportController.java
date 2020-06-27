@@ -36,8 +36,8 @@ public class ReportController {
     }
 
     public void close(MouseEvent mouseEvent) {
-       Stage report = (Stage) lineChart.getScene().getWindow();
-       report.close();
+        Stage report = (Stage) lineChart.getScene().getWindow();
+        report.close();
     }
 
     public void titleClick(MouseEvent mouseEvent) {

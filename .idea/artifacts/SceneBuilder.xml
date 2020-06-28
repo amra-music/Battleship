@@ -14,7 +14,7 @@
     </properties>
     <root id="root">
       <element id="archive" name="SceneBuilder.jar">
-        <element id="module-output" name="SceneBuilder" />
+        <element id="module-output" name="Battleship" />
       </element>
     </root>
   </artifact>

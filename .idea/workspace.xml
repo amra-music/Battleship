@@ -6,29 +6,65 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Dodana mogucnost generisanja .txt fajla reporta">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Refactoring">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfxtras_jfxtras_labs_2_2_r5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SceneBuilder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SceneBuilder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/intro.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/music.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/report.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/report.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/warning.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/warning.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/DummyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/DummyAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/RandomAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/SequenceAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/SequenceAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/SmartAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/SmartAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/StrategyOneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/StrategyOneAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/StrategyTwoAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/AI/StrategyTwoAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/EndSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/EndSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/RulesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/RulesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/StartSceneControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship/controllers/StartSceneControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/error.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/error.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/game_won.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/game_won.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/hit.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/hit.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/lost_trumpet.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/lost_trumpet.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/ship_placed.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/ship_placed.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/water_miss.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/water_miss.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/endScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/endScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/playScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/playScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/report.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/report.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/rulesScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/rulesScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/startScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/startScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fxml/warning.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/warning.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/battleship.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/battleship.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boat.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boatFive.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boatFive.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boatFour.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boatFour.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boatThree1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boatThree1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boatThree2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boatThree2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/boatTwo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/boatTwo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/game.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/game.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/howToPlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/howToPlay.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/lose.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/lose.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/ocean.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/ocean.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/soundONN.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/soundONN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/soundOff.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/soundOff.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/soundOff1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/soundOff1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/soundOn.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/soundOn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/soundOn1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/soundOn1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/warining.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/warining.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/win.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/win.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/DummyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/DummyAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/SequenceAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/SequenceAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/SmartAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/SmartAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/StrategyOneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/StrategyOneAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/AI/StrategyTwoAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/AI/StrategyTwoAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Delta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Delta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/EndSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/EndSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/PlaySceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/PlaySceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/RulesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/RulesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/StartSceneControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/StartSceneControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship/controllers/WarningController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controllers/WarningController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +135,13 @@
     <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1aX6IAiPKUqNStI5gZ8FElzZM6k" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -131,28 +174,29 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafx-battleships-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="sample" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\main" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\fxml" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\img" />
+      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources" />
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
       <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\css" />
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\fxml" />
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\resources\img" />
-      <recent name="C:\Users\Amra\Desktop\DiplomskiRad\SceneBuilder\src\sample" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="sample" />
     </key>
   </component>
   <component name="RunManager">
@@ -181,18 +225,16 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Main" />
-      <module name="SceneBuilder" />
+      <module name="Battleship" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="battleship.controllers.*" />
+          <option name="PATTERN" value="battleship.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,6 +276,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -304,14 +351,10 @@
       <workItem from="1593174766087" duration="13744000" />
       <workItem from="1593198662271" duration="29000" />
       <workItem from="1593199549331" duration="171000" />
-      <workItem from="1593297892839" duration="1888000" />
-    </task>
-    <task id="LOCAL-00021" summary="Napravljena klasa Field">
-      <created>1589499361482</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1589499361482</updated>
+      <workItem from="1593297892839" duration="2585000" />
+      <workItem from="1593300531311" duration="433000" />
+      <workItem from="1593301033851" duration="2913000" />
+      <workItem from="1593304050254" duration="912000" />
     </task>
     <task id="LOCAL-00022" summary="Napravljena klasa Field sa svim poljima, pokusaj ispisivanja svih polja i brodica">
       <created>1589499634088</created>
@@ -649,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593189788285</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Refactoring">
+      <created>1593299815503</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1593299815504</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +722,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Napravljeno da se pokreće početna stranica" />
     <MESSAGE value="Napravljeno da intersekcija radi kad je rotira brodic" />
     <MESSAGE value="Progresbar popravljen prilikom playAgain" />
     <MESSAGE value="Napravljen graf za random i sequence, za pametne AI beskonacna petlja" />
@@ -697,13 +746,18 @@
     <MESSAGE value="Radi pravilno snapovanje" />
     <MESSAGE value="Dodan number spiner, progres bar" />
     <MESSAGE value="Dodana mogucnost generisanja .txt fajla reporta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodana mogucnost generisanja .txt fajla reporta" />
+    <MESSAGE value="Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1591902198301">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1591902198301" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593300404990">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1593300404990" />
     <state x="514" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592834959416">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -716,6 +770,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="747" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1592921458915" />
+    <state x="400" y="101" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1593300578171">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="400" y="101" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1593300578171" />
     <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1588350813620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -736,34 +794,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1592852948334" />
-    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1593189787609">
+    <state x="190" y="9" key="CommitChangelistDialog2" timestamp="1593299814562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593189787609" />
+    <state x="190" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593299814562" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588284023768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588284023768" />
-    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1592832901978">
+    <state x="360" y="114" key="FileChooserDialogImpl" timestamp="1593303655107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592832901978" />
-    <state width="1493" height="181" key="GridCell.Tab.0.bottom" timestamp="1593299693113">
+    <state x="360" y="114" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593303655107" />
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom" timestamp="1593304352134">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="181" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593299693113" />
-    <state width="1493" height="181" key="GridCell.Tab.0.center" timestamp="1593299693112">
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593304352134" />
+    <state width="1493" height="171" key="GridCell.Tab.0.center" timestamp="1593304352134">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="181" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593299693112" />
-    <state width="1493" height="181" key="GridCell.Tab.0.left" timestamp="1593299693111">
+    <state width="1493" height="171" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593304352134" />
+    <state width="1493" height="171" key="GridCell.Tab.0.left" timestamp="1593304352134">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="181" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593299693111" />
-    <state width="1493" height="181" key="GridCell.Tab.0.right" timestamp="1593299693112">
+    <state width="1493" height="171" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593304352134" />
+    <state width="1493" height="171" key="GridCell.Tab.0.right" timestamp="1593304352134">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="181" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593299693112" />
+    <state width="1493" height="171" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593304352134" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1592332781881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -780,22 +838,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592332781881" />
-    <state x="498" y="0" key="SettingsEditor" timestamp="1592921484335">
+    <state x="498" y="0" key="SettingsEditor" timestamp="1593304324240">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1592921484335" />
+    <state x="498" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593304324240" />
     <state x="618" y="327" key="VCS.ChangelistChooser" timestamp="1590167679160">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="327" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1590167679160" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1593189791680">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1593299818423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593189791680" />
-    <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587237930628">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593299818423" />
+    <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1593302824376">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1587237930628" />
+    <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1593302824376" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593299551518">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

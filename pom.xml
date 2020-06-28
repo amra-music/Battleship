@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>battleship</groupId>
+    <artifactId>Battleship</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Battleship</name>
+    <url>https://github.com/amusic5/DiplomskiRad</url>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Opisne informacije o projektu -->
+    <description>
+        Bachelor project on implementing a Battleship game in JavaFX
+    </description>
+    <organization>
+        <name>
+            Univerzitet u Sarajevu,
+            Elektrotehnički fakultet Sarajevo,
+            Odsjek za računarstvo i informatiku
+        </name>
+        <url>http://www.etf.unsa.ba</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>amusic5</id>
+            <name>Amra Music</name>
+            <email>amusic5@etf.unsa.ba</email>
+            <url>http://people.etf.unsa.ba/~amusic5/</url>
+            <organization>
+                Univerzitet u Sarajevu,
+                Elektrotehnički fakultet Sarajevo,
+                Odsjek za računarstvo i informatiku
+            </organization>
+            <organizationUrl>http://www.etf.unsa.ba</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-labs</artifactId>
+            <version>2.2-r5</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>battleship.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

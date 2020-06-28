@@ -2,6 +2,8 @@ package battleship;
 
 import javafx.scene.media.AudioClip;
 
+import java.net.URISyntaxException;
+
 public enum Sound {
     INSTANCE;
     private AudioClip SHIP_PLACED;
@@ -13,12 +15,13 @@ public enum Sound {
     boolean isSoundEnabled = true;
 
     Sound() {
-        this.SHIP_PLACED = getAudioClip("file:resources/audio/ship_placed.wav");
-        this.HIT = getAudioClip("file:resources/audio/hit.wav");
-        this.WATER_MISS = getAudioClip("file:resources/audio/water_miss.wav");
-        this.GAME_WON = getAudioClip("file:resources/audio/game_won.wav");
-        this.GAME_LOST = getAudioClip("file:resources/audio/lost_trumpet.wav");
-        this.ERROR = getAudioClip("file:resources/audio/error.wav");
+
+        this.SHIP_PLACED = getAudioClip("/audio/ship_placed.wav");
+        this.HIT = getAudioClip("/audio/hit.wav");
+        this.WATER_MISS = getAudioClip("/audio/water_miss.wav");
+        this.GAME_WON = getAudioClip("/audio/game_won.wav");
+        this.GAME_LOST = getAudioClip("/audio/lost_trumpet.wav");
+        this.ERROR = getAudioClip("/audio/error.wav");
     }
 
     //region playback methods
@@ -61,6 +64,12 @@ public enum Sound {
     }
 
     private AudioClip getAudioClip(String path) {
-        return new AudioClip(path);
+        AudioClip clip = null;
+        try {
+            clip = new AudioClip(getClass().getResource(path).toURI().toString());
+        } catch (URISyntaxException ignored) {
+
+        }
+        return clip;
     }
 }

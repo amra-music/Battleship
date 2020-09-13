@@ -10,13 +10,13 @@ The paper describes the application and importance of strategy games in various 
 An executable jar version of the game can be found in the exe folder. There is also a shortcut you can place anywhere and run the game with it.
 
 <p align="center">
-  <img width="600" height="350" src="https://raw.githubusercontent.com/amra-music/Battleship/master/titlePage.png">
+  <img width="600" height="340" src="https://raw.githubusercontent.com/amra-music/Battleship/master/titlePage.png">
   <br />
   Start window
 </p>
 
 <p align="center">
-  <img width="600" height="350" src="https://i.imgur.com/TtywlEm.png">
+  <img width="600" height="282" src="https://i.imgur.com/TtywlEm.png">
   <br />
   AI strategies comparision
 </p>

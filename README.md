@@ -1,6 +1,6 @@
 Battleship
 ===========
-This repository was used for development of a Battleship strategy desktop game. It was used as a practical demonstration for a Bachelor thesis
+This repository was used for development of a Battleship desktop strategy game. It was used as a practical demonstration for a Bachelor thesis
 <p align="center">
   <b>“Development and Implementation of a Strategy Game”.</b>
 </p>
